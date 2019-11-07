@@ -1,0 +1,22 @@
+/*  new day button */
+.new_day {
+  border: none;
+  background: #404040;
+  color: #ffffff !important;
+  font-weight: 100;
+  padding: 16px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  font-family: 'Play', sans-serif;
+  letter-spacing: 1px;
+}
+  
+.new_day:hover {
+  color: #404040 !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
+  transition: all 0.3s ease 0s;
+}
