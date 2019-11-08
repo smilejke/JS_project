@@ -5,7 +5,6 @@ const resultArr = [];
 let result = {
   marker: true,
   counter: 0,
-
   input_div_id: [],
   kk_input_div_id: [],
   number_id: [],
@@ -13,14 +12,38 @@ let result = {
   ivr_id: [],
   hours_id: [],
   kk_id: [],
-
-  total_ivr: [],
-  middle_ivr: 0,
-
-  total_hours: 0,
-  sum_hours: 0,
-
   remove_id: [],
+};
+
+let controlData = {
+  total_ivr: [],
+  total_hours: 0,
+
+  middle_ivr: 0,
+  sum_hours: 0,
+};
+
+let getMiddleIVR = () => {
+  let avarage = 0;
+  for (let i in resultArr) {
+    controlData.total_ivr.push(resultArr[i].ivr);
+  }
+  for (let i in controlData.total_ivr) {
+    avarage += controlData.total_ivr[i];
+  }
+  avarage /= controlData.total_ivr.length;
+  controlData.middle_ivr = Math.round(avarage);
+  return controlData.middle_ivr;
+};
+
+let getSumHours = () => {
+  let sum = 0;
+  for (let i in resultArr) {
+    sum += resultArr[i].hours;
+  }
+
+  controlData.sum_hours = sum;
+  return controlData.sum_hours;
 };
 
 export const createIVRpage = () => {
@@ -119,25 +142,6 @@ const removeNodeCallBack = (e) => {
 
 //===========================================================================> page 1
 
-let countAvarageIvr = () => {
-  let average_ivr = 0;
-  for (let i in result.total_ivr) {
-    average_ivr += result.total_ivr[i];
-  }
-  average_ivr /= result.total_ivr.length;
-  result.middle_ivr = Math.round(average_ivr);
-  return result.middle_ivr;
-};
-
-let countHoursSum = () => {
-  let sum_of_hours = 0;
-  for (let i in result.total_hours) {
-    sum_of_hours += result.total_hours[i];
-  }
-  result.sum_hours = sum_of_hours;
-  return result.sum_hours;
-};
-
 let get_data = () => {
   for (let i in result.date_id) {
     const day = {
@@ -147,14 +151,11 @@ let get_data = () => {
       hours: +document.getElementById(result.hours_id[i]).value,
     };
     resultArr.push(day);
-    console.log(day);
   }
-
-  countAvarageIvr();
-  countHoursSum();
-  console.log(resultArr);
-  // makeSomeNoise();
-  // make_kk_table();
+  getSumHours();
+  getMiddleIVR();
+  makeSomeNoise();
+  make_kk_table();
 };
 
 let createForwardButton = () => {
@@ -293,10 +294,7 @@ let make_kk_table = () => {
 };
 
 let makeSomeNoise = () => {
-  console.log(`Average IVR is ${result.middle_ivr}`);
-  console.log(`Total hours are ${result.sum_hours}`);
-  console.log(result.total_numbers);
-  console.log(result.date_data);
-  console.log(result.total_ivr);
-  console.log(result.total_hours);
+  console.log(`Average IVR is ${controlData.middle_ivr}`);
+  console.log(`Total hours are ${controlData.sum_hours}`);
+  console.log(resultArr);
 };
