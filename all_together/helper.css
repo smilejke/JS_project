@@ -9,3 +9,7 @@ input[data-rule].valid {
 .invalid {
   border: 2px solid red;
 }
+
+input:first-of-type {
+  border: 2px solid green;
+}

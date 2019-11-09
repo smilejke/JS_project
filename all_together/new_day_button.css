@@ -1,5 +1,5 @@
 /*  new day button */
-.new_day {
+.new-day {
   border: none;
   background: #404040;
   color: #ffffff !important;
@@ -12,8 +12,8 @@
   font-family: 'Play', sans-serif;
   letter-spacing: 1px;
 }
-  
-.new_day:hover {
+
+.new-day:hover {
   color: #404040 !important;
   font-weight: 700 !important;
   letter-spacing: 3px;

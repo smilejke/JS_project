@@ -1,18 +1,18 @@
-#main_content_div {
+#main-content-div {
   min-height: 80vh;
   height: auto;
   width: 50vw;
   padding: 10px 0px;
 }
 
-#main_content_div2 {
+#main-content-div2 {
   min-height: 80vh;
   height: auto;
   width: 50vw;
   padding: 10px 0px;
 }
 
-#main_content_div3 {
+#main-content-div3 {
   min-height: 80vh;
   height: auto;
   width: 50vw;
@@ -52,7 +52,8 @@
   color: #4e4d4b;
   font-weight: bold;
   cursor: pointer;
-  width: 30%;
+  width: 200px;
+  height: 50px;
   border-radius: 5px;
   padding: 10px 0;
   outline: none;

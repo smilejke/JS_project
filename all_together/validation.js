@@ -10,7 +10,6 @@ export const ifDataValid = () => {
       switch (rule) {
         case 'number':
           check = /^\d+$/.test(value);
-          break;
       }
       input.classList.remove('valid');
       input.classList.remove('invalid');

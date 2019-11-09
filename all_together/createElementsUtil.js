@@ -1,19 +1,19 @@
-export const create_new_input = (hash, result) => {
-  let new_input = document.createElement(hash.type_name);
-  new_input.classList.add(hash.class_name);
-  new_input.id = hash.id_name + result.counter;
-  hash.placeToPushId.push(new_input.id);
-  new_input.placeholder = hash.placeholder_name;
-  new_input.readOnly = hash.readOnlyParam;
-  new_input.setAttribute('data-rule', 'number');
-  hash.placeToAppend.appendChild(new_input);
-  return new_input;
+export const createNewInput = (hash, result) => {
+  let newInput = document.createElement(hash.type);
+  newInput.classList.add(hash.classname);
+  newInput.id = hash.id + result.counter;
+  hash.placeToPushId.push(newInput.id);
+  newInput.placeholder = hash.placeholder;
+  newInput.readOnly = hash.readOnlyParam;
+  newInput.setAttribute('data-rule', 'number');
+  hash.placeToAppend.appendChild(newInput);
+  return newInput;
 };
 
-export const create_new_button = (hash) => {
+export const createNewButton = (hash) => {
   let newButton = document.createElement(hash.type);
   newButton.id = hash.id;
-  newButton.classList.add(hash.class_name);
+  newButton.classList.add(hash.classname);
   newButton.disabled = hash.disabled;
   newButton.innerHTML = hash.text;
   hash.placeToAppend.appendChild(newButton);
@@ -21,19 +21,19 @@ export const create_new_button = (hash) => {
 };
 
 export const createRemoveButton = (result, callback) => {
-  let remove_button = document.createElement('button');
-  remove_button.id = result.counter;
-  result.remove_id.push(remove_button.id);
-  remove_button.classList.add('icon-btn', 'add-btn');
-  remove_button.addEventListener('click', callback);
+  let removeButton = document.createElement('button');
+  removeButton.id = result.counter;
+  result.removeIds.push(removeButton.id);
+  removeButton.classList.add('icon-btn', 'add-btn');
+  removeButton.addEventListener('click', callback);
 
-  let remove_div = document.createElement('div');
-  remove_div.classList.add('btn-txt');
-  remove_div.id = result.counter;
-  remove_div.innerHTML = 'Удалить';
-  remove_button.appendChild(remove_div);
+  let removeDiv = document.createElement('div');
+  removeDiv.classList.add('btn-txt');
+  removeDiv.id = result.counter;
+  removeDiv.innerHTML = 'Удалить';
+  removeButton.appendChild(removeDiv);
 
-  return remove_button;
+  return removeButton;
 };
 
 export const createInputDiv = (hash, result) => {

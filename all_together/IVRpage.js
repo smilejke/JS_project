@@ -1,147 +1,165 @@
 import {
-  create_new_input,
+  createNewInput,
   createRemoveButton,
-  create_new_button,
+  createNewButton,
   createInputDiv,
 } from './createElementsUtil.js';
 
 import { ifDataValid } from './validation.js';
+
 const resultArr = [];
 
 let result = {
   marker: true,
   counter: 0,
 
-  input_div_id: [],
-  kk_input_div_id: [],
-  csat_input_div_id: [],
+  inputDivIds: [],
+  kkInputDivIds: [],
+  csatInputDivIds: [],
 
-  number_ivr_id: [],
-  number_kk_id: [],
-  number_csat_id: [],
+  numberIvrIds: [],
+  numberKkIds: [],
+  numberCsatIds: [],
 
-  date_ivr_id: [],
-  date_kk_id: [],
-  date_csat_id: [],
+  dateIvrIds: [],
+  dateKkIds: [],
+  dateCsatIds: [],
 
-  hours_ivr_id: [],
-  hours_kk_id: [],
-  hours_csat_id: [],
+  hoursIvrIds: [],
 
-  ivr_id: [],
-  kk_id: [],
-  csat_id: [],
+  ivrIds: [],
+  kkIds: [],
+  csatIds: [],
 
-  remove_id: [],
+  removeIds: [],
 };
 
 let controlData = {
-  total_ivr: [],
-  total_hours: 0,
+  totalIvr: [],
+  totalKk: [],
+  totalCsat: [],
 
-  middle_ivr: 0,
-  sum_hours: 0,
+  middleIvr: 0,
+  middleKk: 0,
+  middleCsat: 0,
+  sumHours: 0,
+  totalDaysWorked: 0,
 };
 
-let getMiddleIVR = () => {
+const getMiddleIVR = () => {
   let avarage = 0;
   for (let i in resultArr) {
-    controlData.total_ivr.push(resultArr[i].ivr);
+    controlData.totalIvr.push(resultArr[i].ivr);
   }
-  for (let i in controlData.total_ivr) {
-    avarage += controlData.total_ivr[i];
+  for (let i in controlData.totalIvr) {
+    avarage += controlData.totalIvr[i];
   }
-  avarage /= controlData.total_ivr.length;
-  controlData.middle_ivr = Math.round(avarage);
-  return controlData.middle_ivr;
+  avarage /= controlData.totalIvr.length;
+  controlData.middleIvr = Math.round(avarage);
+  return controlData.middleIvr;
 };
 
-let getSumHours = () => {
+const getSumHours = () => {
   let sum = 0;
   for (let i in resultArr) {
     sum += resultArr[i].hours;
   }
 
-  controlData.sum_hours = sum;
-  return controlData.sum_hours;
+  controlData.sumHours = sum;
+  return controlData.sumHours;
+};
+
+const getMiddle = (arrayToAccumulateData, param) => {
+  let middle = 0;
+  for (let i in resultArr) {
+    arrayToAccumulateData.push(resultArr[i].kk);
+  }
+  for (let i in arrayToAccumulateData) {
+    middle += arrayToAccumulateData[i];
+  }
+  middle /= arrayToAccumulateData.length;
+  param = middle;
+  return controlData.param;
 };
 
 export const createIVRpage = () => {
   let main = document.createElement('main');
   main.classList.add('main-div');
-  main.id = 'main_content_div';
+  main.id = 'main-content-div';
   document.body.append(main);
 
-  let work_div = document.createElement('div');
-  work_div.classList.add('button-div');
-  main.appendChild(work_div);
+  let workDiv = document.createElement('div');
+  workDiv.classList.add('button-div');
+  main.appendChild(workDiv);
 
   let button = document.createElement('button');
-  button.classList.add('new_day');
+  button.classList.add('new-day');
   button.innerHTML = 'Добавить рабочий день';
   button.addEventListener('click', () => {
-    makeNewRow(work_div);
+    makeNewRow(workDiv);
   });
   button.addEventListener('click', ifDataValid);
-  work_div.appendChild(button);
+  workDiv.appendChild(button);
 };
 
-const makeNewRow = (work_div) => {
-  let newInputDiv = createInputDiv(
+const makeNewRow = (workDiv) => {
+  const newInputDiv = createInputDiv(
     {
       type: 'div',
       classname: 'form-div',
-      id: 'input_div',
-      placeToPushId: result.input_div_id,
-      placeToAppend: work_div,
+      id: 'inputDiv',
+      placeToPushId: result.inputDivIds,
+      placeToAppend: workDiv,
     },
     result,
   );
 
-  create_new_input(
+  const numberValue = createNewInput(
     {
-      type_name: 'input',
-      class_name: 'input-date',
-      id_name: 'number',
-      placeToPushId: result.number_ivr_id,
-      placeholder_name: result.counter + 1,
+      type: 'input',
+      classname: 'input-date',
+      id: 'number',
+      placeToPushId: result.numberIvrIds,
+      placeholder: result.counter + 1,
       readOnlyParam: true,
       placeToAppend: newInputDiv,
     },
     result,
   );
 
-  create_new_input(
+  numberValue.value = result.counter + 1;
+
+  createNewInput(
     {
-      type_name: 'input',
-      class_name: 'input-date',
-      id_name: 'date',
-      placeToPushId: result.date_ivr_id,
-      placeholder_name: 'Дата',
+      type: 'input',
+      classname: 'input-date',
+      id: 'date',
+      placeToPushId: result.dateIvrIds,
+      placeholder: 'Дата',
       readOnlyParam: false,
       placeToAppend: newInputDiv,
     },
     result,
   );
-  create_new_input(
+  createNewInput(
     {
-      type_name: 'input',
-      class_name: 'input-date',
-      id_name: 'ivr',
-      placeToPushId: result.ivr_id,
-      placeholder_name: 'ИВР',
+      type: 'input',
+      classname: 'input-date',
+      id: 'ivr',
+      placeToPushId: result.ivrIds,
+      placeholder: 'ИВР',
       readOnlyParam: false,
       placeToAppend: newInputDiv,
     },
     result,
   );
-  create_new_input(
+  createNewInput(
     {
-      type_name: 'input',
-      class_name: 'input-date',
-      id_name: 'hours',
-      placeToPushId: result.hours_ivr_id,
-      placeholder_name: 'Часы',
+      type: 'input',
+      classname: 'input-date',
+      id: 'hours',
+      placeToPushId: result.hoursIvrIds,
+      placeholder: 'Часы',
       readOnlyParam: false,
       placeToAppend: newInputDiv,
     },
@@ -155,83 +173,98 @@ const makeNewRow = (work_div) => {
 };
 
 const removeNodeCallBack = (e) => {
-  const elemId = result.remove_id.findIndex((el) => el === e.target.id);
-  result.number_ivr_id.splice(elemId, 1);
-  result.date_ivr_id.splice(elemId, 1);
-  result.ivr_id.splice(elemId, 1);
-  result.hours_ivr_id.splice(elemId, 1);
-  result.remove_id.splice(elemId, 1);
+  const elemId = result.removeIds.findIndex((el) => el === e.target.id);
+  result.numberIvrIds.splice(elemId, 1);
+  result.dateIvrIds.splice(elemId, 1);
+  result.ivrIds.splice(elemId, 1);
+  result.hoursIvrIds.splice(elemId, 1);
+  result.removeIds.splice(elemId, 1);
 
   document
-    .getElementById('main_content_div')
-    .removeChild(document.getElementById('input_div' + e.target.id));
+    .getElementById('main-content-div')
+    .removeChild(document.getElementById('inputDiv' + e.target.id));
 };
 
 //===========================================================================> page 1
 
-let get_data = () => {
-  for (let i in result.date_ivr_id) {
+const getDataKK = () => {
+  for (let i in result.csatIds) {
+    let kk = 0;
+    kk += +document.getElementById(result.csatIds[i]).value;
+    resultArr[i].kk = kk;
+  }
+};
+
+const getDataCsat = () => {
+  for (let i in result.csatIds) {
+    let csat = 0;
+    csat += +document.getElementById(result.csatIds[i]).value;
+    resultArr[i].csat = csat;
+  }
+};
+
+const getDataIvr = () => {
+  for (let i in result.dateIvrIds) {
     const day = {
-      number: +document.getElementById(result.number_ivr_id[i]).placeholder,
-      date: +document.getElementById(result.date_ivr_id[i]).value,
-      ivr: +document.getElementById(result.ivr_id[i]).value,
-      hours: +document.getElementById(result.hours_ivr_id[i]).value,
+      number: +document.getElementById(result.numberIvrIds[i]).placeholder,
+      date: +document.getElementById(result.dateIvrIds[i]).value,
+      ivr: +document.getElementById(result.ivrIds[i]).value,
+      hours: +document.getElementById(result.hoursIvrIds[i]).value,
     };
     resultArr.push(day);
   }
   getSumHours();
   getMiddleIVR();
-  makeSomeNoise();
-  make_kk_table();
+  makeKkTable();
 };
 
-let createForwardButton = () => {
+const createForwardButton = () => {
   if (result.marker) {
-    let last_div = document.createElement('div');
+    const last_div = document.createElement('div');
     last_div.classList.add('last-div');
-    document.getElementById('main_content_div').appendChild(last_div);
+    document.getElementById('main-content-div').appendChild(last_div);
 
-    create_new_button({
+    createNewButton({
       type: 'button',
       id: 'backButton',
-      class_name: 'forward',
+      classname: 'forward',
       disabled: true,
       text: 'Предыдущий показатель',
       placeToAppend: last_div,
     });
-    create_new_button({
+    createNewButton({
       type: 'button',
       id: 'forwardButton',
-      class_name: 'forward',
+      classname: 'forward',
       disabled: false,
-      text: 'Следующий показатель',
+      text: 'Внести данные по контролю качества',
       placeToAppend: last_div,
     });
-    let getNextButton = document.getElementById('forwardButton');
-    getNextButton.addEventListener('click', get_data);
+    const getNextButton = document.getElementById('forwardButton');
+    getNextButton.addEventListener('click', getDataIvr);
   }
   result.marker = false;
 };
 
 //===================================> page 3
 
-let make_kk_table = () => {
+const makeKkTable = () => {
   result.counter = 1;
   result.marker = true;
 
-  let get_div_and_make_visible = document.getElementById('main_content_div');
-  document.body.removeChild(get_div_and_make_visible);
+  const getDivToRomove = document.getElementById('main-content-div');
+  document.body.removeChild(getDivToRomove);
 
-  let make_kk_div2 = document.createElement('div');
-  make_kk_div2.id = 'main_content_div2';
-  document.body.append(make_kk_div2);
+  const makeKkDiv2 = document.createElement('div');
+  makeKkDiv2.id = 'main-content-div2';
+  document.body.append(makeKkDiv2);
 
-  let button_div = document.createElement('div');
+  const button_div = document.createElement('div');
   button_div.classList.add('button-div');
-  make_kk_div2.appendChild(button_div);
+  makeKkDiv2.appendChild(button_div);
 
-  let button = document.createElement('button');
-  button.classList.add('new_day');
+  const button = document.createElement('button');
+  button.classList.add('new-day');
   button.innerHTML = 'Получить данные';
   button.disabled = false;
   button.addEventListener('click', () => {
@@ -239,159 +272,179 @@ let make_kk_table = () => {
       button.disabled = true;
     }
 
-    for (let i in result.number_ivr_id) {
-      if (i < result.number_ivr_id.length) {
-        let kkInputDiv = createInputDiv(
+    for (let i in result.numberIvrIds) {
+      if (i < result.numberIvrIds.length) {
+        const kkInputDiv = createInputDiv(
           {
             type: 'div',
             classname: 'form-div',
-            id: 'kk_input_div',
-            placeToPushId: result.kk_input_div_id,
+            id: 'kkInputDiv',
+            placeToPushId: result.kkInputDivIds,
             placeToAppend: button_div,
           },
           result,
         );
 
-        create_new_input(
+        const numberValue = createNewInput(
           {
-            type_name: 'input',
-            class_name: 'input-date',
-            id_name: 'number_kk',
-            placeToPushId: result.number_kk_id,
-            placeholder_name: result.counter,
+            type: 'input',
+            classname: 'input-date',
+            id: 'numberKK',
+            placeToPushId: result.numberKkIds,
+            placeholder: result.counter,
             readOnlyParam: true,
             placeToAppend: kkInputDiv,
           },
           result,
         );
-        create_new_input(
-          {
-            type_name: 'input',
-            class_name: 'input-date',
-            id_name: 'date_kk',
-            placeToPushId: result.date_kk_id,
-            placeholder_name: resultArr[i].date,
-            readOnlyParam: false,
-            placeToAppend: kkInputDiv,
-          },
-          result,
-        );
-        create_new_input(
-          {
-            type_name: 'input',
-            class_name: 'input-date',
-            id_name: 'kk',
-            placeToPushId: result.kk_id,
-            placeholder_name: 'КК',
-            readOnlyParam: false,
-            placeToAppend: kkInputDiv,
-          },
-          result,
-        );
+        numberValue.value = result.counter;
 
+        const dateKkData = createNewInput(
+          {
+            type: 'input',
+            classname: 'input-date',
+            id: 'date_kk',
+            placeToPushId: result.dateKkIds,
+            placeholder: 'Дата',
+            readOnlyParam: false,
+            placeToAppend: kkInputDiv,
+          },
+          result,
+        );
+        dateKkData.value = resultArr[i].date;
+        if (dateKkData.value == 0) {
+          dateKkData.value = '';
+        } else {
+          dateKkData.classList.add('valid');
+        }
+
+        createNewInput(
+          {
+            type: 'input',
+            classname: 'input-date',
+            id: 'kk',
+            placeToPushId: result.kkIds,
+            placeholder: 'КК',
+            readOnlyParam: false,
+            placeToAppend: kkInputDiv,
+          },
+          result,
+        );
         result.counter += 1;
       }
 
       if (result.marker) {
-        let last_div = document.createElement('div');
+        const last_div = document.createElement('div');
         last_div.classList.add('last-div');
-        make_kk_div2.appendChild(last_div);
+        makeKkDiv2.appendChild(last_div);
 
-        create_new_button({
+        createNewButton({
           type: 'button',
           id: 'backButton',
-          class_name: 'forward',
+          classname: 'forward',
           disabled: false,
-          text: 'Предыдущий показатель',
+          text: 'Вернуться к ИВР',
           placeToAppend: last_div,
         });
-        create_new_button({
+        createNewButton({
           type: 'button',
           id: 'forwardButton',
-          class_name: 'forward',
+          classname: 'forward',
           disabled: false,
-          text: 'Следующий показатель',
+          text: 'Внести данные CSAT',
           placeToAppend: last_div,
         });
-        let nextPage = document.getElementById('forwardButton');
+        const nextPage = document.getElementById('forwardButton');
+        nextPage.addEventListener('click', getDataKK);
+        nextPage.addEventListener('click', getMiddle(controlData.totalKk, controlData.middleKk));
         nextPage.addEventListener('click', make_csat_table);
       }
       result.marker = false;
     }
   });
+
   button.addEventListener('click', ifDataValid);
   button_div.appendChild(button);
 };
 
 //===================================================================>
 
-let make_csat_table = () => {
+const make_csat_table = () => {
   result.counter = 1;
   result.marker = true;
 
-  let get_div_and_make_visible = document.getElementById('main_content_div2');
-  document.body.removeChild(get_div_and_make_visible);
+  const getDivToRomove = document.getElementById('main-content-div2');
+  document.body.removeChild(getDivToRomove);
 
-  let make_csat_div3 = document.createElement('div');
-  make_csat_div3.id = 'main_content_div3';
-  document.body.append(make_csat_div3);
+  const makeCsatDiv3 = document.createElement('div');
+  makeCsatDiv3.id = 'main-content-div3';
+  document.body.append(makeCsatDiv3);
 
-  let button_div = document.createElement('div');
+  const button_div = document.createElement('div');
   button_div.classList.add('button-div');
-  make_csat_div3.appendChild(button_div);
+  makeCsatDiv3.appendChild(button_div);
 
-  let button = document.createElement('button');
-  button.classList.add('new_day');
+  const button = document.createElement('button');
+  button.classList.add('new-day');
   button.innerHTML = 'Получить данные';
   button.disabled = false;
   button.addEventListener('click', () => {
     if (result.counter == 1) {
       button.disabled = true;
     }
-    for (let i in result.number_ivr_id) {
-      if (i < result.number_ivr_id.length) {
-        let csatInputDiv = createInputDiv(
+    for (let i in result.numberIvrIds) {
+      if (i < result.numberIvrIds.length) {
+        const csatInputDiv = createInputDiv(
           {
             type: 'div',
             classname: 'form-div',
             id: 'csat_input_div',
-            placeToPushId: result.csat_input_div_id,
+            placeToPushId: result.csatInputDivIds,
             placeToAppend: button_div,
           },
           result,
         );
 
-        create_new_input(
+        const numberValue = createNewInput(
           {
-            type_name: 'input',
-            class_name: 'input-date',
-            id_name: 'number',
-            placeToPushId: result.number_csat_id,
-            placeholder_name: result.counter,
+            type: 'input',
+            classname: 'input-date',
+            id: 'number',
+            placeToPushId: result.numberCsatIds,
+            placeholder: result.counter,
             readOnlyParam: true,
             placeToAppend: csatInputDiv,
           },
           result,
         );
-        create_new_input(
+        numberValue.value = result.counter;
+
+        const dateCsatData = createNewInput(
           {
-            type_name: 'input',
-            class_name: 'input-date',
-            id_name: 'date',
-            placeToPushId: result.date_csat_id,
-            placeholder_name: resultArr[i].date,
+            type: 'input',
+            classname: 'input-date',
+            id: 'date',
+            placeToPushId: result.dateCsatIds,
+            placeholder: 'Дата',
             readOnlyParam: false,
             placeToAppend: csatInputDiv,
           },
           result,
         );
-        create_new_input(
+        dateCsatData.value = resultArr[i].date;
+        if (dateCsatData.value == 0) {
+          dateCsatData.value = '';
+        } else {
+          dateCsatData.classList.add('valid');
+        }
+
+        createNewInput(
           {
-            type_name: 'input',
-            class_name: 'input-date',
-            id_name: 'csat',
-            placeToPushId: result.csat_id,
-            placeholder_name: 'СSAT',
+            type: 'input',
+            classname: 'input-date',
+            id: 'csat',
+            placeToPushId: result.csatIds,
+            placeholder: 'СSAT',
             readOnlyParam: false,
             placeToAppend: csatInputDiv,
           },
@@ -402,28 +455,34 @@ let make_csat_table = () => {
       }
 
       if (result.marker) {
-        let last_div = document.createElement('div');
+        const last_div = document.createElement('div');
         last_div.classList.add('last-div');
-        make_csat_div3.appendChild(last_div);
+        makeCsatDiv3.appendChild(last_div);
 
-        create_new_button({
+        createNewButton({
           type: 'button',
           id: 'backButton',
-          class_name: 'forward',
+          classname: 'forward',
           disabled: false,
-          text: 'Предыдущий показатель',
+          text: 'Вернуться к контролю качества',
           placeToAppend: last_div,
         });
-        create_new_button({
+        let moveForward = createNewButton({
           type: 'button',
           id: 'forwardButton',
-          class_name: 'forward',
+          classname: 'forward',
           disabled: false,
-          text: 'Следующий показатель',
+          text: 'Внести доп.активность',
           placeToAppend: last_div,
         });
+        moveForward.addEventListener('click', getDataCsat);
+        moveForward.addEventListener(
+          'click',
+          getMiddle(controlData.totalCsat, controlData.middleCsat),
+        );
+        moveForward.addEventListener('click', makeSomeNoise);
+        result.marker = false;
       }
-      result.marker = false;
     }
     return button_div;
   });
@@ -432,7 +491,9 @@ let make_csat_table = () => {
 };
 
 let makeSomeNoise = () => {
-  console.log(`Average IVR is ${controlData.middle_ivr}`);
-  console.log(`Total hours are ${controlData.sum_hours}`);
+  console.log(`Average IVR is ${controlData.middleIvr}`);
+  console.log(`Total hours are ${controlData.sumHours}`);
+  console.log(`Avarage KK is ${controlData.middleKk}`);
+  console.log(`Avarage CSAT is ${controlData.middleCsat}`);
   console.log(resultArr);
 };
