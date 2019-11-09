@@ -3,9 +3,9 @@ import {
   createRemoveButton,
   create_new_button,
   createInputDiv,
-  ifDataValid,
 } from './createElementsUtil.js';
 
+import { ifDataValid } from './validation.js';
 const resultArr = [];
 
 let result = {
@@ -270,7 +270,7 @@ let make_kk_table = () => {
             class_name: 'input-date',
             id_name: 'date_kk',
             placeToPushId: result.date_kk_id,
-            placeholder_name: 'Дата',
+            placeholder_name: resultArr[i].date,
             readOnlyParam: false,
             placeToAppend: kkInputDiv,
           },
@@ -342,88 +342,93 @@ let make_csat_table = () => {
 
   let button = document.createElement('button');
   button.classList.add('new_day');
-  button.innerHTML = 'Добавить рабочий день';
-  button.disabled = true;
+  button.innerHTML = 'Получить данные';
+  button.disabled = false;
+  button.addEventListener('click', () => {
+    if (result.counter == 1) {
+      button.disabled = true;
+    }
+    for (let i in result.number_ivr_id) {
+      if (i < result.number_ivr_id.length) {
+        let csatInputDiv = createInputDiv(
+          {
+            type: 'div',
+            classname: 'form-div',
+            id: 'csat_input_div',
+            placeToPushId: result.csat_input_div_id,
+            placeToAppend: button_div,
+          },
+          result,
+        );
+
+        create_new_input(
+          {
+            type_name: 'input',
+            class_name: 'input-date',
+            id_name: 'number',
+            placeToPushId: result.number_csat_id,
+            placeholder_name: result.counter,
+            readOnlyParam: true,
+            placeToAppend: csatInputDiv,
+          },
+          result,
+        );
+        create_new_input(
+          {
+            type_name: 'input',
+            class_name: 'input-date',
+            id_name: 'date',
+            placeToPushId: result.date_csat_id,
+            placeholder_name: resultArr[i].date,
+            readOnlyParam: false,
+            placeToAppend: csatInputDiv,
+          },
+          result,
+        );
+        create_new_input(
+          {
+            type_name: 'input',
+            class_name: 'input-date',
+            id_name: 'csat',
+            placeToPushId: result.csat_id,
+            placeholder_name: 'СSAT',
+            readOnlyParam: false,
+            placeToAppend: csatInputDiv,
+          },
+          result,
+        );
+
+        result.counter += 1;
+      }
+
+      if (result.marker) {
+        let last_div = document.createElement('div');
+        last_div.classList.add('last-div');
+        make_csat_div3.appendChild(last_div);
+
+        create_new_button({
+          type: 'button',
+          id: 'backButton',
+          class_name: 'forward',
+          disabled: false,
+          text: 'Предыдущий показатель',
+          placeToAppend: last_div,
+        });
+        create_new_button({
+          type: 'button',
+          id: 'forwardButton',
+          class_name: 'forward',
+          disabled: false,
+          text: 'Следующий показатель',
+          placeToAppend: last_div,
+        });
+      }
+      result.marker = false;
+    }
+    return button_div;
+  });
+  button.addEventListener('click', ifDataValid);
   button_div.appendChild(button);
-
-  for (let i in result.number_ivr_id) {
-    if (i < result.number_ivr_id.length) {
-      let csatInputDiv = createInputDiv(
-        {
-          type: 'div',
-          classname: 'form-div',
-          id: 'csat_input_div',
-          placeToPushId: result.csat_input_div_id,
-          placeToAppend: button_div,
-        },
-        result,
-      );
-
-      create_new_input(
-        {
-          type_name: 'input',
-          class_name: 'input-date',
-          id_name: 'number',
-          placeToPushId: result.number_csat_id,
-          placeholder_name: result.counter,
-          readOnlyParam: true,
-          placeToAppend: csatInputDiv,
-        },
-        result,
-      );
-      create_new_input(
-        {
-          type_name: 'input',
-          class_name: 'input-date',
-          id_name: 'date',
-          placeToPushId: result.date_csat_id,
-          placeholder_name: 'Дата',
-          readOnlyParam: false,
-          placeToAppend: csatInputDiv,
-        },
-        result,
-      );
-      create_new_input(
-        {
-          type_name: 'input',
-          class_name: 'input-date',
-          id_name: 'csat',
-          placeToPushId: result.csat_id,
-          placeholder_name: 'СSAT',
-          readOnlyParam: false,
-          placeToAppend: csatInputDiv,
-        },
-        result,
-      );
-
-      result.counter += 1;
-    }
-
-    if (result.marker) {
-      let last_div = document.createElement('div');
-      last_div.classList.add('last-div');
-      make_csat_div3.appendChild(last_div);
-
-      create_new_button({
-        type: 'button',
-        id: 'backButton',
-        class_name: 'forward',
-        disabled: false,
-        text: 'Предыдущий показатель',
-        placeToAppend: last_div,
-      });
-      create_new_button({
-        type: 'button',
-        id: 'forwardButton',
-        class_name: 'forward',
-        disabled: false,
-        text: 'Следующий показатель',
-        placeToAppend: last_div,
-      });
-    }
-    result.marker = false;
-  }
-  return button_div;
 };
 
 let makeSomeNoise = () => {
