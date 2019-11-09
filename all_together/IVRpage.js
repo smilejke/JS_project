@@ -69,6 +69,11 @@ const getSumHours = () => {
   return controlData.sumHours;
 };
 
+let totalDaysWorked = () => {
+  controlData.totalDaysWorked = result.numberIvrIds.length;
+  return controlData.totalDaysWorked;
+};
+
 const getMiddle = (arrayToAccumulateData, param) => {
   let middle = 0;
   for (let i in resultArr) {
@@ -213,9 +218,6 @@ const getDataIvr = () => {
     };
     resultArr.push(day);
   }
-  getSumHours();
-  getMiddleIVR();
-  makeKkTable();
 };
 
 const createForwardButton = () => {
@@ -242,6 +244,10 @@ const createForwardButton = () => {
     });
     const getNextButton = document.getElementById('forwardButton');
     getNextButton.addEventListener('click', getDataIvr);
+    getNextButton.addEventListener('click', getMiddleIVR);
+    getNextButton.addEventListener('click', getSumHours);
+    getNextButton.addEventListener('click', totalDaysWorked);
+    getNextButton.addEventListener('click', makeKkTable);
   }
   result.marker = false;
 };
@@ -357,7 +363,7 @@ const makeKkTable = () => {
         const nextPage = document.getElementById('forwardButton');
         nextPage.addEventListener('click', getDataKK);
         nextPage.addEventListener('click', getMiddle(controlData.totalKk, controlData.middleKk));
-        nextPage.addEventListener('click', make_csat_table);
+        nextPage.addEventListener('click', makeCsatTable);
       }
       result.marker = false;
     }
@@ -369,7 +375,7 @@ const makeKkTable = () => {
 
 //===================================================================>
 
-const make_csat_table = () => {
+const makeCsatTable = () => {
   result.counter = 1;
   result.marker = true;
 
@@ -491,6 +497,7 @@ const make_csat_table = () => {
 };
 
 let makeSomeNoise = () => {
+  console.log(`Total days worked is ${controlData.totalDaysWorked}`);
   console.log(`Average IVR is ${controlData.middleIvr}`);
   console.log(`Total hours are ${controlData.sumHours}`);
   console.log(`Avarage KK is ${controlData.middleKk}`);
