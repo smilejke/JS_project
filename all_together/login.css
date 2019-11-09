@@ -7,17 +7,17 @@ body {
   flex-direction: column;
   min-height: 90vh;
 }
-  
-.main{
+
+.main {
   width: 300px;
   height: auto;
   padding: 10px 50px 25px;
   border: 2px solid gray;
   border-radius: 10px;
   font-family: raleway;
-  }
+}
 
-.input_text{
+.input_text {
   width: 100%;
   height: 40px;
   padding: 5px;
@@ -27,45 +27,40 @@ body {
   color: #4f4f4f;
   font-size: 16px;
   border-radius: 5px;
-  }
-  .main label{
+}
+.main label {
   color: #464646;
   text-shadow: 0 1px 0 #fff;
   font-size: 14px;
   font-weight: bold;
-  }
-  .note{
-  color:red;
-  }
-  .valid{
-  color:green;
-  }
-  .admin_button {
+}
+.note {
+  color: red;
+}
+.valid {
+  color: green;
+}
+.admin_button {
   font-size: 16px;
   background: linear-gradient(#ffbc00 5%, #ffdd7f 100%);
   border: 1px solid #e5a900;
-  color: #4E4D4B;
+  color: #4e4d4b;
   font-weight: bold;
   cursor: pointer;
   width: 100%;
   border-radius: 5px;
   padding: 10px 0;
-  outline:none;
+  outline: none;
   margin-bottom: 10px;
-  }
-  .admin_button:hover{
+}
+.admin_button:hover {
   background: linear-gradient(#ffdd7f 5%, #ffbc00 100%);
-  }
+}
 
-  
-.main h2{
-  background-color: #FEFFED;
+.main h2 {
+  background-color: #feffed;
   padding: 30px 35px;
   margin: -10px -50px;
-  text-align:center;
+  text-align: center;
   border-radius: 10px 10px 0 0;
-  }
-
-.visibility {
-  display: none;
 }

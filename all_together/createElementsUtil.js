@@ -5,6 +5,7 @@ export const create_new_input = (hash, result) => {
   hash.placeToPushId.push(new_input.id);
   new_input.placeholder = hash.placeholder_name;
   new_input.readOnly = hash.readOnlyParam;
+  new_input.setAttribute('data-rule', 'number');
   hash.placeToAppend.appendChild(new_input);
   return new_input;
 };
@@ -33,4 +34,38 @@ export const createRemoveButton = (result, callback) => {
   remove_button.appendChild(remove_div);
 
   return remove_button;
+};
+
+export const createInputDiv = (hash, result) => {
+  let input_div = document.createElement(hash.type);
+  input_div.classList.add(hash.classname);
+  input_div.id = hash.id + result.counter;
+  hash.placeToPushId.push(input_div.id);
+  hash.placeToAppend.before(input_div);
+  return input_div;
+};
+
+export const ifDataValid = () => {
+  let inputs = document.querySelectorAll('input[data-rule]');
+
+  for (let input of inputs) {
+    input.addEventListener('blur', () => {
+      let rule = input.dataset.rule;
+      let value = input.value;
+      let check;
+
+      switch (rule) {
+        case 'number':
+          check = /^\d+$/.test(value);
+          break;
+      }
+      input.classList.remove('valid');
+      input.classList.remove('invalid');
+      if (check) {
+        input.classList.add('valid');
+      } else {
+        input.classList.add('invalid');
+      }
+    });
+  }
 };

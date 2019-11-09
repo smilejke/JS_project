@@ -1,13 +1,18 @@
 #main_content_div {
-    
-    min-height: 80vh;
-    height: auto;
-    width: 50vw;
-    padding: 10px 0px;
+  min-height: 80vh;
+  height: auto;
+  width: 50vw;
+  padding: 10px 0px;
 }
 
 #main_content_div2 {
-    
+  min-height: 80vh;
+  height: auto;
+  width: 50vw;
+  padding: 10px 0px;
+}
+
+#main_content_div3 {
   min-height: 80vh;
   height: auto;
   width: 50vw;
@@ -15,53 +20,53 @@
 }
 
 .form-div {
-    height: 8vh;
-    border-bottom: 1px solid black;
-    width: 40vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 0 auto;
+  height: 8vh;
+  border-bottom: 1px solid black;
+  width: 40vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
 }
 
 .button-div {
-    height: 8vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 8vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .last-div {
-    height: 8vh;
-    width: 50vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-   
-.forward {
-    font-size: 14px;
-    background: linear-gradient(#ffbc00 5%, #ffdd7f 100%);
-    border: 1px solid #e5a900;
-    color: #4E4D4B;
-    font-weight: bold;
-    cursor: pointer;
-    width: 30%;
-    border-radius: 5px;
-    padding: 10px 0;
-    outline:none;
-    margin: 0 auto;
+  height: 8vh;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.forward:hover{
-    background: linear-gradient(#ffdd7f 5%, #ffbc00 100%);
+.forward {
+  font-size: 14px;
+  background: linear-gradient(#ffbc00 5%, #ffdd7f 100%);
+  border: 1px solid #e5a900;
+  color: #4e4d4b;
+  font-weight: bold;
+  cursor: pointer;
+  width: 30%;
+  border-radius: 5px;
+  padding: 10px 0;
+  outline: none;
+  margin: 0 auto;
+}
+
+.forward:hover {
+  background: linear-gradient(#ffdd7f 5%, #ffbc00 100%);
 }
 
 .input-date {
-    text-align: center;
-    height: 50%;
-    width: 13%;
-    border-radius: 5px;
-    border: 1px solid black;
+  text-align: center;
+  height: 50%;
+  width: 13%;
+  border-radius: 5px;
+  border: 1px solid black;
 }

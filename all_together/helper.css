@@ -1,0 +1,11 @@
+.visibility {
+  display: none;
+}
+
+input[data-rule].valid {
+  border: 2px solid green;
+}
+
+.invalid {
+  border: 2px solid red;
+}
