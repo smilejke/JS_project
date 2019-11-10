@@ -1,6 +1,6 @@
-const resultArr = [];
+const resultParams = [];
 
-let result = {
+const dataContainer = {
   marker: true,
   counter: 0,
 
@@ -25,7 +25,7 @@ let result = {
   removeIds: [],
 };
 
-let controlData = {
+const finalData = {
   totalIvr: [],
   totalKk: [],
   totalCsat: [],
@@ -36,8 +36,12 @@ let controlData = {
   sumHours: 0,
   totalDaysWorked: 0,
 };
+localStorage.clear();
+localStorage.setItem('result', JSON.stringify(dataContainer));
+localStorage.setItem('resultArr', JSON.stringify(resultParams));
+localStorage.setItem('controlData', JSON.stringify(finalData));
 
-localStorage.setItem('result', JSON.stringify(result));
-localStorage.setItem('resultArr', JSON.stringify(resultArr));
-localStorage.setItem('controlData', JSON.stringify(controlData));
 export const storage = localStorage;
+export let controlData = JSON.parse(storage.getItem('controlData'));
+export let resultArr = JSON.parse(storage.getItem('resultArr'));
+export let result = JSON.parse(storage.getItem('result'));

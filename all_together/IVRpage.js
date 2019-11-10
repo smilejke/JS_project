@@ -6,12 +6,8 @@ import {
 } from './createElementsUtil.js';
 
 import { ifDataValid } from './validation.js';
-import { storage } from './localStorage.js';
+import { storage, controlData, resultArr, result } from './localStorage.js';
 import { makeKkTable } from './3pageKK.js';
-
-export let controlData = JSON.parse(storage.getItem('controlData'));
-export let resultArr = JSON.parse(storage.getItem('resultArr'));
-export let result = JSON.parse(storage.getItem('result'));
 
 const getMiddleIVR = () => {
   let avarage = 0;
@@ -133,12 +129,12 @@ const makeNewRow = (workDiv) => {
 
 const removeNodeCallBack = (e) => {
   const elemId = result.removeIds.findIndex((el) => el === e.target.id);
+  result.inputDivIds.splice(elemId, 1);
   result.numberIvrIds.splice(elemId, 1);
   result.dateIvrIds.splice(elemId, 1);
   result.ivrIds.splice(elemId, 1);
   result.hoursIvrIds.splice(elemId, 1);
   result.removeIds.splice(elemId, 1);
-
   document
     .getElementById('main-content-div')
     .removeChild(document.getElementById('inputDiv' + e.target.id));
@@ -178,21 +174,17 @@ const createForwardButton = () => {
       text: 'Внести данные по контролю качества',
       placeToAppend: last_div,
     });
-    const getNextButton = document.getElementById('forwardButton');
+    let getNextButton = document.getElementById('forwardButton');
     getNextButton.addEventListener('click', getDataIvr);
     getNextButton.addEventListener('click', getMiddleIVR);
     getNextButton.addEventListener('click', getSumHours);
     getNextButton.addEventListener('click', totalDaysWorked);
+    getNextButton.addEventListener('click', () => {
+      storage.setItem('result', JSON.stringify(result));
+      storage.setItem('resultArr', JSON.stringify(resultArr));
+      storage.setItem('controlData', JSON.stringify(controlData));
+    });
     getNextButton.addEventListener('click', makeKkTable);
   }
   result.marker = false;
-};
-
-export const makeSomeNoise = () => {
-  console.log(`Total days worked is ${controlData.totalDaysWorked}`);
-  console.log(`Average IVR is ${controlData.middleIvr}`);
-  console.log(`Total hours are ${controlData.sumHours}`);
-  console.log(`Avarage KK is ${controlData.middleKk}`);
-  console.log(`Avarage CSAT is ${controlData.middleCsat}`);
-  console.log(resultArr);
 };

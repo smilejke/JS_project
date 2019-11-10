@@ -1,8 +1,7 @@
-import { storage } from './localStorage.js';
 import { ifDataValid } from './validation.js';
 import { createNewInput, createNewButton, createInputDiv } from './createElementsUtil.js';
 
-import { controlData, resultArr, result, makeSomeNoise } from './IVRpage.js';
+import { storage, controlData, resultArr, result } from './localStorage.js';
 
 const getDataCsat = () => {
   for (let i in result.csatIds) {
@@ -21,7 +20,7 @@ const getMiddleCsat = () => {
     middle += controlData.totalCsat[i];
   }
   middle /= controlData.totalCsat.length;
-  controlData.middleCsat = middle;
+  controlData.middleCsat = Math.round(middle);
   return controlData.middleCsat;
 };
 
@@ -133,6 +132,11 @@ export const makeCsatTable = () => {
         });
         moveForward.addEventListener('click', getDataCsat);
         moveForward.addEventListener('click', getMiddleCsat);
+        moveForward.addEventListener('click', () => {
+          storage.setItem('result', JSON.stringify(result));
+          storage.setItem('resultArr', JSON.stringify(resultArr));
+          storage.setItem('controlData', JSON.stringify(controlData));
+        });
         moveForward.addEventListener('click', makeSomeNoise);
         result.marker = false;
       }
@@ -141,4 +145,13 @@ export const makeCsatTable = () => {
   });
   button.addEventListener('click', ifDataValid);
   button_div.appendChild(button);
+};
+
+const makeSomeNoise = () => {
+  console.log(`Total days worked is ${controlData.totalDaysWorked}`);
+  console.log(`Average IVR is ${controlData.middleIvr}`);
+  console.log(`Total hours are ${controlData.sumHours}`);
+  console.log(`Avarage KK is ${controlData.middleKk}`);
+  console.log(`Avarage CSAT is ${controlData.middleCsat}`);
+  console.log(resultArr);
 };
