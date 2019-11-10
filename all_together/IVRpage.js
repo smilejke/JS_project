@@ -74,17 +74,30 @@ let totalDaysWorked = () => {
   return controlData.totalDaysWorked;
 };
 
-const getMiddle = (arrayToAccumulateData, param) => {
+const getMiddleKK = () => {
   let middle = 0;
   for (let i in resultArr) {
-    arrayToAccumulateData.push(resultArr[i].kk);
+    controlData.totalKk.push(resultArr[i].kk);
   }
-  for (let i in arrayToAccumulateData) {
-    middle += arrayToAccumulateData[i];
+  for (let i in controlData.totalKk) {
+    middle += controlData.totalKk[i];
   }
-  middle /= arrayToAccumulateData.length;
-  param = middle;
-  return controlData.param;
+  middle /= controlData.totalKk.length;
+  controlData.middleKk = middle;
+  return controlData.middleKk;
+};
+
+const getMiddleCsat = () => {
+  let middle = 0;
+  for (let i in resultArr) {
+    controlData.totalCsat.push(resultArr[i].csat);
+  }
+  for (let i in controlData.totalCsat) {
+    middle += controlData.totalCsat[i];
+  }
+  middle /= controlData.totalCsat.length;
+  controlData.middleCsat = middle;
+  return controlData.middleCsat;
 };
 
 export const createIVRpage = () => {
@@ -193,9 +206,9 @@ const removeNodeCallBack = (e) => {
 //===========================================================================> page 1
 
 const getDataKK = () => {
-  for (let i in result.csatIds) {
+  for (let i in result.kkIds) {
     let kk = 0;
-    kk += +document.getElementById(result.csatIds[i]).value;
+    kk += Number(document.getElementById(result.kkIds[i]).value);
     resultArr[i].kk = kk;
   }
 };
@@ -203,7 +216,7 @@ const getDataKK = () => {
 const getDataCsat = () => {
   for (let i in result.csatIds) {
     let csat = 0;
-    csat += +document.getElementById(result.csatIds[i]).value;
+    csat += Number(document.getElementById(result.csatIds[i]).value);
     resultArr[i].csat = csat;
   }
 };
@@ -211,10 +224,10 @@ const getDataCsat = () => {
 const getDataIvr = () => {
   for (let i in result.dateIvrIds) {
     const day = {
-      number: +document.getElementById(result.numberIvrIds[i]).placeholder,
-      date: +document.getElementById(result.dateIvrIds[i]).value,
-      ivr: +document.getElementById(result.ivrIds[i]).value,
-      hours: +document.getElementById(result.hoursIvrIds[i]).value,
+      number: Number(document.getElementById(result.numberIvrIds[i]).placeholder),
+      date: Number(document.getElementById(result.dateIvrIds[i]).value),
+      ivr: Number(document.getElementById(result.ivrIds[i]).value),
+      hours: Number(document.getElementById(result.hoursIvrIds[i]).value),
     };
     resultArr.push(day);
   }
@@ -362,7 +375,7 @@ const makeKkTable = () => {
         });
         const nextPage = document.getElementById('forwardButton');
         nextPage.addEventListener('click', getDataKK);
-        nextPage.addEventListener('click', getMiddle(controlData.totalKk, controlData.middleKk));
+        nextPage.addEventListener('click', getMiddleKK);
         nextPage.addEventListener('click', makeCsatTable);
       }
       result.marker = false;
@@ -482,10 +495,7 @@ const makeCsatTable = () => {
           placeToAppend: last_div,
         });
         moveForward.addEventListener('click', getDataCsat);
-        moveForward.addEventListener(
-          'click',
-          getMiddle(controlData.totalCsat, controlData.middleCsat),
-        );
+        moveForward.addEventListener('click', getMiddleCsat);
         moveForward.addEventListener('click', makeSomeNoise);
         result.marker = false;
       }
