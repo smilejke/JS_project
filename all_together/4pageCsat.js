@@ -1,10 +1,5 @@
 import { ifDataValid } from './validation.js';
-import {
-  createNewInput,
-  createNewButton,
-  createInputDiv,
-  createForwardButtonDiv,
-} from './createElementsUtil.js';
+import { createNewInput, createInputDiv, createForwardButtonDiv } from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 

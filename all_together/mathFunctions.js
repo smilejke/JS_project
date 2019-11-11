@@ -38,3 +38,16 @@ export const getDataIvr = () => {
     resultArr.push(day);
   }
 };
+
+export const removeNodeCallBack = (e) => {
+  const elemId = result.removeIds.findIndex((el) => el === e.target.id);
+  result.inputDivIds.splice(elemId, 1);
+  result.numberIvrIds.splice(elemId, 1);
+  result.dateIvrIds.splice(elemId, 1);
+  result.ivrIds.splice(elemId, 1);
+  result.hoursIvrIds.splice(elemId, 1);
+  result.removeIds.splice(elemId, 1);
+  document
+    .getElementById('main-content-div')
+    .removeChild(document.getElementById('inputDiv' + e.target.id));
+};

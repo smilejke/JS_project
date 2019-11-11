@@ -1,7 +1,6 @@
 import {
   createNewInput,
   createRemoveButton,
-  createNewButton,
   createInputDiv,
   createForwardButtonDiv,
 } from './createElementsUtil.js';
@@ -9,7 +8,13 @@ import {
 import { ifDataValid } from './validation.js';
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 import { makeKkTable } from './3pageKK.js';
-import { getMiddleIVR, getSumHours, totalDaysWorked, getDataIvr } from './mathFunctions.js';
+import {
+  getMiddleIVR,
+  getSumHours,
+  totalDaysWorked,
+  getDataIvr,
+  removeNodeCallBack,
+} from './mathFunctions.js';
 
 export const createIVRpage = () => {
   let main = document.createElement('main');
@@ -82,6 +87,7 @@ const makeNewRow = (workDiv) => {
   });
 
   newInputDiv.appendChild(createRemoveButton(removeNodeCallBack));
+
   createForwardButtonDiv(
     {
       type: 'div',
@@ -100,17 +106,4 @@ const makeNewRow = (workDiv) => {
   getNextButton.addEventListener('click', makeKkTable);
 
   result.counter += 1;
-};
-
-const removeNodeCallBack = (e) => {
-  const elemId = result.removeIds.findIndex((el) => el === e.target.id);
-  result.inputDivIds.splice(elemId, 1);
-  result.numberIvrIds.splice(elemId, 1);
-  result.dateIvrIds.splice(elemId, 1);
-  result.ivrIds.splice(elemId, 1);
-  result.hoursIvrIds.splice(elemId, 1);
-  result.removeIds.splice(elemId, 1);
-  document
-    .getElementById('main-content-div')
-    .removeChild(document.getElementById('inputDiv' + e.target.id));
 };
