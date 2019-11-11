@@ -31,70 +31,55 @@ export const createIVRpage = () => {
 };
 
 const makeNewRow = (workDiv) => {
-  const newInputDiv = createInputDiv(
-    {
-      type: 'div',
-      classname: 'form-div',
-      id: 'inputDiv',
-      placeToPushId: result.inputDivIds,
-      placeToAppend: workDiv,
-    },
-    result,
-  );
+  const newInputDiv = createInputDiv({
+    type: 'div',
+    classname: 'form-div',
+    id: 'inputDiv',
+    placeToPushId: result.inputDivIds,
+    placeToAppend: workDiv,
+  });
 
-  const numberValue = createNewInput(
-    {
-      type: 'input',
-      classname: 'input-number',
-      id: 'number',
-      placeToPushId: result.numberIvrIds,
-      placeholder: result.counter + 1,
-      readOnlyParam: true,
-      placeToAppend: newInputDiv,
-    },
-    result,
-  );
+  const numberValue = createNewInput({
+    type: 'input',
+    classname: 'input-number',
+    id: 'number',
+    placeToPushId: result.numberIvrIds,
+    placeholder: result.counter + 1,
+    readOnlyParam: true,
+    placeToAppend: newInputDiv,
+  });
 
   numberValue.value = result.counter + 1;
 
-  createNewInput(
-    {
-      type: 'input',
-      classname: 'input-date',
-      id: 'date',
-      placeToPushId: result.dateIvrIds,
-      placeholder: 'Дата',
-      readOnlyParam: false,
-      placeToAppend: newInputDiv,
-    },
-    result,
-  );
-  createNewInput(
-    {
-      type: 'input',
-      classname: 'input-date',
-      id: 'ivr',
-      placeToPushId: result.ivrIds,
-      placeholder: 'ИВР',
-      readOnlyParam: false,
-      placeToAppend: newInputDiv,
-    },
-    result,
-  );
-  createNewInput(
-    {
-      type: 'input',
-      classname: 'input-date',
-      id: 'hours',
-      placeToPushId: result.hoursIvrIds,
-      placeholder: 'Часы',
-      readOnlyParam: false,
-      placeToAppend: newInputDiv,
-    },
-    result,
-  );
+  createNewInput({
+    type: 'input',
+    classname: 'input-date',
+    id: 'date',
+    placeToPushId: result.dateIvrIds,
+    placeholder: 'Дата',
+    readOnlyParam: false,
+    placeToAppend: newInputDiv,
+  });
+  createNewInput({
+    type: 'input',
+    classname: 'input-date',
+    id: 'ivr',
+    placeToPushId: result.ivrIds,
+    placeholder: 'ИВР',
+    readOnlyParam: false,
+    placeToAppend: newInputDiv,
+  });
+  createNewInput({
+    type: 'input',
+    classname: 'input-date',
+    id: 'hours',
+    placeToPushId: result.hoursIvrIds,
+    placeholder: 'Часы',
+    readOnlyParam: false,
+    placeToAppend: newInputDiv,
+  });
 
-  newInputDiv.appendChild(createRemoveButton(result, removeNodeCallBack));
+  newInputDiv.appendChild(createRemoveButton(removeNodeCallBack));
   createForwardButton();
   result.counter += 1;
 };
