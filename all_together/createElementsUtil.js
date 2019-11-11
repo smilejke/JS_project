@@ -53,3 +53,29 @@ export const createInputDiv = (hash) => {
   hash.placeToAppend.before(input_div);
   return input_div;
 };
+
+export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
+  if (result.marker) {
+    const last_div = document.createElement(hash.type);
+    last_div.className = hash.classname;
+    document.getElementById(hash.idHtmlToAppend).appendChild(last_div);
+
+    createNewButton({
+      type: 'button',
+      id: 'backButton',
+      classname: 'forward',
+      disabled: true,
+      text: textOnBackward,
+      placeToAppend: last_div,
+    });
+    createNewButton({
+      type: 'button',
+      id: 'forwardButton',
+      classname: 'forward',
+      disabled: false,
+      text: textOnForward,
+      placeToAppend: last_div,
+    });
+  }
+  result.marker = false;
+};

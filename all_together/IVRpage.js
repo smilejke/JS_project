@@ -3,6 +3,7 @@ import {
   createRemoveButton,
   createNewButton,
   createInputDiv,
+  createForwardButtonDiv,
 } from './createElementsUtil.js';
 
 import { ifDataValid } from './validation.js';
@@ -27,6 +28,7 @@ export const createIVRpage = () => {
     makeNewRow(workDiv);
   });
   button.addEventListener('click', ifDataValid);
+
   workDiv.appendChild(button);
 };
 
@@ -80,7 +82,23 @@ const makeNewRow = (workDiv) => {
   });
 
   newInputDiv.appendChild(createRemoveButton(removeNodeCallBack));
-  createForwardButton();
+  createForwardButtonDiv(
+    {
+      type: 'div',
+      classname: 'last-div',
+      idHtmlToAppend: 'main-content-div',
+    },
+    'Предыдущий показатель',
+    'Внести данные по контролю качества',
+  );
+  let getNextButton = document.getElementById('forwardButton');
+  getNextButton.addEventListener('click', getDataIvr);
+  getNextButton.addEventListener('click', getMiddleIVR);
+  getNextButton.addEventListener('click', getSumHours);
+  getNextButton.addEventListener('click', totalDaysWorked);
+  getNextButton.addEventListener('click', updateStorage);
+  getNextButton.addEventListener('click', makeKkTable);
+
   result.counter += 1;
 };
 
@@ -95,37 +113,4 @@ const removeNodeCallBack = (e) => {
   document
     .getElementById('main-content-div')
     .removeChild(document.getElementById('inputDiv' + e.target.id));
-};
-
-const createForwardButton = () => {
-  if (result.marker) {
-    const last_div = document.createElement('div');
-    last_div.className = 'last-div';
-    document.getElementById('main-content-div').appendChild(last_div);
-
-    createNewButton({
-      type: 'button',
-      id: 'backButton',
-      classname: 'forward',
-      disabled: true,
-      text: 'Предыдущий показатель',
-      placeToAppend: last_div,
-    });
-    createNewButton({
-      type: 'button',
-      id: 'forwardButton',
-      classname: 'forward',
-      disabled: false,
-      text: 'Внести данные по контролю качества',
-      placeToAppend: last_div,
-    });
-    let getNextButton = document.getElementById('forwardButton');
-    getNextButton.addEventListener('click', getDataIvr);
-    getNextButton.addEventListener('click', getMiddleIVR);
-    getNextButton.addEventListener('click', getSumHours);
-    getNextButton.addEventListener('click', totalDaysWorked);
-    getNextButton.addEventListener('click', updateStorage);
-    getNextButton.addEventListener('click', makeKkTable);
-  }
-  result.marker = false;
 };

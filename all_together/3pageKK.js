@@ -1,6 +1,11 @@
 import { ifDataValid } from './validation.js';
 import { makeCsatTable } from './4pageCsat.js';
-import { createNewInput, createNewButton, createInputDiv } from './createElementsUtil.js';
+import {
+  createNewInput,
+  createNewButton,
+  createInputDiv,
+  createForwardButtonDiv,
+} from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
@@ -109,35 +114,20 @@ export const makeKkTable = () => {
         );
         result.counter += 1;
       }
-
-      if (result.marker) {
-        const last_div = document.createElement('div');
-        last_div.classList.add('last-div');
-        makeKkDiv2.appendChild(last_div);
-
-        createNewButton({
-          type: 'button',
-          id: 'backButton',
-          classname: 'forward',
-          disabled: false,
-          text: 'Вернуться к ИВР',
-          placeToAppend: last_div,
-        });
-        createNewButton({
-          type: 'button',
-          id: 'forwardButton',
-          classname: 'forward',
-          disabled: false,
-          text: 'Внести данные CSAT',
-          placeToAppend: last_div,
-        });
-        const nextPage = document.getElementById('forwardButton');
-        nextPage.addEventListener('click', getDataKK);
-        nextPage.addEventListener('click', getMiddleKK);
-        nextPage.addEventListener('click', updateStorage);
-        nextPage.addEventListener('click', makeCsatTable);
-      }
-      result.marker = false;
+      createForwardButtonDiv(
+        {
+          type: 'div',
+          classname: 'last-div',
+          idHtmlToAppend: 'main-content-div2',
+        },
+        'Вернуться к ИВР',
+        'Внести данные CSAT',
+      );
+      const nextPage = document.getElementById('forwardButton');
+      nextPage.addEventListener('click', getDataKK);
+      nextPage.addEventListener('click', getMiddleKK);
+      nextPage.addEventListener('click', updateStorage);
+      nextPage.addEventListener('click', makeCsatTable);
     }
   });
 

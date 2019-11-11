@@ -1,5 +1,10 @@
 import { ifDataValid } from './validation.js';
-import { createNewInput, createNewButton, createInputDiv } from './createElementsUtil.js';
+import {
+  createNewInput,
+  createNewButton,
+  createInputDiv,
+  createForwardButtonDiv,
+} from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
@@ -108,34 +113,20 @@ export const makeCsatTable = () => {
 
         result.counter += 1;
       }
-
-      if (result.marker) {
-        const last_div = document.createElement('div');
-        last_div.classList.add('last-div');
-        makeCsatDiv3.appendChild(last_div);
-
-        createNewButton({
-          type: 'button',
-          id: 'backButton',
-          classname: 'forward',
-          disabled: false,
-          text: 'Вернуться к контролю качества',
-          placeToAppend: last_div,
-        });
-        let moveForward = createNewButton({
-          type: 'button',
-          id: 'forwardButton',
-          classname: 'forward',
-          disabled: false,
-          text: 'Внести доп.активность',
-          placeToAppend: last_div,
-        });
-        moveForward.addEventListener('click', getDataCsat);
-        moveForward.addEventListener('click', getMiddleCsat);
-        moveForward.addEventListener('click', updateStorage);
-        moveForward.addEventListener('click', makeSomeNoise);
-        result.marker = false;
-      }
+      createForwardButtonDiv(
+        {
+          type: 'div',
+          classname: 'last-div',
+          idHtmlToAppend: 'main-content-div3',
+        },
+        'Вернуться к контролю качества',
+        'Внести доп.активность',
+      );
+      const moveForward = document.getElementById('forwardButton');
+      moveForward.addEventListener('click', getDataCsat);
+      moveForward.addEventListener('click', getMiddleCsat);
+      moveForward.addEventListener('click', updateStorage);
+      moveForward.addEventListener('click', makeSomeNoise);
     }
     return button_div;
   });
