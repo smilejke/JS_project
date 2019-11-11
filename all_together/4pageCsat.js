@@ -1,7 +1,7 @@
 import { ifDataValid } from './validation.js';
 import { createNewInput, createNewButton, createInputDiv } from './createElementsUtil.js';
 
-import { storage, controlData, resultArr, result } from './localStorage.js';
+import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
 const getDataCsat = () => {
   for (let i in result.csatIds) {
@@ -132,11 +132,7 @@ export const makeCsatTable = () => {
         });
         moveForward.addEventListener('click', getDataCsat);
         moveForward.addEventListener('click', getMiddleCsat);
-        moveForward.addEventListener('click', () => {
-          storage.setItem('result', JSON.stringify(result));
-          storage.setItem('resultArr', JSON.stringify(resultArr));
-          storage.setItem('controlData', JSON.stringify(controlData));
-        });
+        moveForward.addEventListener('click', updateStorage);
         moveForward.addEventListener('click', makeSomeNoise);
         result.marker = false;
       }

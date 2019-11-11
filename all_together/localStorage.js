@@ -45,3 +45,9 @@ export const storage = localStorage;
 export let controlData = JSON.parse(storage.getItem('controlData'));
 export let resultArr = JSON.parse(storage.getItem('resultArr'));
 export let result = JSON.parse(storage.getItem('result'));
+
+export const updateStorage = () => {
+  storage.setItem('result', JSON.stringify(result));
+  storage.setItem('resultArr', JSON.stringify(resultArr));
+  storage.setItem('controlData', JSON.stringify(controlData));
+};

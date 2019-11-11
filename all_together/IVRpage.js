@@ -6,49 +6,22 @@ import {
 } from './createElementsUtil.js';
 
 import { ifDataValid } from './validation.js';
-import { storage, controlData, resultArr, result } from './localStorage.js';
+import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 import { makeKkTable } from './3pageKK.js';
-
-const getMiddleIVR = () => {
-  let avarage = 0;
-  for (let i in resultArr) {
-    controlData.totalIvr.push(resultArr[i].ivr);
-  }
-  for (let i in controlData.totalIvr) {
-    avarage += controlData.totalIvr[i];
-  }
-  avarage /= controlData.totalIvr.length;
-  controlData.middleIvr = Math.round(avarage);
-  return controlData.middleIvr;
-};
-
-const getSumHours = () => {
-  let sum = 0;
-  for (let i in resultArr) {
-    sum += resultArr[i].hours;
-  }
-
-  controlData.sumHours = sum;
-  return controlData.sumHours;
-};
-
-let totalDaysWorked = () => {
-  controlData.totalDaysWorked = result.numberIvrIds.length;
-  return controlData.totalDaysWorked;
-};
+import { getMiddleIVR, getSumHours, totalDaysWorked, getDataIvr } from './mathFunctions.js';
 
 export const createIVRpage = () => {
   let main = document.createElement('main');
-  main.classList.add('main-div');
+  main.className = 'main-div';
   main.id = 'main-content-div';
   document.body.append(main);
 
   let workDiv = document.createElement('div');
-  workDiv.classList.add('button-div');
+  workDiv.className = 'button-div';
   main.appendChild(workDiv);
 
   let button = document.createElement('button');
-  button.classList.add('new-day');
+  button.className = 'new-day';
   button.innerHTML = 'Добавить рабочий день';
   button.addEventListener('click', () => {
     makeNewRow(workDiv);
@@ -72,7 +45,7 @@ const makeNewRow = (workDiv) => {
   const numberValue = createNewInput(
     {
       type: 'input',
-      classname: 'input-date',
+      classname: 'input-number',
       id: 'number',
       placeToPushId: result.numberIvrIds,
       placeholder: result.counter + 1,
@@ -122,7 +95,6 @@ const makeNewRow = (workDiv) => {
   );
 
   newInputDiv.appendChild(createRemoveButton(result, removeNodeCallBack));
-
   createForwardButton();
   result.counter += 1;
 };
@@ -140,22 +112,10 @@ const removeNodeCallBack = (e) => {
     .removeChild(document.getElementById('inputDiv' + e.target.id));
 };
 
-const getDataIvr = () => {
-  for (let i in result.dateIvrIds) {
-    const day = {
-      number: Number(document.getElementById(result.numberIvrIds[i]).placeholder),
-      date: Number(document.getElementById(result.dateIvrIds[i]).value),
-      ivr: Number(document.getElementById(result.ivrIds[i]).value),
-      hours: Number(document.getElementById(result.hoursIvrIds[i]).value),
-    };
-    resultArr.push(day);
-  }
-};
-
 const createForwardButton = () => {
   if (result.marker) {
     const last_div = document.createElement('div');
-    last_div.classList.add('last-div');
+    last_div.className = 'last-div';
     document.getElementById('main-content-div').appendChild(last_div);
 
     createNewButton({
@@ -179,11 +139,7 @@ const createForwardButton = () => {
     getNextButton.addEventListener('click', getMiddleIVR);
     getNextButton.addEventListener('click', getSumHours);
     getNextButton.addEventListener('click', totalDaysWorked);
-    getNextButton.addEventListener('click', () => {
-      storage.setItem('result', JSON.stringify(result));
-      storage.setItem('resultArr', JSON.stringify(resultArr));
-      storage.setItem('controlData', JSON.stringify(controlData));
-    });
+    getNextButton.addEventListener('click', updateStorage);
     getNextButton.addEventListener('click', makeKkTable);
   }
   result.marker = false;

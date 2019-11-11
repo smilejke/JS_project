@@ -2,7 +2,7 @@ import { ifDataValid } from './validation.js';
 import { makeCsatTable } from './4pageCsat.js';
 import { createNewInput, createNewButton, createInputDiv } from './createElementsUtil.js';
 
-import { storage, controlData, resultArr, result } from './localStorage.js';
+import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
 const getDataKK = () => {
   for (let i in result.kkIds) {
@@ -134,11 +134,7 @@ export const makeKkTable = () => {
         const nextPage = document.getElementById('forwardButton');
         nextPage.addEventListener('click', getDataKK);
         nextPage.addEventListener('click', getMiddleKK);
-        nextPage.addEventListener('click', () => {
-          storage.setItem('result', JSON.stringify(result));
-          storage.setItem('resultArr', JSON.stringify(resultArr));
-          storage.setItem('controlData', JSON.stringify(controlData));
-        });
+        nextPage.addEventListener('click', updateStorage);
         nextPage.addEventListener('click', makeCsatTable);
       }
       result.marker = false;
