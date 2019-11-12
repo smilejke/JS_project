@@ -1,4 +1,4 @@
-import { ifDataValid } from './validation.js';
+import { ifDataValid, ifNoData } from './validation.js';
 import { makeCsatTable } from './4pageCsat.js';
 import { createNewInput, createInputDiv, createForwardButtonDiv } from './createElementsUtil.js';
 
@@ -125,7 +125,7 @@ export const makeKkTable = () => {
       nextPage.addEventListener('click', makeCsatTable);
     }
   });
-
+  button.addEventListener('click', ifNoData);
   button.addEventListener('click', ifDataValid);
   button_div.appendChild(button);
 };

@@ -53,7 +53,7 @@ export const createForm = () => {
   let span_text = document.createElement('span');
   mainLoginDiv.appendChild(span_text);
 
-  let bold_text1 = document.createElement('b');
+  let bold_text1 = document.createElement('strong');
   bold_text1.className = 'note';
   bold_text1.innerHTML = 'Note:';
   span_text.appendChild(bold_text1);
@@ -64,7 +64,7 @@ export const createForm = () => {
   let br1 = document.createElement('br');
   span_text.appendChild(br1);
 
-  let bold_text2 = document.createElement('b');
+  let bold_text2 = document.createElement('strong');
   bold_text2.className = 'valid';
   span_text.appendChild(bold_text2);
 
