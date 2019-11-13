@@ -77,8 +77,6 @@ export const createForm = () => {
   let text_password = document.createTextNode('Password : Admin');
   bold_text2.appendChild(text_password);
 
-  console.log(loginContainer);
-
   return loginContainer;
 };
 

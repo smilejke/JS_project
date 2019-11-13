@@ -23,7 +23,7 @@ body {
   padding: 5px;
   margin-bottom: 25px;
   margin-top: 5px;
-  border: 2px solid #ccc;
+  border: 2px solid #ccc !important;
   color: #4f4f4f;
   font-size: 16px;
   border-radius: 5px;
