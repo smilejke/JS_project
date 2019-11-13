@@ -30,7 +30,9 @@ export const createIVRpage = () => {
   button.className = 'new-day';
   button.innerHTML = 'Добавить рабочий день';
   button.addEventListener('click', () => {
-    makeNewRow(workDiv);
+    if (result.counter <= 30) {
+      makeNewRow(workDiv);
+    }
   });
   // button.addEventListener('click', ifNoData);
   button.addEventListener('click', ifDataValid);
