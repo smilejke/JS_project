@@ -26,18 +26,19 @@ export const ifDataValid = () => {
         }
       } else {
         input.classList.add('invalid');
+        forwardBtn.disabled = true;
       }
-      ifNoData();
+      // ifNoData();
     });
   }
 };
 
-export const ifNoData = () => {
-  let inputs = document.getElementsByTagName('input');
-  let goNext = document.getElementById('forwardButton');
-  for (let i in inputs) {
-    if (inputs[i].value === '') {
-      goNext.disabled = true;
-    }
-  }
-};
+// export const ifNoData = () => {
+//   let inputs = document.getElementsByTagName('input');
+//   let goNext = document.getElementById('forwardButton');
+//   for (let i in inputs) {
+//     if (inputs[i].value === '') {
+//       goNext.disabled = true;
+//     }
+//   }
+// };
