@@ -1,17 +1,11 @@
-#main-content-div {
-  min-height: 80vh;
-  height: auto;
-  width: 50vw;
-  padding: 10px 0px;
+@import url('https://fonts.googleapis.com/css?family=Damion|Muli:400,600');
+body {
+  font-family: 'Muli', sans-serif;
+  background: url('../../background/geometry2.png');
 }
 
-#main-content-div2 {
-  min-height: 80vh;
-  height: auto;
-  width: 50vw;
-  padding: 10px 0px;
-}
-
+#main-content-div,
+#main-content-div2,
 #main-content-div3 {
   min-height: 80vh;
   height: auto;

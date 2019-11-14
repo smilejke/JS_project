@@ -1,4 +1,4 @@
-import { ifDataValid } from './validation.js';
+import { ifDataValid, ifNoData } from './validation.js';
 import { createNewInput, createInputDiv, createForwardButtonDiv } from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
@@ -125,7 +125,7 @@ export const makeCsatTable = () => {
     }
     return button_div;
   });
-  // button.addEventListener('click', ifNoData);
+  button.addEventListener('click', ifNoData);
   button.addEventListener('click', ifDataValid);
   button_div.appendChild(button);
 };

@@ -5,7 +5,7 @@ import {
   createForwardButtonDiv,
 } from './createElementsUtil.js';
 
-import { ifDataValid } from './validation.js';
+import { ifDataValid, ifNoData } from './validation.js';
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 import { makeKkTable } from './3pageKK.js';
 import {
@@ -34,7 +34,7 @@ export const createIVRpage = () => {
       makeNewRow(workDiv);
     }
   });
-  // button.addEventListener('click', ifNoData);
+  button.addEventListener('click', ifNoData);
   button.addEventListener('click', ifDataValid);
   workDiv.appendChild(button);
 };
