@@ -1,5 +1,4 @@
 import {
-  createNewInput,
   createRemoveButton,
   createInputDiv,
   createForwardButtonDiv,
@@ -54,7 +53,8 @@ const makeNewRow = (workDiv) => {
     optionalClass: 'input-number',
     id: 'number',
     placeToPushId: result.numberIvrIds,
-    placeholder: '',
+    placeholder: 'Номер',
+    backText: 'Номер',
     readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
@@ -67,6 +67,7 @@ const makeNewRow = (workDiv) => {
     id: 'date',
     placeToPushId: result.dateIvrIds,
     placeholder: 'Дата',
+    backText: 'Дата',
     readOnlyParam: false,
     placeToAppendForm: newInputDiv,
   });
@@ -75,6 +76,7 @@ const makeNewRow = (workDiv) => {
     optionalClass: 'input-date',
     id: 'ivr',
     placeToPushId: result.ivrIds,
+    backText: 'ИВР',
     placeholder: 'ИВР',
     readOnlyParam: false,
     placeToAppendForm: newInputDiv,
@@ -85,6 +87,7 @@ const makeNewRow = (workDiv) => {
     id: 'hours',
     placeToPushId: result.hoursIvrIds,
     placeholder: 'Часы',
+    backText: 'Часы',
     readOnlyParam: false,
     placeToAppendForm: newInputDiv,
   });

@@ -1,10 +1,5 @@
 import { ifDataValid, ifNoData } from './validation.js';
-import {
-  createNewInput,
-  createInputDiv,
-  createForwardButtonDiv,
-  createInput,
-} from './createElementsUtil.js';
+import { createInputDiv, createForwardButtonDiv, createInput } from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
@@ -69,7 +64,8 @@ export const makeCsatTable = () => {
           optionalClass: 'input-date',
           id: 'numberKK',
           placeToPushId: result.numberCsatIds,
-          placeholder: '',
+          placeholder: 'Номер',
+          backText: 'Номер',
           readOnlyParam: true,
           placeToAppendForm: csatInputDiv,
         });
@@ -82,6 +78,7 @@ export const makeCsatTable = () => {
           id: 'date',
           placeToPushId: result.dateCsatIds,
           placeholder: 'Дата',
+          backText: 'Дата',
           readOnlyParam: false,
           placeToAppendForm: csatInputDiv,
         });
@@ -98,6 +95,7 @@ export const makeCsatTable = () => {
           id: 'csat',
           placeToPushId: result.csatIds,
           placeholder: 'CSAT',
+          backText: 'CSAT',
           readOnlyParam: false,
           placeToAppendForm: csatInputDiv,
         });

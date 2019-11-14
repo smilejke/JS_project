@@ -35,9 +35,9 @@ body {
 
 .last-div {
   height: 8vh;
-  width: 50vw;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
 }
 

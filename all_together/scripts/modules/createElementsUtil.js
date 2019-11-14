@@ -1,86 +1,38 @@
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
-export const createNewInput = (hash) => {
-  let newInput = document.createElement(hash.type);
-  newInput.className = hash.classname;
-  newInput.id = hash.id + result.counter;
-  hash.placeToPushId.push(newInput.id);
-  newInput.placeholder = hash.placeholder;
-  newInput.readOnly = hash.readOnlyParam;
-  newInput.setAttribute('data-rule', 'number');
-  hash.placeToAppend.appendChild(newInput);
-  return newInput;
-};
-
-// const numberValue = createNewInput({
-//   classname: 'newinput',
-//   optionalClass: 'input-number',
-//   id: 'number',
-//   placeToPushId: result.numberIvrIds,
-//   placeholder: result.counter + 1,
-//   readOnlyParam: true,
-//   placeToAppend: newInputDiv,
-// });
-
-// numberValue.value = result.counter + 1;
-
-//   createNewInput({
-//     classname: 'newinput',
-//     optionalClass: 'input-date',
-//     id: 'date',
-//     placeToPushId: result.dateIvrIds,
-//     placeholder: 'Дата',
-//     readOnlyParam: false,
-//     placeToAppend: newInputDiv,
-//   });
-//   createNewInput({
-//     classname: 'input-date',
-//     optionalClass: 'input-date',
-//     id: 'ivr',
-//     placeToPushId: result.ivrIds,
-//     placeholder: 'ИВР',
-//     readOnlyParam: false,
-//     placeToAppend: newInputDiv,
-//   });
-//   createNewInput({
-
-//     classname: 'input-date',
-//     optionalClass: 'input-date',
-//     id: 'hours',
-//     placeToPushId: result.hoursIvrIds,
-//     placeholder: 'Часы',
-//     readOnlyParam: false,
-//     placeToAppend: newInputDiv,
-//   });
-
 export const createInput = (hash) => {
-  let divGroup = document.createElement('div');
-  divGroup.className = 'group';
-  hash.placeToAppendForm.appendChild(divGroup);
+  let inputContainer = document.createElement('div');
+  inputContainer.classList.add('col-3');
+  hash.placeToAppendForm.appendChild(inputContainer);
 
   let input = document.createElement('input');
-  input.className = hash.classname; //newinput
-  input.classList.add(hash.optionalClass); //for operation old class
+  input.classList.add('effect');
+  input.type = 'text';
+  input.className = hash.classname;
+  input.placeholder = hash.placeholder;
+  input.classList.add(hash.optionalClass);
   input.id = hash.id + result.counter;
   hash.placeToPushId.push(input.id);
+  input.addEventListener('click', () => {
+    input.placeholder = '';
+  });
+  input.addEventListener('blur', () => {
+    input.placeholder = hash.placeholder;
+  });
   input.readOnly = hash.readOnlyParam;
   input.setAttribute('data-rule', 'number');
-
   input.type = 'text';
-  input.required = true;
-  divGroup.appendChild(input);
-
-  let span1 = document.createElement('span');
-  span1.className = 'highlight';
-  divGroup.appendChild(span1);
-
-  let span2 = document.createElement('span');
-  span2.className = 'bar';
-  divGroup.appendChild(span2);
+  inputContainer.appendChild(input);
 
   let label = document.createElement('label');
-  label.innerHTML = hash.placeholder;
-  divGroup.appendChild(label);
+  label.innerHTML = hash.backText;
+  inputContainer.appendChild(label);
+
+  let span = document.createElement('span');
+  span.classList.add('focus-border');
+  let italic = document.createElement('i');
+  span.appendChild(italic);
+  inputContainer.appendChild(span);
 
   return input;
 };

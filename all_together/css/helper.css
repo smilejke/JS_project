@@ -2,14 +2,14 @@
   display: none;
 }
 
-/* input[data-rule].valid {
-  border: 2px solid green;
+input[data-rule].valid {
+  border: 1px solid #4caf50;
 }
 
 .invalid {
-  border: 2px solid red;
-} */
+  border: 1px solid red;
+}
 
-/* input:first-of-type {
-  border: 2px solid green;
-} */
+.col-3:first-child {
+  border: 1px solid #4caf50;
+}
