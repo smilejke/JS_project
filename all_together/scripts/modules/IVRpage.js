@@ -3,6 +3,7 @@ import {
   createRemoveButton,
   createInputDiv,
   createForwardButtonDiv,
+  createInput,
 } from './createElementsUtil.js';
 
 import { ifDataValid, ifNoData } from './validation.js';
@@ -48,44 +49,44 @@ const makeNewRow = (workDiv) => {
     placeToAppend: workDiv,
   });
 
-  const numberValue = createNewInput({
-    type: 'input',
-    classname: 'input-number',
+  const numberValue = createInput({
+    classname: 'newinput',
+    optionalClass: 'input-number',
     id: 'number',
     placeToPushId: result.numberIvrIds,
-    placeholder: result.counter + 1,
+    placeholder: '',
     readOnlyParam: true,
-    placeToAppend: newInputDiv,
+    placeToAppendForm: newInputDiv,
   });
 
   numberValue.value = result.counter + 1;
 
-  createNewInput({
-    type: 'input',
-    classname: 'input-date',
+  createInput({
+    classname: 'newinput',
+    optionalClass: 'input-date',
     id: 'date',
     placeToPushId: result.dateIvrIds,
     placeholder: 'Дата',
     readOnlyParam: false,
-    placeToAppend: newInputDiv,
+    placeToAppendForm: newInputDiv,
   });
-  createNewInput({
-    type: 'input',
-    classname: 'input-date',
+  createInput({
+    classname: 'newinput',
+    optionalClass: 'input-date',
     id: 'ivr',
     placeToPushId: result.ivrIds,
     placeholder: 'ИВР',
     readOnlyParam: false,
-    placeToAppend: newInputDiv,
+    placeToAppendForm: newInputDiv,
   });
-  createNewInput({
-    type: 'input',
-    classname: 'input-date',
+  createInput({
+    classname: 'newinput',
+    optionalClass: 'input-date',
     id: 'hours',
     placeToPushId: result.hoursIvrIds,
     placeholder: 'Часы',
     readOnlyParam: false,
-    placeToAppend: newInputDiv,
+    placeToAppendForm: newInputDiv,
   });
 
   newInputDiv.appendChild(createRemoveButton(removeNodeCallBack));

@@ -1,6 +1,11 @@
 import { ifDataValid, ifNoData } from './validation.js';
 import { makeCsatTable } from './4pageCsat.js';
-import { createNewInput, createInputDiv, createForwardButtonDiv } from './createElementsUtil.js';
+import {
+  createNewInput,
+  createInputDiv,
+  createForwardButtonDiv,
+  createInput,
+} from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
@@ -61,52 +66,44 @@ export const makeKkTable = () => {
           },
           result,
         );
+        const numberValue = createInput({
+          classname: 'newinput',
+          optionalClass: 'input-date',
+          id: 'numberKK',
+          placeToPushId: result.numberKkIds,
+          placeholder: '',
+          readOnlyParam: true,
+          placeToAppendForm: kkInputDiv,
+        });
 
-        const numberValue = createNewInput(
-          {
-            type: 'input',
-            classname: 'input-date',
-            id: 'numberKK',
-            placeToPushId: result.numberKkIds,
-            placeholder: result.counter,
-            readOnlyParam: true,
-            placeToAppend: kkInputDiv,
-          },
-          result,
-        );
         numberValue.value = result.counter;
 
-        const dateKkData = createNewInput(
-          {
-            type: 'input',
-            classname: 'input-date',
-            id: 'date_kk',
-            placeToPushId: result.dateKkIds,
-            placeholder: 'Дата',
-            readOnlyParam: false,
-            placeToAppend: kkInputDiv,
-          },
-          result,
-        );
+        const dateKkData = createInput({
+          classname: 'newinput',
+          optionalClass: 'input-date',
+          id: 'date_kk',
+          placeToPushId: result.dateKkIds,
+          placeholder: 'Дата',
+          readOnlyParam: false,
+          placeToAppendForm: kkInputDiv,
+        });
+
         dateKkData.value = resultArr[i].date;
         if (dateKkData.value == 0) {
           dateKkData.value = '';
         } else {
           dateKkData.classList.add('valid');
         }
+        createInput({
+          classname: 'newinput',
+          optionalClass: 'input-date',
+          id: 'kk',
+          placeToPushId: result.kkIds,
+          placeholder: 'КК',
+          readOnlyParam: false,
+          placeToAppendForm: kkInputDiv,
+        });
 
-        createNewInput(
-          {
-            type: 'input',
-            classname: 'input-date',
-            id: 'kk',
-            placeToPushId: result.kkIds,
-            placeholder: 'КК',
-            readOnlyParam: false,
-            placeToAppend: kkInputDiv,
-          },
-          result,
-        );
         result.counter += 1;
       }
       createForwardButtonDiv(

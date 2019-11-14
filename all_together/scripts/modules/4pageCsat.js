@@ -1,5 +1,10 @@
 import { ifDataValid, ifNoData } from './validation.js';
-import { createNewInput, createInputDiv, createForwardButtonDiv } from './createElementsUtil.js';
+import {
+  createNewInput,
+  createInputDiv,
+  createForwardButtonDiv,
+  createInput,
+} from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
@@ -59,52 +64,43 @@ export const makeCsatTable = () => {
           },
           result,
         );
+        const numberValue = createInput({
+          classname: 'newinput',
+          optionalClass: 'input-date',
+          id: 'numberKK',
+          placeToPushId: result.numberCsatIds,
+          placeholder: '',
+          readOnlyParam: true,
+          placeToAppendForm: csatInputDiv,
+        });
 
-        const numberValue = createNewInput(
-          {
-            type: 'input',
-            classname: 'input-date',
-            id: 'number',
-            placeToPushId: result.numberCsatIds,
-            placeholder: result.counter,
-            readOnlyParam: true,
-            placeToAppend: csatInputDiv,
-          },
-          result,
-        );
         numberValue.value = result.counter;
 
-        const dateCsatData = createNewInput(
-          {
-            type: 'input',
-            classname: 'input-date',
-            id: 'date',
-            placeToPushId: result.dateCsatIds,
-            placeholder: 'Дата',
-            readOnlyParam: false,
-            placeToAppend: csatInputDiv,
-          },
-          result,
-        );
-        dateCsatData.value = resultArr[i].date;
-        if (dateCsatData.value == 0) {
-          dateCsatData.value = '';
-        } else {
-          dateCsatData.classList.add('valid');
-        }
+        const dateKkData = createInput({
+          classname: 'newinput',
+          optionalClass: 'input-date',
+          id: 'date',
+          placeToPushId: result.dateCsatIds,
+          placeholder: 'Дата',
+          readOnlyParam: false,
+          placeToAppendForm: csatInputDiv,
+        });
 
-        createNewInput(
-          {
-            type: 'input',
-            classname: 'input-date',
-            id: 'csat',
-            placeToPushId: result.csatIds,
-            placeholder: 'СSAT',
-            readOnlyParam: false,
-            placeToAppend: csatInputDiv,
-          },
-          result,
-        );
+        dateKkData.value = resultArr[i].date;
+        if (dateKkData.value == 0) {
+          dateKkData.value = '';
+        } else {
+          dateKkData.classList.add('valid');
+        }
+        createInput({
+          classname: 'newinput',
+          optionalClass: 'input-date',
+          id: 'csat',
+          placeToPushId: result.csatIds,
+          placeholder: 'CSAT',
+          readOnlyParam: false,
+          placeToAppendForm: csatInputDiv,
+        });
 
         result.counter += 1;
       }

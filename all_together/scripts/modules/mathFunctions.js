@@ -30,7 +30,7 @@ export const totalDaysWorked = () => {
 export const getDataIvr = () => {
   for (let i in result.dateIvrIds) {
     const day = {
-      number: Number(document.getElementById(result.numberIvrIds[i]).placeholder),
+      number: Number(document.getElementById(result.numberIvrIds[i]).value),
       date: Number(document.getElementById(result.dateIvrIds[i]).value),
       ivr: Number(document.getElementById(result.ivrIds[i]).value),
       hours: Number(document.getElementById(result.hoursIvrIds[i]).value),
