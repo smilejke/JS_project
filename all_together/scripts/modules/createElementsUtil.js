@@ -28,6 +28,7 @@ export const createRemoveButton = (callback) => {
   result.removeIds.push(removeButton.id);
   removeButton.classList.add('icon-btn', 'add-btn');
   removeButton.addEventListener('click', callback);
+
   removeButton.addEventListener('click', () => {
     let getAllNumberInputs = document.querySelectorAll('.input-number');
     for (let i in getAllNumberInputs) {
