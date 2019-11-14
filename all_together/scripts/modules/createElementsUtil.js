@@ -31,7 +31,7 @@ export const createRemoveButton = (callback) => {
 
   removeButton.addEventListener('click', () => {
     let getAllNumberInputs = document.querySelectorAll('.input-number');
-    for (let i in getAllNumberInputs) {
+    for (let i = 0; i < getAllNumberInputs.length; i += 1) {
       getAllNumberInputs[i].value = Number([i]) + 1;
       result.counter = getAllNumberInputs.length;
     }
