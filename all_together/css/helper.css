@@ -3,7 +3,7 @@
 }
 
 input[data-rule].valid {
-  border: 1px solid #4caf50;
+  border: 1px solid #3bb4e5;
 }
 
 .invalid {
@@ -11,5 +11,6 @@ input[data-rule].valid {
 }
 
 .col-3:first-child {
-  border: 1px solid #4caf50;
+  border: 1px solid #3bb4e5;
+  width: 80px;
 }

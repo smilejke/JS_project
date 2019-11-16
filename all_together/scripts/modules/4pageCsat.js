@@ -1,5 +1,12 @@
 import { ifDataValid, ifNoData } from './validation.js';
-import { createInputDiv, createForwardButtonDiv, createInput } from './createElementsUtil.js';
+import {
+  createInputDiv,
+  createForwardButtonDiv,
+  createInput,
+  mainContainer,
+  createButtonDiv,
+  createWorkButton,
+} from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
@@ -30,19 +37,11 @@ export const makeCsatTable = () => {
 
   const getDivToRomove = document.getElementById('main-content-div2');
   document.body.removeChild(getDivToRomove);
-
-  const makeCsatDiv3 = document.createElement('div');
-  makeCsatDiv3.id = 'main-content-div3';
-  document.body.append(makeCsatDiv3);
-
-  const button_div = document.createElement('div');
-  button_div.classList.add('button-div');
-  makeCsatDiv3.appendChild(button_div);
-
-  const button = document.createElement('button');
-  button.classList.add('new-day');
-  button.innerHTML = 'Получить данные';
+  const makeCsatDiv3 = mainContainer({ type: 'div', id: 'main-content-div3' });
+  const buttonDiv = createButtonDiv(makeCsatDiv3);
+  const button = createWorkButton({ placeToAppend: buttonDiv, text: 'Получить данные' });
   button.disabled = false;
+
   button.addEventListener('click', () => {
     if (result.counter == 1) {
       button.disabled = true;
@@ -55,7 +54,7 @@ export const makeCsatTable = () => {
             classname: 'form-div',
             id: 'csat_input_div',
             placeToPushId: result.csatInputDivIds,
-            placeToAppend: button_div,
+            placeToAppend: buttonDiv,
           },
           result,
         );
@@ -117,11 +116,10 @@ export const makeCsatTable = () => {
       moveForward.addEventListener('click', updateStorage);
       moveForward.addEventListener('click', makeSomeNoise);
     }
-    return button_div;
+    return buttonDiv;
   });
   button.addEventListener('click', ifNoData);
   button.addEventListener('click', ifDataValid);
-  button_div.appendChild(button);
 };
 
 const makeSomeNoise = () => {

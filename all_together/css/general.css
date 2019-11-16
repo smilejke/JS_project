@@ -1,9 +1,14 @@
-/* @import url('https://fonts.googleapis.com/css?family=Damion|Muli:400,600'); */
+@import url('https://fonts.googleapis.com/css?family=Damion|Muli:400,600');
 * {
   box-sizing: border-box;
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 90vh;
   font-family: 'Muli', sans-serif;
   background: url('../background/geometry2.png');
 }
@@ -11,6 +16,7 @@ body {
 #main-content-div,
 #main-content-div2,
 #main-content-div3 {
+  width: 60vw;
   min-height: 80vh;
   height: auto;
   padding: 10px 0px;
@@ -18,14 +24,14 @@ body {
 
 .form-div {
   height: 8vh;
-  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .button-div {
+  margin-top: 10px;
   height: 8vh;
   width: 100%;
   display: flex;
@@ -34,30 +40,12 @@ body {
 }
 
 .last-div {
+  margin-top: 20px;
   height: 8vh;
   width: 100%;
   display: flex;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
-}
-
-.forward {
-  font-size: 14px;
-  background: linear-gradient(#ffbc00 5%, #ffdd7f 100%);
-  border: 1px solid #e5a900;
-  color: #4e4d4b;
-  font-weight: bold;
-  cursor: pointer;
-  width: 200px;
-  height: 50px;
-  border-radius: 5px;
-  padding: 10px 0;
-  outline: none;
-  margin: 0 auto;
-}
-
-.forward:hover {
-  background: linear-gradient(#ffdd7f 5%, #ffbc00 100%);
 }
 
 /* .input-date {

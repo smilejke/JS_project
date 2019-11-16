@@ -1,5 +1,29 @@
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
+export const mainContainer = (hash) => {
+  let main = document.createElement(hash.type);
+  main.className = 'main-div';
+  main.id = hash.id;
+  document.body.append(main);
+  return main;
+};
+export const createButtonDiv = (placeToAppend) => {
+  let buttonDiv = document.createElement('div');
+  buttonDiv.className = 'button-div';
+  placeToAppend.appendChild(buttonDiv);
+  return buttonDiv;
+};
+
+export const createWorkButton = (hash) => {
+  let button = document.createElement('button');
+  button.className = 'button_hola';
+  let span = document.createElement('span');
+  span.innerHTML = hash.text;
+  button.appendChild(span);
+  hash.placeToAppend.appendChild(button);
+  return button;
+};
+
 export const createInput = (hash) => {
   let inputContainer = document.createElement('div');
   inputContainer.classList.add('col-3');

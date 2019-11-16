@@ -1,6 +1,13 @@
 import { ifDataValid, ifNoData } from './validation.js';
 import { makeCsatTable } from './4pageCsat.js';
-import { createInputDiv, createForwardButtonDiv, createInput } from './createElementsUtil.js';
+import {
+  createInputDiv,
+  createForwardButtonDiv,
+  createInput,
+  mainContainer,
+  createButtonDiv,
+  createWorkButton,
+} from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
@@ -32,18 +39,11 @@ export const makeKkTable = () => {
   const getDivToRomove = document.getElementById('main-content-div');
   document.body.removeChild(getDivToRomove);
 
-  const makeKkDiv2 = document.createElement('div');
-  makeKkDiv2.id = 'main-content-div2';
-  document.body.append(makeKkDiv2);
+  const makeKkDiv2 = mainContainer({ type: 'div', id: 'main-content-div2' });
 
-  const button_div = document.createElement('div');
-  button_div.classList.add('button-div');
-  makeKkDiv2.appendChild(button_div);
+  const buttonDiv = createButtonDiv(makeKkDiv2);
 
-  const button = document.createElement('button');
-  button.classList.add('new-day');
-  button.innerHTML = 'Получить данные';
-  button.disabled = false;
+  const button = createWorkButton({ placeToAppend: buttonDiv, text: 'Получить данные' });
   button.addEventListener('click', () => {
     if (result.counter == 1) {
       button.disabled = true;
@@ -57,7 +57,7 @@ export const makeKkTable = () => {
             classname: 'form-div',
             id: 'kkInputDiv',
             placeToPushId: result.kkInputDivIds,
-            placeToAppend: button_div,
+            placeToAppend: buttonDiv,
           },
           result,
         );
@@ -122,5 +122,4 @@ export const makeKkTable = () => {
   });
   button.addEventListener('click', ifNoData);
   button.addEventListener('click', ifDataValid);
-  button_div.appendChild(button);
 };

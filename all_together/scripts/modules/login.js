@@ -20,7 +20,7 @@ export const createForm = () => {
   loginForm.name = 'myform';
   mainLoginDiv.appendChild(loginForm);
 
-  let label_userName = document.createElement('label');
+  let label_userName = document.createElement('span');
   label_userName.innerHTML = 'User Name :';
   loginForm.appendChild(label_userName);
 
@@ -31,9 +31,9 @@ export const createForm = () => {
   input_text.className = 'input_text';
   loginForm.appendChild(input_text);
 
-  let label_userName2 = document.createElement('label');
-  label_userName2.innerHTML = 'Password :';
-  loginForm.appendChild(label_userName2);
+  let spanUserName2 = document.createElement('span');
+  spanUserName2.innerHTML = 'Password :';
+  loginForm.appendChild(spanUserName2);
 
   let input_password = document.createElement('input');
   input_password.type = 'password';

@@ -3,6 +3,9 @@ import {
   createInputDiv,
   createForwardButtonDiv,
   createInput,
+  mainContainer,
+  createButtonDiv,
+  createWorkButton,
 } from './createElementsUtil.js';
 
 import { ifDataValid, ifNoData } from './validation.js';
@@ -17,18 +20,9 @@ import {
 } from './mathFunctions.js';
 
 export const createIVRpage = () => {
-  let main = document.createElement('main');
-  main.className = 'main-div';
-  main.id = 'main-content-div';
-  document.body.append(main);
-
-  let workDiv = document.createElement('div');
-  workDiv.className = 'button-div';
-  main.appendChild(workDiv);
-
-  let button = document.createElement('button');
-  button.className = 'new-day';
-  button.innerHTML = 'Добавить рабочий день';
+  let main = mainContainer({ type: 'div', id: 'main-content-div' });
+  let workDiv = createButtonDiv(main);
+  let button = createWorkButton({ placeToAppend: workDiv, text: 'Добавить рабочий день' });
   button.addEventListener('click', () => {
     if (result.counter <= 30) {
       makeNewRow(workDiv);
@@ -36,7 +30,6 @@ export const createIVRpage = () => {
   });
   button.addEventListener('click', ifNoData);
   button.addEventListener('click', ifDataValid);
-  workDiv.appendChild(button);
 };
 
 const makeNewRow = (workDiv) => {
