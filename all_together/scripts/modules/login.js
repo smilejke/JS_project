@@ -1,5 +1,6 @@
 let attempt = 3;
 import { createIVRpage } from './IVRpage.js';
+import { modalWindow, launchModal, failed } from './modal.js';
 
 export const createForm = () => {
   let loginContainer = document.createElement('div');
@@ -47,7 +48,7 @@ export const createForm = () => {
   login_button.value = 'Login';
   login_button.id = 'submit';
   login_button.className = 'admin_button';
-  login_button.onclick = isCredValid;
+  login_button.addEventListener('click', isCredValid);
   loginForm.appendChild(login_button);
 
   let span_text = document.createElement('span');
@@ -83,22 +84,47 @@ export const createForm = () => {
 const isCredValid = () => {
   let username = document.getElementById('username').value;
   let password = document.getElementById('password').value;
+
   if (username == 'Smilejke' && password == 'Admin') {
-    alert('Login successfully');
     let get_div_and_make_invisible = document.getElementById('dissap');
     document.body.removeChild(get_div_and_make_invisible);
+
+    modalWindow({
+      loginStatus: 'Login successfuly.',
+      loginText: 'Congratulations!',
+      loginText2: 'Your next step is to enter main indicators.',
+      loginFooterText: 'Have a nice day!',
+    }),
+      launchModal();
 
     createIVRpage();
 
     return false;
   } else {
     attempt--;
-    alert('You have left ' + attempt + ' attempt');
-
     if (attempt == 0) {
+      modalWindow({
+        loginStatus: 'You are blocked.',
+        loginText: 'You have entered wrong Username/Password too often.',
+        loginText2: 'Please, contact your manager for further information.',
+        loginFooterText: 'Have a nice day!',
+      });
+      failed();
+    }
+    modalWindow({
+      loginStatus: 'Login failed.',
+      loginText: 'You have left ' + attempt + ' attempt.',
+      loginText2: 'Be careful, if you fail validation, form will be blocked.',
+      loginFooterText: 'Have a nice day!',
+    });
+
+    launchModal();
+
+    if (attempt === 0) {
       document.getElementById('username').disabled = true;
       document.getElementById('password').disabled = true;
       document.getElementById('submit').disabled = true;
+
       return false;
     }
   }

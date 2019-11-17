@@ -18,15 +18,20 @@ export const ifDataValid = () => {
       input.classList.remove('invalid');
       if (check) {
         input.classList.add('valid');
+        forwardBtn.classList.remove('not-correct');
+        forwardBtn.classList.add('all-correct');
         forwardBtn.disabled = false;
+
         for (let i in getAllinputs) {
           if (getAllinputs[i].className == 'input-date invalid') {
             forwardBtn.disabled = true;
+            forwardBtn.classList.add('not-correct');
           }
         }
       } else {
         input.classList.add('invalid');
         forwardBtn.disabled = true;
+        forwardBtn.classList.add('not-correct');
       }
       ifNoData();
     });
@@ -39,6 +44,7 @@ export const ifNoData = () => {
   for (let i in inputs) {
     if (inputs[i].value === '') {
       goNext.disabled = true;
+      goNext.classList.add('not-correct');
     }
   }
 };

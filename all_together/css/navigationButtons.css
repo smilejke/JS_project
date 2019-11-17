@@ -17,7 +17,7 @@
   transition: 0.4s ease;
 }
 .forward:hover {
-  border: 2px solid #3bb4e5;
+  border: 2px solid;
 }
 .forward:after {
   content: '';
@@ -33,7 +33,7 @@
   transition: 0.4s ease;
 }
 .forward:hover:after {
-  border: 2px solid #3bb4e5;
+  border: 2px solid;
   width: calc(100% - 10px);
   height: calc(100% + 10px);
 }
