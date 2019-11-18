@@ -9,27 +9,8 @@ import {
 } from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
-
-const getDataCsat = () => {
-  for (let i in result.csatIds) {
-    let csat = 0;
-    csat += Number(document.getElementById(result.csatIds[i]).value);
-    resultArr[i].csat = csat;
-  }
-};
-
-const getMiddleCsat = () => {
-  let middle = 0;
-  for (let i in resultArr) {
-    controlData.totalCsat.push(resultArr[i].csat);
-  }
-  for (let i in controlData.totalCsat) {
-    middle += controlData.totalCsat[i];
-  }
-  middle /= controlData.totalCsat.length;
-  controlData.middleCsat = Math.round(middle);
-  return controlData.middleCsat;
-};
+import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
+import { createExtraActivity } from './extraActivity.js';
 
 export const makeCsatTable = () => {
   result.counter = 1;
@@ -38,7 +19,7 @@ export const makeCsatTable = () => {
   const getDivToRomove = document.getElementById('main-content-div2');
   document.body.removeChild(getDivToRomove);
   const makeCsatDiv3 = mainContainer({ type: 'div', id: 'main-content-div3' });
-  const buttonDiv = createButtonDiv(makeCsatDiv3);
+  const buttonDiv = createButtonDiv({ placeToAppend: makeCsatDiv3, classname: 'button-div' });
   const button = createWorkButton({ placeToAppend: buttonDiv, text: 'Получить данные' });
   button.disabled = false;
 
@@ -59,7 +40,6 @@ export const makeCsatTable = () => {
           result,
         );
         const numberValue = createInput({
-          classname: 'newinput',
           optionalClass: 'input-date',
           id: 'numberKK',
           placeToPushId: result.numberCsatIds,
@@ -72,7 +52,6 @@ export const makeCsatTable = () => {
         numberValue.value = result.counter;
 
         const dateKkData = createInput({
-          classname: 'newinput',
           optionalClass: 'input-date',
           id: 'date',
           placeToPushId: result.dateCsatIds,
@@ -89,7 +68,6 @@ export const makeCsatTable = () => {
           dateKkData.classList.add('valid');
         }
         createInput({
-          classname: 'newinput',
           optionalClass: 'input-date',
           id: 'csat',
           placeToPushId: result.csatIds,
@@ -114,12 +92,14 @@ export const makeCsatTable = () => {
       moveForward.addEventListener('click', getDataCsat);
       moveForward.addEventListener('click', getMiddleCsat);
       moveForward.addEventListener('click', updateStorage);
+      moveForward.addEventListener('click', createExtraActivity);
       moveForward.addEventListener('click', makeSomeNoise);
     }
+    ifNoData();
+    ifDataValid();
+
     return buttonDiv;
   });
-  button.addEventListener('click', ifNoData);
-  button.addEventListener('click', ifDataValid);
 };
 
 const makeSomeNoise = () => {

@@ -10,27 +10,7 @@ import {
 } from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
-
-const getDataKK = () => {
-  for (let i in result.kkIds) {
-    let kk = 0;
-    kk += Number(document.getElementById(result.kkIds[i]).value);
-    resultArr[i].kk = kk;
-  }
-};
-
-const getMiddleKK = () => {
-  let middle = 0;
-  for (let i in resultArr) {
-    controlData.totalKk.push(resultArr[i].kk);
-  }
-  for (let i in controlData.totalKk) {
-    middle += controlData.totalKk[i];
-  }
-  middle /= controlData.totalKk.length;
-  controlData.middleKk = Math.round(middle);
-  return controlData.middleKk;
-};
+import { getMiddleKK, getDataKK } from './mathFunctions.js';
 
 export const makeKkTable = () => {
   result.counter = 1;
@@ -41,7 +21,7 @@ export const makeKkTable = () => {
 
   const makeKkDiv2 = mainContainer({ type: 'div', id: 'main-content-div2' });
 
-  const buttonDiv = createButtonDiv(makeKkDiv2);
+  const buttonDiv = createButtonDiv({ placeToAppend: makeKkDiv2, classname: 'button-div' });
 
   const button = createWorkButton({ placeToAppend: buttonDiv, text: 'Получить данные' });
   button.addEventListener('click', () => {
@@ -62,7 +42,6 @@ export const makeKkTable = () => {
           result,
         );
         const numberValue = createInput({
-          classname: 'newinput',
           optionalClass: 'input-date',
           id: 'numberKK',
           placeToPushId: result.numberKkIds,
@@ -75,7 +54,6 @@ export const makeKkTable = () => {
         numberValue.value = result.counter;
 
         const dateKkData = createInput({
-          classname: 'newinput',
           optionalClass: 'input-date',
           id: 'date_kk',
           placeToPushId: result.dateKkIds,
@@ -92,7 +70,6 @@ export const makeKkTable = () => {
           dateKkData.classList.add('valid');
         }
         createInput({
-          classname: 'newinput',
           optionalClass: 'input-date',
           id: 'kk',
           placeToPushId: result.kkIds,
@@ -119,7 +96,7 @@ export const makeKkTable = () => {
       nextPage.addEventListener('click', updateStorage);
       nextPage.addEventListener('click', makeCsatTable);
     }
+    ifNoData();
+    ifDataValid();
   });
-  button.addEventListener('click', ifNoData);
-  button.addEventListener('click', ifDataValid);
 };

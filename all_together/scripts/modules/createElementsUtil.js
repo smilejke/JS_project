@@ -7,10 +7,10 @@ export const mainContainer = (hash) => {
   document.body.append(main);
   return main;
 };
-export const createButtonDiv = (placeToAppend) => {
+export const createButtonDiv = (hash) => {
   let buttonDiv = document.createElement('div');
-  buttonDiv.className = 'button-div';
-  placeToAppend.appendChild(buttonDiv);
+  buttonDiv.className = hash.classname;
+  hash.placeToAppend.appendChild(buttonDiv);
   return buttonDiv;
 };
 
@@ -32,7 +32,6 @@ export const createInput = (hash) => {
   let input = document.createElement('input');
   input.classList.add('effect');
   input.type = 'text';
-  input.className = hash.classname;
   input.placeholder = hash.placeholder;
   input.classList.add(hash.optionalClass);
   input.id = hash.id + result.counter;
@@ -103,6 +102,14 @@ export const createInputDiv = (hash) => {
   hash.placeToAppend.before(input_div);
   return input_div;
 };
+export const createExtraInputDiv = (hash) => {
+  let input_div = document.createElement(hash.type);
+  input_div.className = hash.classname;
+  input_div.id = hash.id + result.counter;
+  hash.placeToPushId.push(input_div.id);
+  hash.placeToAppend.appendChild(input_div);
+  return input_div;
+};
 
 export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
   if (result.marker) {
@@ -128,4 +135,30 @@ export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
     });
   }
   result.marker = false;
+};
+
+export const extraActivityNavigation = () => {
+  if (result.marker) {
+    createForwardButtonDiv(
+      {
+        type: 'div',
+        classname: 'last-div',
+        idHtmlToAppend: 'buttonDiv2',
+      },
+      'Вернуться к CSAT',
+      'Подсчет итогов',
+    );
+  } else {
+    document.querySelector('#buttonDiv2').removeChild(document.querySelector('.last-div'));
+    result.marker = true;
+    createForwardButtonDiv(
+      {
+        type: 'div',
+        classname: 'last-div',
+        idHtmlToAppend: 'buttonDiv2',
+      },
+      'Вернуться к CSAT',
+      'Подсчет итогов',
+    );
+  }
 };

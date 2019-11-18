@@ -7,6 +7,7 @@ const dataContainer = {
   inputDivIds: [],
   kkInputDivIds: [],
   csatInputDivIds: [],
+  extraInputDivIds: [],
 
   numberIvrIds: [],
   numberKkIds: [],
@@ -15,14 +16,20 @@ const dataContainer = {
   dateIvrIds: [],
   dateKkIds: [],
   dateCsatIds: [],
+  dateExtraIds: [],
 
   hoursIvrIds: [],
+  hoursExtraIds: [],
 
   ivrIds: [],
   kkIds: [],
   csatIds: [],
+  extraIVRIds: [],
 
   removeIds: [],
+
+  extraDays: 0,
+  extraDaysId: [],
 };
 
 const finalData = {

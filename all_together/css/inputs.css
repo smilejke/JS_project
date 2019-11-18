@@ -7,6 +7,7 @@
 .col-3 {
   float: left;
   width: 100px;
+  min-width: 80px;
   position: relative;
 }
 input[type='text'] {

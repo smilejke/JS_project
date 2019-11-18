@@ -23,7 +23,7 @@ export const ifDataValid = () => {
         forwardBtn.disabled = false;
 
         for (let i in getAllinputs) {
-          if (getAllinputs[i].className == 'input-date invalid') {
+          if (getAllinputs[i].className == 'effect input-date invalid') {
             forwardBtn.disabled = true;
             forwardBtn.classList.add('not-correct');
           }

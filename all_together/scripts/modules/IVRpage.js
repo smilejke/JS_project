@@ -21,15 +21,15 @@ import {
 
 export const createIVRpage = () => {
   let main = mainContainer({ type: 'div', id: 'main-content-div' });
-  let workDiv = createButtonDiv(main);
+  let workDiv = createButtonDiv({ placeToAppend: main, classname: 'button-div' });
   let button = createWorkButton({ placeToAppend: workDiv, text: 'Добавить рабочий день' });
   button.addEventListener('click', () => {
     if (result.counter <= 30) {
       makeNewRow(workDiv);
     }
+    ifNoData();
+    ifDataValid();
   });
-  button.addEventListener('click', ifNoData);
-  button.addEventListener('click', ifDataValid);
 };
 
 const makeNewRow = (workDiv) => {
@@ -42,7 +42,6 @@ const makeNewRow = (workDiv) => {
   });
 
   const numberValue = createInput({
-    classname: 'newinput',
     optionalClass: 'input-number',
     id: 'number',
     placeToPushId: result.numberIvrIds,
@@ -55,7 +54,6 @@ const makeNewRow = (workDiv) => {
   numberValue.value = result.counter + 1;
 
   createInput({
-    classname: 'newinput',
     optionalClass: 'input-date',
     id: 'date',
     placeToPushId: result.dateIvrIds,
@@ -65,7 +63,6 @@ const makeNewRow = (workDiv) => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
-    classname: 'newinput',
     optionalClass: 'input-date',
     id: 'ivr',
     placeToPushId: result.ivrIds,
@@ -75,7 +72,6 @@ const makeNewRow = (workDiv) => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
-    classname: 'newinput',
     optionalClass: 'input-date',
     id: 'hours',
     placeToPushId: result.hoursIvrIds,

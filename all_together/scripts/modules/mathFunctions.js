@@ -13,6 +13,32 @@ export const getMiddleIVR = () => {
   return controlData.middleIvr;
 };
 
+export const getMiddleKK = () => {
+  let middle = 0;
+  for (let i in resultArr) {
+    controlData.totalKk.push(resultArr[i].kk);
+  }
+  for (let i in controlData.totalKk) {
+    middle += controlData.totalKk[i];
+  }
+  middle /= controlData.totalKk.length;
+  controlData.middleKk = Math.round(middle);
+  return controlData.middleKk;
+};
+
+export const getMiddleCsat = () => {
+  let middle = 0;
+  for (let i in resultArr) {
+    controlData.totalCsat.push(resultArr[i].csat);
+  }
+  for (let i in controlData.totalCsat) {
+    middle += controlData.totalCsat[i];
+  }
+  middle /= controlData.totalCsat.length;
+  controlData.middleCsat = Math.round(middle);
+  return controlData.middleCsat;
+};
+
 export const getSumHours = () => {
   let sum = 0;
   for (let i in resultArr) {
@@ -36,6 +62,27 @@ export const getDataIvr = () => {
       hours: Number(document.getElementById(result.hoursIvrIds[i]).value),
     };
     resultArr.push(day);
+  }
+};
+export const getDataCsat = () => {
+  for (let i in result.csatIds) {
+    let csat = 0;
+    csat += Number(document.getElementById(result.csatIds[i]).value);
+    resultArr[i].csat = csat;
+  }
+};
+export const getDataKK = () => {
+  for (let i in result.kkIds) {
+    let kk = 0;
+    kk += Number(document.getElementById(result.kkIds[i]).value);
+    resultArr[i].kk = kk;
+  }
+};
+export const getExtraDays = () => {
+  for (let i in result.extraDaysId) {
+    let kk = 0;
+    kk += Number(document.getElementById(result.extraDaysId[i]).value);
+    result.extraDays = kk;
   }
 };
 

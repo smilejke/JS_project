@@ -10,11 +10,6 @@ input[data-rule].valid {
   border: 1px solid red;
 }
 
-.col-3:first-child {
-  border: 1px solid #3bb4e5;
-  width: 80px;
-}
-
 .all-correct {
   box-shadow: 0 0 2em 0.5em #3bb4e5;
 }

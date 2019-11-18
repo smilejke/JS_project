@@ -5,6 +5,7 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -17,6 +18,30 @@ body {
 #main-content-div2,
 #main-content-div3 {
   width: 60vw;
+  min-height: 80vh;
+  height: auto;
+  padding: 10px 0px;
+}
+#main-content-div4 {
+  display: flex;
+  width: 65vw;
+  min-height: 80vh;
+  height: auto;
+  padding: 10px 0px;
+}
+.extra-div-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  min-height: 80vh;
+  height: auto;
+  padding: 10px 0px;
+}
+.extra-div-2 {
+  flex-direction: column;
+  width: 75%;
   min-height: 80vh;
   height: auto;
   padding: 10px 0px;
@@ -49,13 +74,9 @@ body {
 }
 
 /* .input-date {
-  text-align: center;
-  height: 50%;
-  width: 13%;
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
+  margin-top: 20px;
+} */
+/*
 .input-number {
   text-align: center;
   height: 50%;
