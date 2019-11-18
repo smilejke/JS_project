@@ -94,6 +94,30 @@ export const createRemoveButton = (callback) => {
   return removeButton;
 };
 
+export const createRemoveButtonExtra = (callback) => {
+  let removeButton = document.createElement('button');
+  removeButton.id = result.counter;
+  result.removeIds.push(removeButton.id);
+  removeButton.classList.add('icon-btn', 'add-btn');
+  removeButton.addEventListener('click', callback);
+
+  removeButton.addEventListener('click', () => {
+    let getAllNumberInputs = document.querySelectorAll('.input-number');
+    for (let i = 0; i < getAllNumberInputs.length; i += 1) {
+      getAllNumberInputs[i].value = Number([i]) + 1;
+      result.counter = getAllNumberInputs.length;
+    }
+  });
+
+  let removeDiv = document.createElement('div');
+  removeDiv.className = 'btn-txt';
+  removeDiv.id = result.counter;
+  removeDiv.innerHTML = 'Удалить';
+  removeButton.appendChild(removeDiv);
+
+  return removeButton;
+};
+
 export const createInputDiv = (hash) => {
   let input_div = document.createElement(hash.type);
   input_div.className = hash.classname;

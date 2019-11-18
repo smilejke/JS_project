@@ -93,20 +93,10 @@ export const makeCsatTable = () => {
       moveForward.addEventListener('click', getMiddleCsat);
       moveForward.addEventListener('click', updateStorage);
       moveForward.addEventListener('click', createExtraActivity);
-      moveForward.addEventListener('click', makeSomeNoise);
     }
     ifNoData();
     ifDataValid();
 
     return buttonDiv;
   });
-};
-
-const makeSomeNoise = () => {
-  console.log(`Total days worked is ${controlData.totalDaysWorked}`);
-  console.log(`Average IVR is ${controlData.middleIvr}`);
-  console.log(`Total hours are ${controlData.sumHours}`);
-  console.log(`Avarage KK is ${controlData.middleKk}`);
-  console.log(`Avarage CSAT is ${controlData.middleCsat}`);
-  console.log(resultArr);
 };

@@ -1,17 +1,4 @@
-import { controlData, resultArr, result } from './localStorage.js';
-
-export const getMiddleIVR = () => {
-  let avarage = 0;
-  for (let i in resultArr) {
-    controlData.totalIvr.push(resultArr[i].ivr);
-  }
-  for (let i in controlData.totalIvr) {
-    avarage += controlData.totalIvr[i];
-  }
-  avarage /= controlData.totalIvr.length;
-  controlData.middleIvr = Math.round(avarage);
-  return controlData.middleIvr;
-};
+import { controlData, resultArr, result, exxxtra } from './localStorage.js';
 
 export const getMiddleKK = () => {
   let middle = 0;
@@ -64,6 +51,18 @@ export const getDataIvr = () => {
     resultArr.push(day);
   }
 };
+
+export const getExtraData = () => {
+  for (let i in result.extraIVRIds) {
+    const extraDay = {
+      date: Number(document.getElementById(result.dateExtraIds[i]).value),
+      ivr: Number(document.getElementById(result.extraIVRIds[i]).value),
+      hours: Number(document.getElementById(result.hoursExtraIds[i]).value),
+    };
+    exxxtra.push(extraDay);
+  }
+};
+
 export const getDataCsat = () => {
   for (let i in result.csatIds) {
     let csat = 0;
@@ -78,12 +77,45 @@ export const getDataKK = () => {
     resultArr[i].kk = kk;
   }
 };
+export const getMiddleIVR = () => {
+  let avarage = 0;
+  for (let i in resultArr) {
+    controlData.totalIvr.push(resultArr[i].ivr);
+  }
+  for (let i in controlData.totalIvr) {
+    avarage += controlData.totalIvr[i];
+  }
+  avarage /= controlData.totalIvr.length;
+  controlData.middleIvr = Math.round(avarage);
+  return controlData.middleIvr;
+};
+export const countExtraMiddleIvr = () => {
+  let average = 0;
+  for (let i in exxxtra) {
+    controlData.totalExtraIvr.push(exxxtra[i].ivr);
+  }
+  for (let i in controlData.totalExtraIvr) {
+    average += controlData.totalExtraIvr[i];
+  }
+  average /= controlData.totalExtraIvr.length;
+  controlData.middleExtraIvr = Math.round(average);
+  return controlData.middleExtraIvr;
+};
 export const getExtraDays = () => {
   for (let i in result.extraDaysId) {
-    let kk = 0;
-    kk += Number(document.getElementById(result.extraDaysId[i]).value);
-    result.extraDays = kk;
+    let extra = 0;
+    extra += Number(document.getElementById(result.extraDaysId[i]).value);
+    result.extraDays = extra;
   }
+};
+
+export const getTotalExtraHours = () => {
+  let hours = 0;
+  for (let i in exxxtra) {
+    hours += exxxtra[i].hours;
+  }
+  controlData.totalExtraHours = hours;
+  return controlData.totalExtraHours;
 };
 
 export const removeNodeCallBack = (e) => {

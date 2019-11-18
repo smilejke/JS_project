@@ -5,10 +5,15 @@ import {
   createInput,
   extraActivityNavigation,
   createExtraInputDiv,
-  createRemoveButton,
+  createRemoveButtonExtra,
 } from './createElementsUtil.js';
-import { controlData, resultArr, result, updateStorage } from './localStorage.js';
-import { getExtraDays } from './mathFunctions.js';
+import { controlData, result, updateExtraStorage, exxxtra, resultArr } from './localStorage.js';
+import {
+  getExtraDays,
+  countExtraMiddleIvr,
+  getTotalExtraHours,
+  getExtraData,
+} from './mathFunctions.js';
 
 export const createExtraActivity = () => {
   result.counter = 1;
@@ -94,9 +99,7 @@ const makeExtraRow = (buttonDiv2) => {
     readOnlyParam: false,
     placeToAppendForm: extraInpitDiv,
   });
-  extraInpitDiv.appendChild(createRemoveButton());
-
-  result.counter += 1;
+  extraInpitDiv.appendChild(createRemoveButtonExtra());
 
   extraActivityNavigation();
   const lastDiv = document.querySelector('.last-div');
@@ -107,4 +110,24 @@ const makeExtraRow = (buttonDiv2) => {
   for (let i = 0; i < inputs.length; i += 1) {
     inputs[i].style.margin = '0 40px';
   }
+  let nextButton = document.getElementById('forwardButton');
+  nextButton.addEventListener('click', getExtraData);
+  nextButton.addEventListener('click', countExtraMiddleIvr);
+  nextButton.addEventListener('click', getTotalExtraHours);
+  nextButton.addEventListener('click', updateExtraStorage);
+  nextButton.addEventListener('click', makeSomeNoise);
+
+  result.counter += 1;
+};
+
+const makeSomeNoise = () => {
+  console.log(exxxtra);
+  console.log(resultArr);
+  console.log(`Total days worked is ${controlData.totalDaysWorked}`);
+  console.log(`Average IVR is ${controlData.middleIvr}`);
+  console.log(`Total hours are ${controlData.sumHours}`);
+  console.log(`Avarage KK is ${controlData.middleKk}`);
+  console.log(`Avarage CSAT is ${controlData.middleCsat}`);
+  console.log(`Average extra IVR is ${controlData.middleExtraIvr}`);
+  console.log(`Total extra hours are ${controlData.totalExtraHours}`);
 };
