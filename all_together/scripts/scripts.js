@@ -6,4 +6,4 @@ import { createSalary } from './modules/salary.js';
 
 let doc = document;
 
-doc.onload = createIVRpage();
+doc.onload = createForm();
