@@ -130,3 +130,15 @@ export const removeNodeCallBack = (e) => {
     .getElementById('main-content-div')
     .removeChild(document.getElementById('inputDiv' + e.target.id));
 };
+
+export const removeNodeCallBackExtra = (e) => {
+  const elemId = result.removeIds.findIndex((el) => el === e.target.id);
+  result.extraInputDivIds.splice(elemId, 1);
+  result.dateExtraIds.splice(elemId, 1);
+  result.extraIVRIds.splice(elemId, 1);
+  result.hoursExtraIds.splice(elemId, 1);
+  result.removeIds.splice(elemId, 1);
+  document
+    .querySelector('.extra-div-2')
+    .removeChild(document.getElementById('extra_input_div' + e.target.id));
+};

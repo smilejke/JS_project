@@ -11,6 +11,7 @@ import {
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
 import { createExtraActivity } from './extraActivity.js';
+import { modalWindowCsat, launchModal } from './modal.js';
 
 export const makeCsatTable = () => {
   result.counter = 1;
@@ -88,14 +89,36 @@ export const makeCsatTable = () => {
         'Вернуться к контролю качества',
         'Внести доп.активность',
       );
-      const moveForward = document.getElementById('forwardButton');
-      moveForward.addEventListener('click', getDataCsat);
-      moveForward.addEventListener('click', getMiddleCsat);
-      moveForward.addEventListener('click', updateStorage);
-      moveForward.addEventListener('click', createExtraActivity);
     }
     ifNoData();
     ifDataValid();
+
+    const moveForward = document.getElementById('forwardButton');
+    moveForward.addEventListener('click', getDataCsat);
+    moveForward.addEventListener('click', getMiddleCsat);
+    moveForward.addEventListener('click', updateStorage);
+    moveForward.addEventListener(
+      'click',
+      modalWindowCsat({
+        loginStatus: 'Внимание!',
+        loginText: 'Следующий показатель необязателен.',
+        loginText2: 'Была ли у сотрудника доп.активность?',
+      }),
+    );
+    moveForward.addEventListener('click', launchModal);
+    moveForward.addEventListener('click', () => {
+      let nope = document.getElementById('backButtonModal');
+      nope.addEventListener('click', () => {
+        document.body.remove(document.getElementById('main-content-div3'));
+      });
+
+      let yeah = document.getElementById('forwardButtonModal');
+      yeah.addEventListener('click', () => {
+        let modalContainer = document.getElementById('myModal');
+        document.body.removeChild(modalContainer);
+        createExtraActivity();
+      });
+    });
 
     return buttonDiv;
   });

@@ -118,8 +118,6 @@ const isCredValid = () => {
       loginFooterText: 'Have a nice day!',
     });
 
-    launchModal();
-
     if (attempt === 0) {
       document.getElementById('username').disabled = true;
       document.getElementById('password').disabled = true;

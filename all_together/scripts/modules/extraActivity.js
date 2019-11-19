@@ -13,13 +13,15 @@ import {
   countExtraMiddleIvr,
   getTotalExtraHours,
   getExtraData,
+  removeNodeCallBackExtra,
 } from './mathFunctions.js';
+import { ifNoData, ifDataValid } from './validation.js';
 
 export const createExtraActivity = () => {
   result.counter = 1;
   result.marker = true;
-  const getDivToRomove = document.getElementById('main-content-div3');
-  document.body.removeChild(getDivToRomove);
+  // const getDivToRomove = document.getElementById('main-content-div3');
+  // document.body.removeChild(getDivToRomove);
 
   const makeExtraActDiv = mainContainer({
     type: 'div',
@@ -99,7 +101,7 @@ const makeExtraRow = (buttonDiv2) => {
     readOnlyParam: false,
     placeToAppendForm: extraInpitDiv,
   });
-  extraInpitDiv.appendChild(createRemoveButtonExtra());
+  extraInpitDiv.appendChild(createRemoveButtonExtra(removeNodeCallBackExtra));
 
   extraActivityNavigation();
   const lastDiv = document.querySelector('.last-div');
@@ -116,6 +118,9 @@ const makeExtraRow = (buttonDiv2) => {
   nextButton.addEventListener('click', getTotalExtraHours);
   nextButton.addEventListener('click', updateExtraStorage);
   nextButton.addEventListener('click', makeSomeNoise);
+  nextButton.addEventListener('click', () => {
+    document.body.remove(document.getElementById('main-content-div4'));
+  });
 
   result.counter += 1;
 };

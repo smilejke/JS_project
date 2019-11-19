@@ -5,4 +5,4 @@ import { createExtraActivity } from './modules/extraActivity.js';
 
 let doc = document;
 
-doc.onload = createIVRpage();
+doc.onload = createExtraActivity();
