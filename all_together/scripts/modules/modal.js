@@ -1,5 +1,4 @@
 import { createNewButton } from './createElementsUtil.js';
-import { result } from './localStorage.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');

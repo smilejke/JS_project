@@ -109,6 +109,7 @@ export const makeCsatTable = () => {
     moveForward.addEventListener('click', () => {
       let nope = document.getElementById('backButtonModal');
       nope.addEventListener('click', () => {
+        makeSomeNoiseNoExtra();
         document.body.remove(document.getElementById('main-content-div3'));
       });
 
@@ -122,4 +123,13 @@ export const makeCsatTable = () => {
 
     return buttonDiv;
   });
+};
+
+const makeSomeNoiseNoExtra = () => {
+  console.log(resultArr);
+  console.log(`Total days worked is ${controlData.totalDaysWorked}`);
+  console.log(`Average IVR is ${controlData.middleIvr}`);
+  console.log(`Total hours are ${controlData.sumHours}`);
+  console.log(`Avarage KK is ${controlData.middleKk}`);
+  console.log(`Avarage CSAT is ${controlData.middleCsat}`);
 };

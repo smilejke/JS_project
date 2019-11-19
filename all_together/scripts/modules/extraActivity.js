@@ -20,8 +20,8 @@ import { ifNoData, ifDataValid } from './validation.js';
 export const createExtraActivity = () => {
   result.counter = 1;
   result.marker = true;
-  // const getDivToRomove = document.getElementById('main-content-div3');
-  // document.body.removeChild(getDivToRomove);
+  const getDivToRomove = document.getElementById('main-content-div3');
+  document.body.removeChild(getDivToRomove);
 
   const makeExtraActDiv = mainContainer({
     type: 'div',
@@ -61,6 +61,7 @@ export const createExtraActivity = () => {
     const getInput = document.getElementById('dayCounter1');
     getInput.value = 1;
   });
+
   return buttonDiv;
 };
 
@@ -121,7 +122,8 @@ const makeExtraRow = (buttonDiv2) => {
   nextButton.addEventListener('click', () => {
     document.body.remove(document.getElementById('main-content-div4'));
   });
-
+  ifNoData();
+  ifDataValid();
   result.counter += 1;
 };
 

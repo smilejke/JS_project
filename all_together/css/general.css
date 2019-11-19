@@ -22,13 +22,19 @@ body {
   height: auto;
   padding: 10px 0px;
 }
-/* #main-content-div4 {
-  display: flex;
-
-  min-height: 80vh;
+#main-content-div5 {
+  display: grid;
+  grid-template-rows: 5fr 1fr 1fr;
+  grid-template-columns: 4fr;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center; */
+  width: 60vw;
+  min-height: 100vh;
   height: auto;
   padding: 10px 0px;
-} */
+}
 #main-content-div4 {
   display: grid;
   grid-template-rows: 4fr;
