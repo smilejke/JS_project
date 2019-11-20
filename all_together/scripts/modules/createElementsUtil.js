@@ -1,23 +1,23 @@
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
 export const mainContainer = (hash) => {
-  let main = document.createElement(hash.type);
+  const main = document.createElement(hash.type);
   main.className = 'main-div';
   main.id = hash.id;
   document.body.append(main);
   return main;
 };
 export const createButtonDiv = (hash) => {
-  let buttonDiv = document.createElement('div');
+  const buttonDiv = document.createElement('div');
   buttonDiv.className = hash.classname;
   hash.placeToAppend.appendChild(buttonDiv);
   return buttonDiv;
 };
 
 export const createWorkButton = (hash) => {
-  let button = document.createElement('button');
+  const button = document.createElement('button');
   button.className = 'button_hola';
-  let span = document.createElement('span');
+  const span = document.createElement('span');
   span.innerHTML = hash.text;
   button.appendChild(span);
   hash.placeToAppend.appendChild(button);
@@ -25,11 +25,11 @@ export const createWorkButton = (hash) => {
 };
 
 export const createInput = (hash) => {
-  let inputContainer = document.createElement('div');
+  const inputContainer = document.createElement('div');
   inputContainer.classList.add('col-3');
   hash.placeToAppendForm.appendChild(inputContainer);
 
-  let input = document.createElement('input');
+  const input = document.createElement('input');
   input.classList.add('effect');
   input.type = 'text';
   input.placeholder = hash.placeholder;
@@ -47,13 +47,13 @@ export const createInput = (hash) => {
   input.type = 'text';
   inputContainer.appendChild(input);
 
-  let label = document.createElement('label');
+  const label = document.createElement('label');
   label.innerHTML = hash.backText;
   inputContainer.appendChild(label);
 
-  let span = document.createElement('span');
+  const span = document.createElement('span');
   span.classList.add('focus-border');
-  let italic = document.createElement('i');
+  const italic = document.createElement('i');
   span.appendChild(italic);
   inputContainer.appendChild(span);
 
@@ -61,7 +61,7 @@ export const createInput = (hash) => {
 };
 
 export const createNewButton = (hash) => {
-  let newButton = document.createElement(hash.type);
+  const newButton = document.createElement(hash.type);
   newButton.id = hash.id;
   newButton.className = hash.classname;
   newButton.disabled = hash.disabled;
@@ -71,14 +71,14 @@ export const createNewButton = (hash) => {
 };
 
 export const createRemoveButton = (callback) => {
-  let removeButton = document.createElement('button');
+  const removeButton = document.createElement('button');
   removeButton.id = result.counter;
   result.removeIds.push(removeButton.id);
   removeButton.classList.add('icon-btn', 'add-btn');
   removeButton.addEventListener('click', callback);
 
   removeButton.addEventListener('click', () => {
-    let getAllNumberInputs = document.querySelectorAll('.input-number');
+    const getAllNumberInputs = document.querySelectorAll('.input-number');
     for (let i = 0; i < getAllNumberInputs.length; i += 1) {
       getAllNumberInputs[i].value = Number([i]) + 1;
       result.counter = getAllNumberInputs.length;
@@ -95,21 +95,21 @@ export const createRemoveButton = (callback) => {
 };
 
 export const createRemoveButtonExtra = (callback) => {
-  let removeButton = document.createElement('button');
+  const removeButton = document.createElement('button');
   removeButton.id = result.counter;
-  result.removeIds.push(removeButton.id);
+  result.removeExtraIds.push(removeButton.id);
   removeButton.classList.add('icon-btn', 'add-btn');
   removeButton.addEventListener('click', callback);
 
   removeButton.addEventListener('click', () => {
-    let getAllNumberInputs = document.querySelectorAll('.input-number');
+    const getAllNumberInputs = document.querySelectorAll('.input-number');
     for (let i = 0; i < getAllNumberInputs.length; i += 1) {
       getAllNumberInputs[i].value = Number([i]) + 1;
       result.counter = getAllNumberInputs.length;
     }
   });
 
-  let removeDiv = document.createElement('div');
+  const removeDiv = document.createElement('div');
   removeDiv.className = 'btn-txt';
   removeDiv.id = result.counter;
   removeDiv.innerHTML = 'Удалить';
@@ -119,7 +119,7 @@ export const createRemoveButtonExtra = (callback) => {
 };
 
 export const createInputDiv = (hash) => {
-  let input_div = document.createElement(hash.type);
+  const input_div = document.createElement(hash.type);
   input_div.className = hash.classname;
   input_div.id = hash.id + result.counter;
   hash.placeToPushId.push(input_div.id);
@@ -127,7 +127,7 @@ export const createInputDiv = (hash) => {
   return input_div;
 };
 export const createExtraInputDiv = (hash) => {
-  let input_div = document.createElement(hash.type);
+  const input_div = document.createElement(hash.type);
   input_div.className = hash.classname;
   input_div.id = hash.id + result.counter;
   hash.placeToPushId.push(input_div.id);

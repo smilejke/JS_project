@@ -27,6 +27,7 @@ const dataContainer = {
   csatIds: [],
   extraIVRIds: [],
 
+  removeExtraIds: [],
   removeIds: [],
   extra: [],
   extraDays: 0,

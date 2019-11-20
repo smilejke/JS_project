@@ -20,8 +20,8 @@ import { ifNoData, ifDataValid } from './validation.js';
 export const createExtraActivity = () => {
   result.counter = 1;
   result.marker = true;
-  const getDivToRomove = document.getElementById('main-content-div3');
-  document.body.removeChild(getDivToRomove);
+  // const getDivToRomove = document.getElementById('main-content-div3');
+  // document.body.removeChild(getDivToRomove);
 
   const makeExtraActDiv = mainContainer({
     type: 'div',
