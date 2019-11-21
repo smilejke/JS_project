@@ -70,10 +70,10 @@ export const createNewButton = (hash) => {
   return newButton;
 };
 
-export const createRemoveButton = (callback) => {
+export const createRemoveButton = (placeToPushId, callback) => {
   const removeButton = document.createElement('button');
   removeButton.id = result.counter;
-  result.removeIds.push(removeButton.id);
+  placeToPushId.push(removeButton.id);
   removeButton.classList.add('icon-btn', 'add-btn');
   removeButton.addEventListener('click', callback);
 
@@ -86,30 +86,6 @@ export const createRemoveButton = (callback) => {
   });
 
   let removeDiv = document.createElement('div');
-  removeDiv.className = 'btn-txt';
-  removeDiv.id = result.counter;
-  removeDiv.innerHTML = 'Удалить';
-  removeButton.appendChild(removeDiv);
-
-  return removeButton;
-};
-
-export const createRemoveButtonExtra = (callback) => {
-  const removeButton = document.createElement('button');
-  removeButton.id = result.counter;
-  result.removeExtraIds.push(removeButton.id);
-  removeButton.classList.add('icon-btn', 'add-btn');
-  removeButton.addEventListener('click', callback);
-
-  removeButton.addEventListener('click', () => {
-    const getAllNumberInputs = document.querySelectorAll('.input-number');
-    for (let i = 0; i < getAllNumberInputs.length; i += 1) {
-      getAllNumberInputs[i].value = Number([i]) + 1;
-      result.counter = getAllNumberInputs.length;
-    }
-  });
-
-  const removeDiv = document.createElement('div');
   removeDiv.className = 'btn-txt';
   removeDiv.id = result.counter;
   removeDiv.innerHTML = 'Удалить';

@@ -81,7 +81,7 @@ const makeNewRow = (workDiv) => {
     placeToAppendForm: newInputDiv,
   });
 
-  newInputDiv.appendChild(createRemoveButton(removeNodeCallBack));
+  newInputDiv.appendChild(createRemoveButton(result.removeIds, removeNodeCallBack));
 
   createForwardButtonDiv(
     {

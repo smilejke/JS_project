@@ -11,7 +11,7 @@ import {
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
 import { createExtraActivity } from './extraActivity.js';
-import { modalWindowCsat, launchModal } from './modal.js';
+import { modalWindowCsat, launchModal, launchModalCsat } from './modal.js';
 
 export const makeCsatTable = () => {
   result.counter = 1;
@@ -105,27 +105,14 @@ export const makeCsatTable = () => {
         loginText2: 'Была ли у сотрудника доп.активность?',
       }),
     );
-    moveForward.addEventListener('click', launchModal);
-    moveForward.addEventListener('click', () => {
-      let nope = document.getElementById('backButtonModal');
-      nope.addEventListener('click', () => {
-        makeSomeNoiseNoExtra();
-        document.body.remove(document.getElementById('main-content-div3'));
-      });
 
-      let yeah = document.getElementById('forwardButtonModal');
-      yeah.addEventListener('click', () => {
-        let modalContainer = document.getElementById('myModal');
-        document.body.removeChild(modalContainer);
-        createExtraActivity();
-      });
-    });
+    moveForward.addEventListener('click', launchModalCsat);
 
     return buttonDiv;
   });
 };
 
-const makeSomeNoiseNoExtra = () => {
+export const makeSomeNoiseNoExtra = () => {
   console.log(resultArr);
   console.log(`Total days worked is ${controlData.totalDaysWorked}`);
   console.log(`Average IVR is ${controlData.middleIvr}`);

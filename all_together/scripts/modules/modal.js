@@ -1,4 +1,7 @@
-import { createNewButton } from './createElementsUtil.js';
+import { createNewButton, createForwardButtonDiv } from './createElementsUtil.js';
+import { result } from './localStorage.js';
+import { createExtraActivity } from './extraActivity.js';
+import { makeSomeNoiseNoExtra } from './4pageCsat.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');
@@ -48,6 +51,7 @@ export const modalWindow = (hash) => {
 };
 
 export const modalWindowCsat = (hash) => {
+  result.marker = true;
   let modalContainer = document.createElement('div');
   modalContainer.id = 'myModal';
   modalContainer.className = 'modal';
@@ -87,27 +91,17 @@ export const modalWindowCsat = (hash) => {
   modalFooter.id = 'modalFooter';
   modalContent.appendChild(modalFooter);
 
-  const last_div = document.createElement('div');
-  last_div.className = 'last-div';
-  last_div.style.margin = '15px';
-  document.getElementById('modalFooter').appendChild(last_div);
-
-  createNewButton({
-    type: 'button',
-    id: 'backButtonModal',
-    classname: 'forward',
-    disabled: false,
-    text: 'НЕТ',
-    placeToAppend: last_div,
-  });
-  createNewButton({
-    type: 'button',
-    id: 'forwardButtonModal',
-    classname: 'forward',
-    disabled: false,
-    text: 'ДА',
-    placeToAppend: last_div,
-  });
+  createForwardButtonDiv(
+    {
+      type: 'div',
+      classname: 'last-div',
+      idHtmlToAppend: 'modalFooter',
+    },
+    'НЕТ',
+    'ДА',
+  );
+  let lastDiv = document.getElementById('modalFooter').querySelector('.last-div');
+  lastDiv.style.margin = '15px';
 };
 
 export const launchModal = () => {
@@ -126,6 +120,33 @@ export const launchModal = () => {
       document.body.removeChild(modalContainer);
     }
   };
+};
+
+export const launchModalCsat = () => {
+  let modal = document.getElementById('myModal');
+  let span = document.getElementsByClassName('close')[0];
+
+  modal.style.display = 'block';
+
+  span.onclick = () => {
+    modal.style.display = 'none';
+  };
+  window.onclick = (event) => {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  };
+
+  let nope = document.getElementById('modalFooter').querySelector('#backButton');
+  nope.disabled = false;
+  nope.addEventListener('click', () => {
+    if (document.getElementById('main-content-div3')) {
+      document.body.remove(document.getElementById('main-content-div3'));
+      makeSomeNoiseNoExtra();
+    }
+  });
+  let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
+  yeah.addEventListener('click', createExtraActivity);
 };
 
 export const failed = () => {

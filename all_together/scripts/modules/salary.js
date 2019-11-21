@@ -10,8 +10,8 @@ import {
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
 
 export const createSalary = () => {
-  //   const getDivToRemove = document.getElementById('main-content-div4');
-  //   document.body.removeChild(getDivToRemove);
+  const getDivToRemove = document.getElementById('main-content-div4');
+  document.body.removeChild(getDivToRemove);
   result.marker = true;
   const makeExtraActDiv = mainContainer({
     type: 'div',

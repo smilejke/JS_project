@@ -15,6 +15,7 @@
   border: none;
   color: #112;
   transition: 0.4s ease;
+  cursor: pointer;
 }
 .forward:hover {
   border: 2px solid;

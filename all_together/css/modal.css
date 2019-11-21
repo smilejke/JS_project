@@ -24,6 +24,7 @@
 }
 
 .modal-content {
+  font-family: 'Play', sans-serif;
   position: relative;
   background-color: inherit;
   margin: auto;

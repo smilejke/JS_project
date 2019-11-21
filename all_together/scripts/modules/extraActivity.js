@@ -5,7 +5,7 @@ import {
   createInput,
   extraActivityNavigation,
   createExtraInputDiv,
-  createRemoveButtonExtra,
+  createRemoveButton,
 } from './createElementsUtil.js';
 import { controlData, result, updateExtraStorage, exxxtra, resultArr } from './localStorage.js';
 import {
@@ -20,8 +20,10 @@ import { ifNoData, ifDataValid } from './validation.js';
 export const createExtraActivity = () => {
   result.counter = 1;
   result.marker = true;
-  // const getDivToRomove = document.getElementById('main-content-div3');
-  // document.body.removeChild(getDivToRomove);
+  let modal = document.getElementById('myModal');
+  document.body.removeChild(modal);
+  const getDivToRemove = document.getElementById('main-content-div3');
+  document.body.removeChild(getDivToRemove);
 
   const makeExtraActDiv = mainContainer({
     type: 'div',
@@ -102,7 +104,7 @@ const makeExtraRow = (buttonDiv2) => {
     readOnlyParam: false,
     placeToAppendForm: extraInpitDiv,
   });
-  extraInpitDiv.appendChild(createRemoveButtonExtra(removeNodeCallBackExtra));
+  extraInpitDiv.appendChild(createRemoveButton(result.removeExtraIds, removeNodeCallBackExtra));
 
   extraActivityNavigation();
   const lastDiv = document.querySelector('.last-div');
