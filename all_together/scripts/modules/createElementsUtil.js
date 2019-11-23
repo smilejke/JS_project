@@ -121,7 +121,7 @@ export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
       type: 'button',
       id: 'backButton',
       classname: 'forward',
-      disabled: true,
+      disabled: false,
       text: textOnBackward,
       placeToAppend: last_div,
     });
@@ -161,4 +161,11 @@ export const extraActivityNavigation = () => {
       'Подсчет итогов',
     );
   }
+};
+
+export const createOption = (hash) => {
+  let option = document.createElement('option');
+  option.value = hash.value;
+  option.innerHTML = hash.text;
+  hash.placeToAppend.appendChild(option);
 };

@@ -10,7 +10,7 @@
   min-width: 80px;
   position: relative;
 }
-input[type='text'] {
+.main-div input[type='text'] {
   text-align: center;
   font: 15px/24px 'Lato', Arial, sans-serif;
   color: #2f3640;
@@ -19,8 +19,8 @@ input[type='text'] {
   letter-spacing: 1px;
 }
 
-input ~ .focus-border:before,
-input ~ .focus-border:after {
+.main-div input ~ .focus-border:before,
+.main-div input ~ .focus-border:after {
   content: '';
   position: absolute;
   top: 0;
@@ -30,14 +30,14 @@ input ~ .focus-border:after {
   background-color: #1289a7;
   transition: 0.3s;
 }
-input ~ .focus-border:after {
+.main-div input ~ .focus-border:after {
   top: auto;
   bottom: 0;
   left: auto;
   right: 0;
 }
-input ~ .focus-border i:before,
-input ~ .focus-border i:after {
+.main-div input ~ .focus-border i:before,
+.main-div input ~ .focus-border i:after {
   content: '';
   position: absolute;
   top: 0;
@@ -47,27 +47,27 @@ input ~ .focus-border i:after {
   background-color: #1289a7;
   transition: 0.4s;
 }
-input ~ .focus-border i:after {
+.main-div input ~ .focus-border i:after {
   left: auto;
   right: 0;
   top: auto;
   bottom: 0;
 }
-input:focus ~ .focus-border:before,
-input:focus ~ .focus-border:after,
+.main-div input:focus ~ .focus-border:before,
+.main-div input:focus ~ .focus-border:after,
 .has-contentinput ~ .focus-border:before,
 .has-contentinput ~ .focus-border:after {
   width: 100%;
   transition: 0.3s;
 }
-input:focus ~ .focus-border i:before,
-input:focus ~ .focus-border i:after,
+.main-div input:focus ~ .focus-border i:before,
+.main-div input:focus ~ .focus-border i:after,
 .has-contentinput ~ .focus-border i:before,
 .has-contentinput ~ .focus-border i:after {
   height: 100%;
   transition: 0.4s;
 }
-input ~ label {
+.main-div input ~ label {
   position: absolute;
   left: 14px;
   width: 100%;
@@ -77,7 +77,7 @@ input ~ label {
   z-index: -1;
   letter-spacing: 0.5px;
 }
-input:focus ~ label,
+.main-div input:focus ~ label,
 .has-contentinput ~ label {
   top: -18px;
   left: 0;

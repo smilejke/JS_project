@@ -5,6 +5,8 @@ import {
   mainContainer,
   createButtonDiv,
   createWorkButton,
+  createNewButton,
+  createOption,
 } from './createElementsUtil.js';
 
 import { controlData, resultArr, result, updateStorage } from './localStorage.js';
@@ -17,12 +19,14 @@ export const informationPage = () => {
   });
 
   let mainCont = document.getElementById('main-content-div6');
+  mainCont.classList.remove('main-div');
 
   let mainFormConainer = document.createElement('div');
   mainFormConainer.className = 'form-style-5';
   mainCont.appendChild(mainFormConainer);
 
   let form = document.createElement('form');
+  form.id = 'formUser';
   mainFormConainer.appendChild(form);
 
   let fieldsetTop = document.createElement('fieldset');
@@ -67,62 +71,21 @@ export const informationPage = () => {
 
   let optgroup1 = document.createElement('optgroup');
   optgroup1.label = 'ЧС';
-
-  let option1 = document.createElement('option');
-  option1.value = 'ДТП';
-  option1.innerHTML = 'ДТП';
-  optgroup1.appendChild(option1);
-
-  let option2 = document.createElement('option');
-  option2.value = 'Ургент';
-  option2.innerHTML = 'Ургент';
-  optgroup1.appendChild(option2);
-
-  let option3 = document.createElement('option');
-  option3.value = 'НСП';
-  option3.innerHTML = 'НСП';
-  optgroup1.appendChild(option3);
-
-  let option4 = document.createElement('option');
-  option4.value = 'Корп.клиенты';
-  option4.innerHTML = 'Корп.клиенты';
-  optgroup1.appendChild(option4);
-
-  let option5 = document.createElement('option');
-  option5.value = 'Ночники';
-  option5.innerHTML = 'Ночники';
-  optgroup1.appendChild(option5);
-
+  createOption({ value: 'ДТП', text: 'ДТП', placeToAppend: optgroup1 });
+  createOption({ value: 'Ургент', text: 'Ургент', placeToAppend: optgroup1 });
+  createOption({ value: 'НСП', text: 'НСП', placeToAppend: optgroup1 });
+  createOption({ value: 'Корп.клиенты', text: 'Корп.клиенты', placeToAppend: optgroup1 });
+  createOption({ value: 'Ночники', text: 'Ночники', placeToAppend: optgroup1 });
   select.appendChild(optgroup1);
 
   let optgroup2 = document.createElement('optgroup');
   optgroup2.label = 'Водительские';
+  createOption({ value: 'Финансы', text: 'Финансы', placeToAppend: optgroup2 });
+  createOption({ value: 'Автоконтроль', text: 'Автоконтроль', placeToAppend: optgroup2 });
+  createOption({ value: 'Бонусы', text: 'Бонусы', placeToAppend: optgroup2 });
+  createOption({ value: 'Парки', text: 'Парки', placeToAppend: optgroup2 });
+  createOption({ value: 'Тарифы', text: 'Тарифы', placeToAppend: optgroup2 });
   select.appendChild(optgroup2);
-
-  let option6 = document.createElement('option');
-  option6.value = 'Финансы';
-  option6.innerHTML = 'Финансы';
-  optgroup2.appendChild(option6);
-
-  let option7 = document.createElement('option');
-  option7.value = 'Автоконтроль';
-  option7.innerHTML = 'Автоконтроль';
-  optgroup2.appendChild(option7);
-
-  let option8 = document.createElement('option');
-  option8.value = 'Бонусы';
-  option8.innerHTML = 'Бонусы';
-  optgroup2.appendChild(option8);
-
-  let option9 = document.createElement('option');
-  option9.value = 'Парки';
-  option9.innerHTML = 'Парки';
-  optgroup2.appendChild(option9);
-
-  let option10 = document.createElement('option');
-  option10.value = 'Тарифы';
-  option10.innerHTML = 'Тарифы';
-  optgroup2.appendChild(option10);
 
   let fieldsetBottom = document.createElement('fieldset');
   form.appendChild(fieldsetBottom);
@@ -136,29 +99,46 @@ export const informationPage = () => {
   legend2.appendChild(text2);
   fieldsetBottom.appendChild(legend2);
 
+  let select2 = document.createElement('select');
+  select2.id = 'job';
+  select2.name = 'field4';
+  fieldsetBottom.appendChild(select2);
+
+  let optgroup3 = document.createElement('optgroup');
+  optgroup1.label = 'ЧС';
+
+  createOption({ value: 'Январь', text: 'Январь', placeToAppend: optgroup3 });
+  createOption({ value: 'Февраль', text: 'Февраль', placeToAppend: optgroup3 });
+  createOption({ value: 'Март', text: 'Март', placeToAppend: optgroup3 });
+  createOption({ value: 'Апрель', text: 'Апрель', placeToAppend: optgroup3 });
+  createOption({ value: 'Май', text: 'Май', placeToAppend: optgroup3 });
+  createOption({ value: 'Июнь', text: 'Июнь', placeToAppend: optgroup3 });
+  createOption({ value: 'Июль', text: 'Июль', placeToAppend: optgroup3 });
+  createOption({ value: 'Август', text: 'Август', placeToAppend: optgroup3 });
+  createOption({ value: 'Сентябрь', text: 'Сентябрь', placeToAppend: optgroup3 });
+  createOption({ value: 'Октябрь', text: 'Октябрь', placeToAppend: optgroup3 });
+  createOption({ value: 'Ноябрь', text: 'Ноябрь', placeToAppend: optgroup3 });
+  createOption({ value: 'Декабрь', text: 'Декабрь', placeToAppend: optgroup3 });
+
+  select2.appendChild(optgroup3);
+
   let textarea = document.createElement('textarea');
   textarea.name = 'field3';
   textarea.placeholder = 'Отпуска, больничные, обучения и т.п.';
   fieldsetBottom.appendChild(textarea);
 
-  let inputLegend4 = document.createElement('input');
-  inputLegend4.type = 'text';
-  inputLegend4.name = 'field2';
-  inputLegend4.placeholder = 'Текущий месяц *';
-  fieldsetBottom.appendChild(inputLegend4);
+  // let inputValues = document.createElement('input');
+  // inputValues.type = 'submit';
+  // inputValues.value = 'Apply';
+  // form.appendChild(inputValues);
 
-  let inputValues = document.createElement('input');
-  inputValues.type = 'submit';
-  inputValues.value = 'Apply';
-  form.appendChild(inputValues);
-
-  //   createForwardButtonDiv(
-  //     {
-  //       type: 'div',
-  //       classname: 'navigation-div',
-  //       idHtmlToAppend: 'main-content-div6',
-  //     },
-  //     'Выйти из программы',
-  //     'Перейти к заполнению показателей',
-  //   );
+  createForwardButtonDiv(
+    {
+      type: 'div',
+      classname: 'information-button-div ',
+      idHtmlToAppend: 'formUser',
+    },
+    'Выйти из программы',
+    'Перейти к заполнению показателей',
+  );
 };

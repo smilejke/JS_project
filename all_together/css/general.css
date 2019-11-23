@@ -34,12 +34,9 @@ body {
 
 #main-content-div6 {
   display: grid;
-  grid-template-rows: 4fr 1fr;
-  grid-template-columns: 4fr;
   width: 60vw;
   min-height: 80vh;
   height: auto;
-  padding: 10px 0px;
 }
 #main-content-div4 {
   display: grid;
@@ -97,6 +94,14 @@ body {
   grid-row: 2/2;
   margin: 15px;
   height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.information-button-div {
+  margin: 10px;
+
   display: flex;
   justify-content: center;
   align-items: center;

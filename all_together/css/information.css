@@ -3,11 +3,11 @@
   padding: 10px 20px;
   margin: 10px auto;
   padding: 20px;
-  background: linear-gradient(125deg, #fdcb6e, #7bed9f, #eccc68, #ff5252, #ff9ff3);
+  background: linear-gradient(125deg, #fdcb6e, #7bed9f, #eccc68, #ff9ff3);
   background-size: 400%;
   animation: bganimation 15s infinite;
-  border-radius: 8px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-radius: 15px;
+  font-family: 'Play', sans-serif;
 }
 .form-style-5 fieldset {
   border: none;
@@ -46,6 +46,9 @@
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   margin-bottom: 30px;
+}
+.form-style-5 textarea {
+  margin-bottom: 0 !important;
 }
 .form-style-5 input[type='text']:focus,
 .form-style-5 input[type='date']:focus,
