@@ -7,15 +7,24 @@ import {
   createExtraInputDiv,
   createRemoveButton,
 } from './createElementsUtil.js';
-import { controlData, result, updateExtraStorage, exxxtra, resultArr } from './localStorage.js';
+import {
+  controlData,
+  result,
+  updateExtraStorage,
+  exxxtra,
+  resultArr,
+  info,
+} from './localStorage.js';
 import {
   getExtraDays,
   countExtraMiddleIvr,
   getTotalExtraHours,
   getExtraData,
   removeNodeCallBackExtra,
+  countExtraMoney,
 } from './mathFunctions.js';
 import { ifNoData, ifDataValid } from './validation.js';
+import { createSalary } from './salary.js';
 
 export const createExtraActivity = () => {
   result.counter = 1;
@@ -120,10 +129,12 @@ const makeExtraRow = (buttonDiv2) => {
   nextButton.addEventListener('click', countExtraMiddleIvr);
   nextButton.addEventListener('click', getTotalExtraHours);
   nextButton.addEventListener('click', updateExtraStorage);
+  nextButton.addEventListener('click', countExtraMoney);
   nextButton.addEventListener('click', makeSomeNoise);
-  nextButton.addEventListener('click', () => {
-    document.body.remove(document.getElementById('main-content-div4'));
-  });
+  // nextButton.addEventListener('click', () => {
+  //   document.body.remove(document.getElementById('main-content-div4'));
+  // });
+  nextButton.addEventListener('click', createSalary);
   ifNoData();
   ifDataValid();
   result.counter += 1;
@@ -132,6 +143,7 @@ const makeExtraRow = (buttonDiv2) => {
 const makeSomeNoise = () => {
   console.log(exxxtra);
   console.log(resultArr);
+  console.log(info);
   console.log(`Total days worked is ${controlData.totalDaysWorked}`);
   console.log(`Average IVR is ${controlData.middleIvr}`);
   console.log(`Total hours are ${controlData.sumHours}`);

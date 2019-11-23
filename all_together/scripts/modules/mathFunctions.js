@@ -1,4 +1,4 @@
-import { controlData, resultArr, result, exxxtra } from './localStorage.js';
+import { controlData, resultArr, result, exxxtra, info } from './localStorage.js';
 
 export const getMiddleKK = () => {
   let middle = 0;
@@ -61,6 +61,16 @@ export const getExtraData = () => {
     };
     exxxtra.push(extraDay);
   }
+};
+
+export const getDataInfo = () => {
+  info.lastname = document.getElementById('lastname').value;
+  info.name = document.getElementById('name').value;
+  info.secondName = document.getElementById('secondName').value;
+  info.job = document.getElementById('job').value;
+  info.month = document.getElementById('month').value;
+  info.rate = document.getElementById('rate').value;
+  info.hourShift = document.getElementById('shift').value;
 };
 
 export const getDataCsat = () => {
@@ -141,4 +151,19 @@ export const removeNodeCallBackExtra = (e) => {
   document
     .querySelector('.extra-div-2')
     .removeChild(document.getElementById('extra_input_div' + e.target.id));
+};
+
+export const countExtraMoney = () => {
+  let totalIvr = 0;
+  let ivrPerHour = totalIvr / controlData.totalExtraHours;
+
+  for (let i in controlData.totalExtraIvr) {
+    totalIvr += controlData.totalExtraIvr[i];
+  }
+  if (ivrPerHour < 15) {
+    controlData.extraMoney += 250 * controlData.totalExtraHours;
+  } else {
+    controlData.extraMoney += 400 * controlData.totalExtraHours;
+  }
+  controlData.extraMoney = Math.round(controlData.extraMoney);
 };

@@ -1,15 +1,8 @@
-import {
-  createInputDiv,
-  createForwardButtonDiv,
-  createInput,
-  mainContainer,
-  createButtonDiv,
-  createWorkButton,
-  createNewButton,
-  createOption,
-} from './createElementsUtil.js';
+import { createForwardButtonDiv, mainContainer, createOption } from './createElementsUtil.js';
 
-import { controlData, resultArr, result, updateStorage } from './localStorage.js';
+import { result, updateStorageInfo } from './localStorage.js';
+import { getDataInfo } from './mathFunctions.js';
+import { createIVRpage } from './IVRpage.js';
 
 export const informationPage = () => {
   result.marker = true;
@@ -44,18 +37,21 @@ export const informationPage = () => {
   let inputLegend1 = document.createElement('input');
   inputLegend1.type = 'text';
   inputLegend1.name = 'field1';
+  inputLegend1.id = 'lastname';
   inputLegend1.placeholder = 'Фамилия *';
   fieldsetTop.appendChild(inputLegend1);
 
   let inputLegend2 = document.createElement('input');
   inputLegend2.type = 'text';
   inputLegend2.name = 'field2';
+  inputLegend2.id = 'name';
   inputLegend2.placeholder = 'Имя *';
   fieldsetTop.appendChild(inputLegend2);
 
   let inputLegend3 = document.createElement('input');
   inputLegend3.type = 'text';
   inputLegend3.name = 'field2';
+  inputLegend3.id = 'secondName';
   inputLegend3.placeholder = 'Отчество *';
   fieldsetTop.appendChild(inputLegend3);
 
@@ -100,7 +96,7 @@ export const informationPage = () => {
   fieldsetBottom.appendChild(legend2);
 
   let select2 = document.createElement('select');
-  select2.id = 'job';
+  select2.id = 'month';
   select2.name = 'field4';
   fieldsetBottom.appendChild(select2);
 
@@ -122,23 +118,38 @@ export const informationPage = () => {
 
   select2.appendChild(optgroup3);
 
-  let textarea = document.createElement('textarea');
-  textarea.name = 'field3';
-  textarea.placeholder = 'Отпуска, больничные, обучения и т.п.';
-  fieldsetBottom.appendChild(textarea);
+  // let textarea = document.createElement('textarea');
+  // textarea.name = 'field3';
+  // textarea.id = 'extraInformation';
+  // textarea.placeholder = 'Отпуска, больничные, обучения и т.п.';
+  // fieldsetBottom.appendChild(textarea);
 
-  // let inputValues = document.createElement('input');
-  // inputValues.type = 'submit';
-  // inputValues.value = 'Apply';
-  // form.appendChild(inputValues);
+  let inputLegend4 = document.createElement('input');
+  inputLegend4.type = 'text';
+  inputLegend4.name = 'rate';
+  inputLegend4.id = 'rate';
+  inputLegend4.placeholder = 'Ставка, руб/ч *';
+  fieldsetBottom.appendChild(inputLegend4);
+
+  let inputLegend5 = document.createElement('input');
+  inputLegend5.type = 'text';
+  inputLegend5.name = 'shift';
+  inputLegend5.id = 'shift';
+  inputLegend5.placeholder = 'Смена, часов/день *';
+  fieldsetBottom.appendChild(inputLegend5);
 
   createForwardButtonDiv(
     {
       type: 'div',
-      classname: 'information-button-div ',
-      idHtmlToAppend: 'formUser',
+      classname: 'information-button-div',
+      idHtmlToAppend: 'main-content-div6',
     },
     'Выйти из программы',
     'Перейти к заполнению показателей',
   );
+
+  let but = document.getElementById('forwardButton');
+  but.addEventListener('click', getDataInfo);
+  but.addEventListener('click', updateStorageInfo);
+  but.addEventListener('click', createIVRpage);
 };

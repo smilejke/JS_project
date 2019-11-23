@@ -24,8 +24,8 @@ body {
 }
 #main-content-div5 {
   display: grid;
-  grid-template-rows: 5fr 1fr 1fr;
-  grid-template-columns: 4fr;
+  grid-template-rows: 6fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   width: 60vw;
   min-height: 100vh;
   height: auto;
@@ -84,7 +84,6 @@ body {
 .last-div {
   margin-top: 50px;
   height: 8vh;
-
   display: flex;
   justify-content: center;
   align-items: center;

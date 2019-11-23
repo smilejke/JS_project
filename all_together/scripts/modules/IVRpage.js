@@ -20,6 +20,12 @@ import {
 } from './mathFunctions.js';
 
 export const createIVRpage = () => {
+  result.counter = 0;
+  result.marker = true;
+
+  let removePrev = document.getElementById('main-content-div6');
+  document.body.removeChild(removePrev);
+
   let main = mainContainer({ type: 'div', id: 'main-content-div' });
   let workDiv = createButtonDiv({ placeToAppend: main, classname: 'button-div' });
   let button = createWorkButton({ placeToAppend: workDiv, text: 'Добавить рабочий день' });
@@ -92,6 +98,7 @@ const makeNewRow = (workDiv) => {
     'Предыдущий показатель',
     'Внести данные по контролю качества',
   );
+
   let getNextButton = document.getElementById('forwardButton');
   getNextButton.addEventListener('click', getDataIvr);
   getNextButton.addEventListener('click', getMiddleIVR);

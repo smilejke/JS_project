@@ -1,6 +1,7 @@
 let attempt = 3;
 import { createIVRpage } from './IVRpage.js';
 import { modalWindow, launchModal, failed } from './modal.js';
+import { informationPage } from './information.js';
 
 export const createForm = () => {
   let loginContainer = document.createElement('div');
@@ -97,7 +98,7 @@ const isCredValid = () => {
     }),
       launchModal();
 
-    createIVRpage();
+    informationPage();
 
     return false;
   } else {

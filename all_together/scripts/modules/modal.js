@@ -1,7 +1,8 @@
-import { createNewButton, createForwardButtonDiv } from './createElementsUtil.js';
+import { createForwardButtonDiv } from './createElementsUtil.js';
 import { result } from './localStorage.js';
 import { createExtraActivity } from './extraActivity.js';
 import { makeSomeNoiseNoExtra } from './4pageCsat.js';
+import { createSalary } from './salary.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');
@@ -142,6 +143,7 @@ export const launchModalCsat = () => {
   nope.addEventListener('click', () => {
     if (document.getElementById('main-content-div3')) {
       document.body.remove(document.getElementById('main-content-div3'));
+      // createSalary();
       makeSomeNoiseNoExtra();
     }
   });

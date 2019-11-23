@@ -7,12 +7,22 @@ import {
   createWorkButton,
 } from './createElementsUtil.js';
 
-import { controlData, resultArr, result, updateStorage } from './localStorage.js';
+import {
+  controlData,
+  result,
+  resultArr,
+  money,
+  exxxtra,
+  updateStorageSalary,
+  info,
+} from './localStorage.js';
 
 export const createSalary = () => {
   const getDivToRemove = document.getElementById('main-content-div4');
   document.body.removeChild(getDivToRemove);
+  result.counter = 0;
   result.marker = true;
+
   const makeExtraActDiv = mainContainer({
     type: 'div',
     id: 'main-content-div5',
@@ -22,7 +32,7 @@ export const createSalary = () => {
 
   const button = createWorkButton({
     placeToAppend: buttonDiv,
-    text: 'Рассчитать зарплату',
+    text: 'Получить данные',
   });
   const newInputDiv = createInputDiv({
     type: 'div',
@@ -34,90 +44,110 @@ export const createSalary = () => {
 
   createInput({
     optionalClass: 'input-date',
-    id: 'number',
-    placeToPushId: result.numberIvrIds,
+    id: 'month',
+    placeToPushId: money.monthId,
     placeholder: 'Месяц',
     backText: 'Месяц',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
 
   createInput({
     optionalClass: 'input-date',
-    id: 'date',
-    placeToPushId: result.dateIvrIds,
+    id: 'name',
+    placeToPushId: money.nameId,
+    placeholder: 'Ф.И.О сотрудника',
+    backText: 'Ф.И.О сотрудника',
+    readOnlyParam: true,
+    placeToAppendForm: newInputDiv,
+  });
+
+  createInput({
+    optionalClass: 'input-date',
+    id: 'department',
+    placeToPushId: money.departmentId,
+    placeholder: 'Отдел',
+    backText: 'Отдел',
+    readOnlyParam: true,
+    placeToAppendForm: newInputDiv,
+  });
+
+  createInput({
+    optionalClass: 'input-date',
+    id: 'daysWorkedId',
+    placeToPushId: money.daysWorkedId,
     placeholder: 'Итого отр.дней',
     backText: 'Итого отр.дней',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
   createInput({
     optionalClass: 'input-date',
-    id: 'ivr',
-    placeToPushId: result.ivrIds,
+    id: 'middleIvr',
+    placeToPushId: money.middleIvrId,
     backText: 'Средний ИВР',
     placeholder: 'Средний ИВР',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
   createInput({
     optionalClass: 'input-date',
-    id: 'hours',
-    placeToPushId: result.hoursIvrIds,
+    id: 'hoursWorkedId',
+    placeToPushId: money.hoursWorkedId,
     placeholder: 'Итого отр.часов',
     backText: 'Итого отр.часов',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
   createInput({
     optionalClass: 'input-date',
-    id: 'hours',
-    placeToPushId: result.hoursIvrIds,
+    id: 'middleKk',
+    placeToPushId: money.middleKkId,
     placeholder: 'КК',
     backText: 'КК',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
   createInput({
     optionalClass: 'input-date',
-    id: 'hours',
-    placeToPushId: result.hoursIvrIds,
+    id: 'middleCsat',
+    placeToPushId: money.middleCsatId,
     placeholder: 'CSAT',
     backText: 'CSAT',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
   createInput({
     optionalClass: 'input-date',
-    id: 'hours',
-    placeToPushId: result.hoursIvrIds,
+    id: 'extramoney',
+    placeToPushId: money.extraMoneyId,
     placeholder: 'Цена доп.активности',
     backText: 'Цена доп.активности',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
   createInput({
     optionalClass: 'input-date',
-    id: 'hours',
-    placeToPushId: result.hoursIvrIds,
+    id: 'rate',
+    placeToPushId: money.rateId,
     placeholder: 'Ставка, рубли/час',
     backText: 'Ставка, рубли/час',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
   createInput({
     optionalClass: 'input-date',
-    id: 'hours',
-    placeToPushId: result.hoursIvrIds,
+    id: 'shift',
+    placeToPushId: money.shiftId,
     placeholder: 'Часовая смена',
     backText: 'Часовая смена',
-    readOnlyParam: false,
+    readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
 
-  const inputs = document.getElementsByClassName('col-3');
-  for (let i = 0; i < inputs.length; i += 1) {
-    inputs[i].style.width = '200px';
+  const inputDivs = document.getElementsByClassName('col-3');
+  for (let i = 0; i < inputDivs.length; i += 1) {
+    inputDivs[i].style.width = '250px';
   }
 
   button.addEventListener('click', () => {
@@ -132,6 +162,61 @@ export const createSalary = () => {
         'Посчитать налоги',
       );
     }
+    button.addEventListener('click', fillData());
     result.marker = false;
   });
+};
+
+let fillData = () => {
+  let month = document.getElementById('month0');
+  month.value = info.month;
+
+  let name = document.getElementById('name0');
+  name.value = info.lastname + ' ' + info.name[0] + '.' + info.secondName[0];
+
+  let department = document.getElementById('department0');
+  department.value = info.job;
+
+  let totalDaysWorked = document.getElementById('daysWorkedId0');
+  totalDaysWorked.value = controlData.totalDaysWorked;
+
+  let middleIvr = document.getElementById('middleIvr0');
+  middleIvr.value = controlData.middleIvr;
+
+  let totalHoursWorked = document.getElementById('hoursWorkedId0');
+  totalHoursWorked.value = controlData.sumHours;
+
+  let middleKk = document.getElementById('middleKk0');
+  middleKk.value = controlData.middleKk;
+
+  let middleCsat = document.getElementById('middleCsat0');
+  middleCsat.value = controlData.middleCsat;
+
+  let shift = document.getElementById('shift0');
+  shift.value = info.hourShift;
+
+  let rate = document.getElementById('rate0');
+  rate.value = info.rate;
+
+  let extramoney = document.getElementById('extramoney0');
+  extramoney.value = controlData.extraMoney;
+
+  justDoIt();
+};
+
+let justDoIt = () => {
+  let labels = document.getElementsByTagName('label');
+  let inputs = document.getElementsByClassName('input-date');
+
+  for (let i = 0; i < inputs.length; i += 1) {
+    if (!inputs[i].value == '') {
+      for (let j = 0; j < inputs.length; j += 1) {
+        labels[j].style.top = '-18px';
+        labels[j].style.left = '0';
+        labels[j].style.fontSize = '12px';
+        labels[j].style.color = '#1289a7';
+        labels[j].style.transition = '0.3s';
+      }
+    }
+  }
 };
