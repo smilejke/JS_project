@@ -48,3 +48,19 @@ export const ifNoData = () => {
     }
   }
 };
+
+export const ifNoDataInfo = () => {
+  let inputs = document.getElementsByTagName('input');
+  let goNext = document.getElementById('forwardButton');
+
+  for (let i = 0; i < inputs.length; i += 1) {
+    if (inputs[i].value === '') {
+      goNext.disabled = true;
+      goNext.classList.add('not-correct');
+    } else {
+      goNext.disabled = false;
+      goNext.classList.remove('not-correct');
+      goNext.classList.add('all-correct');
+    }
+  }
+};

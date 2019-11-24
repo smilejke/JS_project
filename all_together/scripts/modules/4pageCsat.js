@@ -8,10 +8,10 @@ import {
   createWorkButton,
 } from './createElementsUtil.js';
 
-import { controlData, resultArr, result, updateStorage } from './localStorage.js';
+import { result, resultArr, updateStorage } from './localStorage.js';
 import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
 import { createExtraActivity } from './extraActivity.js';
-import { modalWindowCsat, launchModal, launchModalCsat } from './modal.js';
+import { modalWindowCsat, launchModalCsat } from './modal.js';
 
 export const makeCsatTable = () => {
   result.counter = 1;

@@ -70,7 +70,7 @@ export const getDataInfo = () => {
   info.job = document.getElementById('job').value;
   info.month = document.getElementById('month').value;
   info.rate = document.getElementById('rate').value;
-  info.hourShift = document.getElementById('shift').value;
+  info.hourShift = document.getElementById('hourShift').value;
 };
 
 export const getDataCsat = () => {

@@ -7,15 +7,7 @@ import {
   createWorkButton,
 } from './createElementsUtil.js';
 
-import {
-  controlData,
-  result,
-  resultArr,
-  money,
-  exxxtra,
-  updateStorageSalary,
-  info,
-} from './localStorage.js';
+import { controlData, resultArr, result, exxxtra, info, money } from './localStorage.js';
 
 export const createSalary = () => {
   const getDivToRemove = document.getElementById('main-content-div4');

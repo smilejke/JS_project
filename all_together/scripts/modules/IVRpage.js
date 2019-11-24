@@ -9,7 +9,7 @@ import {
 } from './createElementsUtil.js';
 
 import { ifDataValid, ifNoData } from './validation.js';
-import { controlData, resultArr, result, updateStorage } from './localStorage.js';
+import { result, updateStorage } from './localStorage.js';
 import { makeKkTable } from './3pageKK.js';
 import {
   getMiddleIVR,

@@ -7,4 +7,4 @@ import { informationPage } from './modules/information.js';
 
 let doc = document;
 
-doc.onload = createForm();
+doc.onload = informationPage();

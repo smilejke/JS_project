@@ -9,12 +9,13 @@ import {
 } from './createElementsUtil.js';
 import {
   controlData,
+  info,
+  resultArr,
+  exxxtra,
   result,
   updateExtraStorage,
-  exxxtra,
-  resultArr,
-  info,
 } from './localStorage.js';
+
 import {
   getExtraDays,
   countExtraMiddleIvr,

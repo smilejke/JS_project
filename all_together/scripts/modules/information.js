@@ -3,6 +3,7 @@ import { createForwardButtonDiv, mainContainer, createOption } from './createEle
 import { result, updateStorageInfo } from './localStorage.js';
 import { getDataInfo } from './mathFunctions.js';
 import { createIVRpage } from './IVRpage.js';
+import { ifNoDataInfo } from './validation.js';
 
 export const informationPage = () => {
   result.marker = true;
@@ -101,7 +102,7 @@ export const informationPage = () => {
   fieldsetBottom.appendChild(select2);
 
   let optgroup3 = document.createElement('optgroup');
-  optgroup1.label = 'ЧС';
+  optgroup3.label = 'Месяц';
 
   createOption({ value: 'Январь', text: 'Январь', placeToAppend: optgroup3 });
   createOption({ value: 'Февраль', text: 'Февраль', placeToAppend: optgroup3 });
@@ -118,11 +119,16 @@ export const informationPage = () => {
 
   select2.appendChild(optgroup3);
 
-  // let textarea = document.createElement('textarea');
-  // textarea.name = 'field3';
-  // textarea.id = 'extraInformation';
-  // textarea.placeholder = 'Отпуска, больничные, обучения и т.п.';
-  // fieldsetBottom.appendChild(textarea);
+  let select3 = document.createElement('select');
+  select3.id = 'hourShift';
+  select3.name = 'hourShift';
+  fieldsetBottom.appendChild(select3);
+
+  let optgroup4 = document.createElement('optgroup');
+  optgroup4.label = 'Смена, часов/день';
+  createOption({ value: 8, text: '8-ми часовая смена', placeToAppend: optgroup4 });
+  createOption({ value: 12, text: '12-ти часовая смена', placeToAppend: optgroup4 });
+  select3.appendChild(optgroup4);
 
   let inputLegend4 = document.createElement('input');
   inputLegend4.type = 'text';
@@ -130,13 +136,6 @@ export const informationPage = () => {
   inputLegend4.id = 'rate';
   inputLegend4.placeholder = 'Ставка, руб/ч *';
   fieldsetBottom.appendChild(inputLegend4);
-
-  let inputLegend5 = document.createElement('input');
-  inputLegend5.type = 'text';
-  inputLegend5.name = 'shift';
-  inputLegend5.id = 'shift';
-  inputLegend5.placeholder = 'Смена, часов/день *';
-  fieldsetBottom.appendChild(inputLegend5);
 
   createForwardButtonDiv(
     {
@@ -147,9 +146,15 @@ export const informationPage = () => {
     'Выйти из программы',
     'Перейти к заполнению показателей',
   );
-
   let but = document.getElementById('forwardButton');
+  but.disabled = true;
+  but.classList.add('not-correct');
   but.addEventListener('click', getDataInfo);
   but.addEventListener('click', updateStorageInfo);
   but.addEventListener('click', createIVRpage);
+
+  let inputs = document.getElementsByTagName('input');
+  for (let i = 0; i < inputs.length; i += 1) {
+    inputs[i].addEventListener('blur', ifNoDataInfo);
+  }
 };

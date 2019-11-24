@@ -40,7 +40,6 @@ const information = {
   secondName: '',
   job: '',
   month: '',
-  extraInformation: '',
   rate: '',
   hourShift: '',
 };
@@ -110,3 +109,5 @@ export const updateStorageInfo = () => {
 export const updateStorageSalary = () => {
   storage.setItem('money', JSON.stringify(money));
 };
+
+export const getDataFromLS = (field) => JSON.parse(storage.getItem(field));

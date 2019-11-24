@@ -1,4 +1,4 @@
-import { controlData, resultArr, result, updateStorage } from './localStorage.js';
+import { result } from './localStorage.js';
 
 export const mainContainer = (hash) => {
   const main = document.createElement(hash.type);

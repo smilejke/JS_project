@@ -9,7 +9,7 @@ import {
   createWorkButton,
 } from './createElementsUtil.js';
 
-import { controlData, resultArr, result, updateStorage } from './localStorage.js';
+import { resultArr, result, updateStorage } from './localStorage.js';
 import { getMiddleKK, getDataKK } from './mathFunctions.js';
 
 export const makeKkTable = () => {
