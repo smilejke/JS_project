@@ -64,3 +64,39 @@ export const ifNoDataInfo = () => {
     }
   }
 };
+
+export const howGood = () => {
+  const ivr = document.getElementById('middleIvr0');
+  const kk = document.getElementById('middleKk0');
+  const csat = document.getElementById('middleCsat0');
+
+  if (ivr.value <= 70) {
+    ivr.style.borderColor = 'red';
+  }
+  if (ivr.value > 70 && ivr.value <= 100) {
+    ivr.style.borderColor = 'green';
+  }
+  if (ivr.value > 100) {
+    ivr.style.borderColor = 'blue';
+  }
+
+  if (kk.value <= 80) {
+    kk.style.borderColor = 'red';
+  }
+  if (kk.value > 80 && kk.value < 100) {
+    kk.style.borderColor = 'green';
+  }
+  if (kk.value == 100) {
+    kk.style.borderColor = 'blue';
+  }
+
+  if (csat.value <= 80) {
+    csat.style.borderColor = 'red';
+  }
+  if (csat.value > 70 && csat.value < 100) {
+    csat.style.borderColor = 'green';
+  }
+  if (csat.value == 100) {
+    csat.style.borderColor = 'blue';
+  }
+};

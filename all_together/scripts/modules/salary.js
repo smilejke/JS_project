@@ -8,6 +8,7 @@ import {
 } from './createElementsUtil.js';
 
 import { controlData, resultArr, result, exxxtra, info, money } from './localStorage.js';
+import { howGood } from './validation.js';
 
 export const createSalary = () => {
   const getDivToRemove = document.getElementById('main-content-div4');
@@ -73,15 +74,7 @@ export const createSalary = () => {
     readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
-  createInput({
-    optionalClass: 'input-date',
-    id: 'middleIvr',
-    placeToPushId: money.middleIvrId,
-    backText: 'Средний ИВР',
-    placeholder: 'Средний ИВР',
-    readOnlyParam: true,
-    placeToAppendForm: newInputDiv,
-  });
+
   createInput({
     optionalClass: 'input-date',
     id: 'hoursWorkedId',
@@ -91,6 +84,17 @@ export const createSalary = () => {
     readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
+
+  createInput({
+    optionalClass: 'input-date',
+    id: 'middleIvr',
+    placeToPushId: money.middleIvrId,
+    backText: 'Средний ИВР',
+    placeholder: 'Средний ИВР',
+    readOnlyParam: true,
+    placeToAppendForm: newInputDiv,
+  });
+
   createInput({
     optionalClass: 'input-date',
     id: 'middleKk',
@@ -113,8 +117,8 @@ export const createSalary = () => {
     optionalClass: 'input-date',
     id: 'extramoney',
     placeToPushId: money.extraMoneyId,
-    placeholder: 'Цена доп.активности',
-    backText: 'Цена доп.активности',
+    placeholder: 'Дополнительный доход',
+    backText: 'Дополнительный доход',
     readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
@@ -155,6 +159,7 @@ export const createSalary = () => {
       );
     }
     button.addEventListener('click', fillData());
+    button.addEventListener('click', howGood());
     result.marker = false;
   });
 };

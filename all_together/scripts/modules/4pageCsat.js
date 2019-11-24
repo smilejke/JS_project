@@ -8,7 +8,7 @@ import {
   createWorkButton,
 } from './createElementsUtil.js';
 
-import { result, resultArr, updateStorage } from './localStorage.js';
+import { controlData, result, resultArr, updateStorage } from './localStorage.js';
 import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
 import { createExtraActivity } from './extraActivity.js';
 import { modalWindowCsat, launchModalCsat } from './modal.js';
