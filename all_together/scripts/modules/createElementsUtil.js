@@ -44,6 +44,9 @@ export const createInput = (hash) => {
   });
   input.readOnly = hash.readOnlyParam;
   input.setAttribute('data-rule', 'number');
+  input.setAttribute('data-rule2', 'length');
+  input.setAttribute('data-from', 1);
+  input.setAttribute('data-to', 3);
   input.type = 'text';
   inputContainer.appendChild(input);
 

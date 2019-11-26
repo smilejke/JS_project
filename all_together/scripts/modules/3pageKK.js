@@ -78,6 +78,7 @@ export default () => {
 
         result.counter += 1;
       }
+
       createForwardButtonDiv(
         {
           type: 'div',

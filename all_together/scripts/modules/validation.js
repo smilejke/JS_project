@@ -4,19 +4,36 @@ export const ifDataValid = () => {
   for (let input of inputs) {
     input.addEventListener('blur', () => {
       let rule = input.dataset.rule;
+      let rule2 = input.dataset.rule2;
       let value = input.value;
       let check;
+      let check2;
       let forwardBtn = document.getElementById('forwardButton');
       let getAllinputs = document.getElementsByTagName('input');
+
+      switch (rule2) {
+        case 'length':
+          let length = value.length;
+          let from = Number(input.dataset.from);
+          let to = Number(input.dataset.to);
+          check2 = length >= from && length <= to;
+          break;
+      }
+      input.classList.remove('valid');
+      input.classList.remove('invalid');
+      if (check) {
+        input.classList.add('valid');
+      } else {
+        input.classList.add('invalid');
+      }
 
       switch (rule) {
         case 'number':
           check = /^\d+$/.test(value);
           break;
       }
-      input.classList.remove('valid');
-      input.classList.remove('invalid');
-      if (check) {
+
+      if (check && check2) {
         input.classList.add('valid');
         forwardBtn.classList.remove('not-correct');
         forwardBtn.classList.add('all-correct');
