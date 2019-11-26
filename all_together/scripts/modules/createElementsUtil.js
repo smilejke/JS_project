@@ -4,7 +4,7 @@ export const mainContainer = (hash) => {
   const main = document.createElement(hash.type);
   main.className = 'main-div';
   main.id = hash.id;
-  document.body.append(main);
+  document.body.appendChild(main);
   return main;
 };
 export const createButtonDiv = (hash) => {

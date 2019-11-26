@@ -2,8 +2,10 @@ import { createForwardButtonDiv, mainContainer, createOption } from './createEle
 
 import { result, updateStorageInfo } from './localStorage.js';
 import { getDataInfo } from './mathFunctions.js';
-import { createIVRpage } from './IVRpage.js';
 import { ifNoDataInfo } from './validation.js';
+
+import router from '../../router/applicationRouter.js';
+import makeIvrTable from './IVRpage.js';
 
 export const informationPage = () => {
   result.marker = true;
@@ -151,7 +153,11 @@ export const informationPage = () => {
   but.classList.add('not-correct');
   but.addEventListener('click', getDataInfo);
   but.addEventListener('click', updateStorageInfo);
-  but.addEventListener('click', createIVRpage);
+  but.addEventListener('click', () => {
+    router.navigate('/ivr');
+    let removePage = document.getElementById('main-content-div6');
+    document.body.removeChild(removePage);
+  });
 
   let inputs = document.getElementsByTagName('input');
   for (let i = 0; i < inputs.length; i += 1) {

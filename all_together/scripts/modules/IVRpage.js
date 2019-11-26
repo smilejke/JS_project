@@ -10,7 +10,7 @@ import {
 
 import { ifDataValid, ifNoData } from './validation.js';
 import { result, updateStorage } from './localStorage.js';
-import { makeKkTable } from './3pageKK.js';
+
 import {
   getMiddleIVR,
   getSumHours,
@@ -19,12 +19,11 @@ import {
   removeNodeCallBack,
 } from './mathFunctions.js';
 
-export const createIVRpage = () => {
+import router from '../../router/applicationRouter.js';
+
+export default () => {
   result.counter = 0;
   result.marker = true;
-
-  let removePrev = document.getElementById('main-content-div6');
-  document.body.removeChild(removePrev);
 
   let main = mainContainer({ type: 'div', id: 'main-content-div' });
   let workDiv = createButtonDiv({ placeToAppend: main, classname: 'button-div' });
@@ -105,7 +104,12 @@ const makeNewRow = (workDiv) => {
   getNextButton.addEventListener('click', getSumHours);
   getNextButton.addEventListener('click', totalDaysWorked);
   getNextButton.addEventListener('click', updateStorage);
-  getNextButton.addEventListener('click', makeKkTable);
+  getNextButton.addEventListener('click', () => {
+    router.navigate('/kk');
+    document.body.removeChild(document.getElementById('main-content-div'));
+  });
 
   result.counter += 1;
 };
+
+document.onload = 'default';

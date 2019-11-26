@@ -1,8 +1,7 @@
 import { createForwardButtonDiv } from './createElementsUtil.js';
 import { result } from './localStorage.js';
-import { createExtraActivity } from './extraActivity.js';
 import { makeSomeNoiseNoExtra } from './4pageCsat.js';
-import { createSalary } from './salary.js';
+import router from '../../router/applicationRouter.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');
@@ -112,13 +111,11 @@ export const launchModal = () => {
   modal.style.display = 'block';
 
   span.onclick = () => {
-    let modalContainer = document.getElementById('myModal');
-    document.body.removeChild(modalContainer);
+    document.body.removeChild(modal);
   };
   window.onclick = (event) => {
     if (event.target == modal) {
-      let modalContainer = document.getElementById('myModal');
-      document.body.removeChild(modalContainer);
+      document.body.removeChild(modal);
     }
   };
 };
@@ -126,6 +123,7 @@ export const launchModal = () => {
 export const launchModalCsat = () => {
   let modal = document.getElementById('myModal');
   let span = document.getElementsByClassName('close')[0];
+  let removePage = document.getElementById('main-content-div3');
 
   modal.style.display = 'block';
 
@@ -141,14 +139,18 @@ export const launchModalCsat = () => {
   let nope = document.getElementById('modalFooter').querySelector('#backButton');
   nope.disabled = false;
   nope.addEventListener('click', () => {
-    if (document.getElementById('main-content-div3')) {
-      document.body.remove(document.getElementById('main-content-div3'));
-      // createSalary();
+    if (removePage) {
+      router.navigate('/salary');
+      document.body.removeChild(modal);
+      document.body.removeChild(removePage);
       makeSomeNoiseNoExtra();
     }
   });
   let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
-  yeah.addEventListener('click', createExtraActivity);
+  yeah.addEventListener('click', () => {
+    router.navigate('/extra');
+    document.body.removeChild(removePage);
+  });
 };
 
 export const failed = () => {

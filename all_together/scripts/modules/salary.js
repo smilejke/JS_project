@@ -7,12 +7,10 @@ import {
   createWorkButton,
 } from './createElementsUtil.js';
 
-import { controlData, resultArr, result, exxxtra, info, money } from './localStorage.js';
+import { controlData, result, info, money } from './localStorage.js';
 import { howGood } from './validation.js';
 
-export const createSalary = () => {
-  const getDivToRemove = document.getElementById('main-content-div4');
-  document.body.removeChild(getDivToRemove);
+export default () => {
   result.counter = 0;
   result.marker = true;
 

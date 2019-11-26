@@ -25,15 +25,13 @@ import {
   countExtraMoney,
 } from './mathFunctions.js';
 import { ifNoData, ifDataValid } from './validation.js';
-import { createSalary } from './salary.js';
+import router from '../../router/applicationRouter.js';
 
-export const createExtraActivity = () => {
+export default () => {
   result.counter = 1;
   result.marker = true;
   let modal = document.getElementById('myModal');
   document.body.removeChild(modal);
-  const getDivToRemove = document.getElementById('main-content-div3');
-  document.body.removeChild(getDivToRemove);
 
   const makeExtraActDiv = mainContainer({
     type: 'div',
@@ -132,10 +130,12 @@ const makeExtraRow = (buttonDiv2) => {
   nextButton.addEventListener('click', updateExtraStorage);
   nextButton.addEventListener('click', countExtraMoney);
   nextButton.addEventListener('click', makeSomeNoise);
-  // nextButton.addEventListener('click', () => {
-  //   document.body.remove(document.getElementById('main-content-div4'));
-  // });
-  nextButton.addEventListener('click', createSalary);
+
+  nextButton.addEventListener('click', () => {
+    router.navigate('/salary');
+    let removePage = document.getElementById('main-content-div4');
+    document.body.removeChild(removePage);
+  });
   ifNoData();
   ifDataValid();
   result.counter += 1;

@@ -10,15 +10,12 @@ import {
 
 import { controlData, result, resultArr, updateStorage } from './localStorage.js';
 import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
-import { createExtraActivity } from './extraActivity.js';
 import { modalWindowCsat, launchModalCsat } from './modal.js';
 
-export const makeCsatTable = () => {
+export default () => {
   result.counter = 1;
   result.marker = true;
 
-  const getDivToRomove = document.getElementById('main-content-div2');
-  document.body.removeChild(getDivToRomove);
   const makeCsatDiv3 = mainContainer({ type: 'div', id: 'main-content-div3' });
   const buttonDiv = createButtonDiv({ placeToAppend: makeCsatDiv3, classname: 'button-div' });
   const button = createWorkButton({ placeToAppend: buttonDiv, text: 'Получить данные' });

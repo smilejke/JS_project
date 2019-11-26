@@ -1,5 +1,4 @@
 let attempt = 3;
-import { createIVRpage } from './IVRpage.js';
 import { modalWindow, launchModal, failed } from './modal.js';
 import { informationPage } from './information.js';
 

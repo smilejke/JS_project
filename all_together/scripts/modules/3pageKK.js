@@ -1,5 +1,4 @@
 import { ifDataValid, ifNoData } from './validation.js';
-import { makeCsatTable } from './4pageCsat.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -11,13 +10,11 @@ import {
 
 import { resultArr, result, updateStorage } from './localStorage.js';
 import { getMiddleKK, getDataKK } from './mathFunctions.js';
+import router from '../../router/applicationRouter.js';
 
-export const makeKkTable = () => {
+export default () => {
   result.counter = 1;
   result.marker = true;
-
-  const getDivToRomove = document.getElementById('main-content-div');
-  document.body.removeChild(getDivToRomove);
 
   const makeKkDiv2 = mainContainer({ type: 'div', id: 'main-content-div2' });
 
@@ -94,7 +91,10 @@ export const makeKkTable = () => {
       nextPage.addEventListener('click', getDataKK);
       nextPage.addEventListener('click', getMiddleKK);
       nextPage.addEventListener('click', updateStorage);
-      nextPage.addEventListener('click', makeCsatTable);
+      nextPage.addEventListener('click', () => {
+        router.navigate('/csat');
+        document.body.removeChild(document.getElementById('main-content-div2'));
+      });
     }
     ifNoData();
     ifDataValid();
