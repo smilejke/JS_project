@@ -10,7 +10,9 @@ import {
 import { controlData, result, info, money } from './localStorage.js';
 import { howGood } from './validation.js';
 
-export default () => {
+import router from '../../router/applicationRouter.js';
+
+export const makeSalaryPage = () => {
   result.counter = 0;
   result.marker = true;
 
@@ -197,6 +199,11 @@ let fillData = () => {
   extramoney.value = controlData.extraMoney;
 
   justDoIt();
+  let getBackButton = document.getElementById('backButton');
+  getBackButton.addEventListener('click', () => {
+    router.navigate('/csat');
+    document.body.removeChild(document.getElementById('main-content-div5'));
+  });
 };
 
 let justDoIt = () => {

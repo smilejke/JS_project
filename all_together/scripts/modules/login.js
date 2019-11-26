@@ -1,6 +1,6 @@
 let attempt = 3;
 import { modalWindow, launchModal, failed } from './modal.js';
-import { informationPage } from './information.js';
+// import { informationPage } from './information.js';
 
 export const createForm = () => {
   let loginContainer = document.createElement('div');

@@ -11,6 +11,7 @@ import {
 import { controlData, result, resultArr, updateStorage } from './localStorage.js';
 import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
 import { modalWindowCsat, launchModalCsat } from './modal.js';
+// import router from '../../router/applicationRouter.js';
 
 export default () => {
   result.counter = 1;
@@ -87,9 +88,12 @@ export default () => {
         'Внести доп.активность',
       );
     }
-    ifNoData();
-    ifDataValid();
 
+    let getBackButton = document.getElementById('backButton');
+    getBackButton.addEventListener('click', () => {
+      router.navigate('/kk');
+      document.body.removeChild(document.getElementById('main-content-div3'));
+    });
     const moveForward = document.getElementById('forwardButton');
     moveForward.addEventListener('click', getDataCsat);
     moveForward.addEventListener('click', getMiddleCsat);
@@ -102,9 +106,9 @@ export default () => {
         loginText2: 'Была ли у сотрудника доп.активность?',
       }),
     );
-
     moveForward.addEventListener('click', launchModalCsat);
-
+    ifNoData();
+    ifDataValid();
     return buttonDiv;
   });
 };

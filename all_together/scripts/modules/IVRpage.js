@@ -21,7 +21,7 @@ import {
 
 import router from '../../router/applicationRouter.js';
 
-export default () => {
+export const makeIvrPage = () => {
   result.counter = 0;
   result.marker = true;
 
@@ -97,7 +97,11 @@ const makeNewRow = (workDiv) => {
     'Предыдущий показатель',
     'Внести данные по контролю качества',
   );
-
+  let getBackButton = document.getElementById('backButton');
+  getBackButton.addEventListener('click', () => {
+    router.navigate('/info');
+    document.body.removeChild(document.getElementById('main-content-div'));
+  });
   let getNextButton = document.getElementById('forwardButton');
   getNextButton.addEventListener('click', getDataIvr);
   getNextButton.addEventListener('click', getMiddleIVR);

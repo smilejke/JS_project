@@ -5,7 +5,6 @@ import { getDataInfo } from './mathFunctions.js';
 import { ifNoDataInfo } from './validation.js';
 
 import router from '../../router/applicationRouter.js';
-import makeIvrTable from './IVRpage.js';
 
 export const informationPage = () => {
   result.marker = true;

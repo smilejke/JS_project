@@ -74,7 +74,7 @@ const salaryDataIds = {
   nameId: [],
 };
 
-localStorage.clear();
+// localStorage.clear();
 localStorage.setItem('result', JSON.stringify(dataContainer));
 localStorage.setItem('resultArr', JSON.stringify(resultParams));
 localStorage.setItem('controlData', JSON.stringify(finalData));

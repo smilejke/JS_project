@@ -27,7 +27,7 @@ import {
 import { ifNoData, ifDataValid } from './validation.js';
 import router from '../../router/applicationRouter.js';
 
-export default () => {
+export const makeExtraActivity = () => {
   result.counter = 1;
   result.marker = true;
   let modal = document.getElementById('myModal');
@@ -123,6 +123,12 @@ const makeExtraRow = (buttonDiv2) => {
   for (let i = 0; i < inputs.length; i += 1) {
     inputs[i].style.margin = '0 40px';
   }
+
+  let getBackButton = document.getElementById('backButton');
+  getBackButton.addEventListener('click', () => {
+    router.navigate('/csat');
+    document.body.removeChild(document.getElementById('main-content-div4'));
+  });
   let nextButton = document.getElementById('forwardButton');
   nextButton.addEventListener('click', getExtraData);
   nextButton.addEventListener('click', countExtraMiddleIvr);
@@ -130,7 +136,6 @@ const makeExtraRow = (buttonDiv2) => {
   nextButton.addEventListener('click', updateExtraStorage);
   nextButton.addEventListener('click', countExtraMoney);
   nextButton.addEventListener('click', makeSomeNoise);
-
   nextButton.addEventListener('click', () => {
     router.navigate('/salary');
     let removePage = document.getElementById('main-content-div4');

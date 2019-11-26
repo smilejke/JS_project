@@ -12,7 +12,7 @@ import { resultArr, result, updateStorage } from './localStorage.js';
 import { getMiddleKK, getDataKK } from './mathFunctions.js';
 import router from '../../router/applicationRouter.js';
 
-export default () => {
+export const makeKkTable = () => {
   result.counter = 1;
   result.marker = true;
 
@@ -88,6 +88,11 @@ export default () => {
         'Вернуться к ИВР',
         'Внести данные CSAT',
       );
+      let getBackButton = document.getElementById('backButton');
+      getBackButton.addEventListener('click', () => {
+        router.navigate('/ivr');
+        document.body.removeChild(document.getElementById('main-content-div2'));
+      });
       const nextPage = document.getElementById('forwardButton');
       nextPage.addEventListener('click', getDataKK);
       nextPage.addEventListener('click', getMiddleKK);
