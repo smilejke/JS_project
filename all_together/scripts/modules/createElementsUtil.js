@@ -73,12 +73,12 @@ export const createNewButton = (hash) => {
   return newButton;
 };
 
-export const createRemoveButton = (placeToPushId, callback) => {
+export const createRemoveButton = (placeToPushId) => {
   const removeButton = document.createElement('button');
   removeButton.id = result.counter;
   placeToPushId.push(removeButton.id);
   removeButton.classList.add('icon-btn', 'add-btn');
-  removeButton.addEventListener('click', callback);
+  // removeButton.addEventListener('click', callback);
 
   removeButton.addEventListener('click', () => {
     const getAllNumberInputs = document.querySelectorAll('.input-number');

@@ -35,6 +35,7 @@ export const makeIvrPage = () => {
     ifNoData();
     ifDataValid();
   });
+  removeNodeCallBack();
 };
 
 const makeNewRow = (workDiv) => {
@@ -90,8 +91,7 @@ const makeNewRow = (workDiv) => {
     placeToAppendForm: newInputDiv,
   });
 
-  newInputDiv.appendChild(createRemoveButton(result.removeIds, removeNodeCallBack));
-
+  newInputDiv.appendChild(createRemoveButton(result.removeIds));
   createForwardButtonDiv(
     {
       type: 'div',

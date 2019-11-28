@@ -128,29 +128,55 @@ export const getTotalExtraHours = () => {
   return controlData.totalExtraHours;
 };
 
-export const removeNodeCallBack = (e) => {
-  const elemId = result.removeIds.findIndex((el) => el === e.target.id);
-  result.inputDivIds.splice(elemId, 1);
-  result.numberIvrIds.splice(elemId, 1);
-  result.dateIvrIds.splice(elemId, 1);
-  result.ivrIds.splice(elemId, 1);
-  result.hoursIvrIds.splice(elemId, 1);
-  result.removeIds.splice(elemId, 1);
-  document
-    .getElementById('main-content-div')
-    .removeChild(document.getElementById('inputDiv' + e.target.id));
+export const removeNodeCallBack = () => {
+  let table = document.getElementById('main-content-div');
+
+  table.onclick = (event) => {
+    let target = event.target;
+
+    if (
+      target.className === 'icon-btn' ||
+      target.className === 'add-btn' ||
+      target.className === 'btn-txt' ||
+      target.className === 'icon-btn add-btn'
+    ) {
+      const elemId = result.removeIds.findIndex((el) => el === event.target.id);
+      result.inputDivIds.splice(elemId, 1);
+      result.numberIvrIds.splice(elemId, 1);
+      result.dateIvrIds.splice(elemId, 1);
+      result.ivrIds.splice(elemId, 1);
+      result.hoursIvrIds.splice(elemId, 1);
+      result.removeIds.splice(elemId, 1);
+      document
+        .getElementById('main-content-div')
+        .removeChild(document.getElementById('inputDiv' + event.target.id));
+    }
+  };
 };
 
-export const removeNodeCallBackExtra = (e) => {
-  const elemId = result.removeExtraIds.findIndex((el) => el === e.target.id);
-  result.extraInputDivIds.splice(elemId, 1);
-  result.dateExtraIds.splice(elemId, 1);
-  result.extraIVRIds.splice(elemId, 1);
-  result.hoursExtraIds.splice(elemId, 1);
-  result.removeExtraIds.splice(elemId, 1);
-  document
-    .querySelector('.extra-div-2')
-    .removeChild(document.getElementById('extra_input_div' + e.target.id));
+export const removeNodeCallBackExtra = () => {
+  let table = document.getElementById('main-content-div4');
+
+  table.onclick = (event) => {
+    let target = event.target;
+
+    if (
+      target.className === 'icon-btn' ||
+      target.className === 'add-btn' ||
+      target.className === 'btn-txt' ||
+      target.className === 'icon-btn add-btn'
+    ) {
+      const elemId = result.removeExtraIds.findIndex((el) => el === event.target.id);
+      result.extraInputDivIds.splice(elemId, 1);
+      result.dateExtraIds.splice(elemId, 1);
+      result.extraIVRIds.splice(elemId, 1);
+      result.hoursExtraIds.splice(elemId, 1);
+      result.removeExtraIds.splice(elemId, 1);
+      document
+        .querySelector('.extra-div-2')
+        .removeChild(document.getElementById('extra_input_div' + event.target.id));
+    }
+  };
 };
 
 export const countExtraMoney = () => {

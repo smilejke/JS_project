@@ -56,21 +56,17 @@ export const makeExtraActivity = () => {
     readOnlyParam: false,
     placeToAppendForm: buttonDiv,
   });
-  const howManyDaysInput = document.getElementById('buttonDiv1').querySelector('.col-3');
 
   button.addEventListener('click', () => {
     getExtraDays();
-
     for (let i = 0; i < result.extraDays; i += 1) {
       if (i < result.extraDays) {
         makeExtraRow(buttonDiv2);
       }
     }
-
     const getInput = document.getElementById('dayCounter1');
     getInput.value = 1;
   });
-
   return buttonDiv;
 };
 
@@ -114,7 +110,7 @@ const makeExtraRow = (buttonDiv2) => {
     readOnlyParam: false,
     placeToAppendForm: extraInpitDiv,
   });
-  extraInpitDiv.appendChild(createRemoveButton(result.removeExtraIds, removeNodeCallBackExtra));
+  extraInpitDiv.appendChild(createRemoveButton(result.removeExtraIds));
 
   extraActivityNavigation();
 
@@ -137,6 +133,7 @@ const makeExtraRow = (buttonDiv2) => {
   });
   ifNoData();
   ifDataValid();
+  removeNodeCallBackExtra();
   result.counter += 1;
 };
 
