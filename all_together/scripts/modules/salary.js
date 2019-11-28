@@ -99,8 +99,8 @@ export const makeSalaryPage = () => {
     optionalClass: 'input-date',
     id: 'middleKk',
     placeToPushId: money.middleKkId,
-    placeholder: 'КК',
-    backText: 'КК',
+    placeholder: 'Контроль качества',
+    backText: 'Контроль качества',
     readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
@@ -213,6 +213,7 @@ let justDoIt = () => {
   for (let i = 0; i < inputs.length; i += 1) {
     if (!inputs[i].value == '') {
       for (let j = 0; j < inputs.length; j += 1) {
+        // labels[j].classList.add('just-do-it');
         labels[j].style.top = '-18px';
         labels[j].style.left = '0';
         labels[j].style.fontSize = '12px';

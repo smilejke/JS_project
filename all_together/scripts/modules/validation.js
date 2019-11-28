@@ -88,32 +88,32 @@ export const howGood = () => {
   const csat = document.getElementById('middleCsat0');
 
   if (ivr.value <= 70) {
-    ivr.style.borderColor = 'red';
+    ivr.classList.add('red-zone');
   }
   if (ivr.value > 70 && ivr.value <= 100) {
-    ivr.style.borderColor = 'green';
+    ivr.classList.add('green-zone');
   }
   if (ivr.value > 100) {
-    ivr.style.borderColor = 'blue';
+    ivr.classList.add('blue-zone');
   }
 
   if (kk.value <= 80) {
-    kk.style.borderColor = 'red';
+    kk.classList.add('red-zone');
   }
   if (kk.value > 80 && kk.value < 100) {
-    kk.style.borderColor = 'green';
+    kk.classList.add('green-zone');
   }
   if (kk.value == 100) {
-    kk.style.borderColor = 'blue';
+    kk.classList.add('blue-zone');
   }
 
   if (csat.value <= 80) {
-    csat.style.borderColor = 'red';
+    csat.classList.add('red-zone');
   }
   if (csat.value > 70 && csat.value < 100) {
-    csat.style.borderColor = 'green';
+    csat.classList.add('green-zone');
   }
   if (csat.value == 100) {
-    csat.style.borderColor = 'blue';
+    csat.classList.add('blue-zone');
   }
 };

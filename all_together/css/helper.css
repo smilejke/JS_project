@@ -2,6 +2,10 @@
   display: none;
 }
 
+.show {
+  display: block;
+}
+
 input[data-rule].valid {
   border: 1px solid #3bb4e5;
 }
@@ -19,6 +23,16 @@ input[data-rule].valid {
 }
 .not-correct:hover {
   box-shadow: 0 0 2em 0.1em #ea2027;
+}
+
+.red-zone {
+  border: 1px solid red;
+}
+.green-zone {
+  border: 1px solid green;
+}
+.blue-zone {
+  border: 1px solid blue;
 }
 
 .add-grid-1 {
@@ -51,4 +65,16 @@ input[data-rule].valid {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.just-do-it {
+  top: -18px;
+  left: 0;
+  font-size: 12px;
+  color: #1289a7;
+  transition: 0.3s;
+}
+
+.add-margin {
+  min-width: 250px;
 }

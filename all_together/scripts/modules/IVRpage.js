@@ -97,10 +97,11 @@ const makeNewRow = (workDiv) => {
     'Предыдущий показатель',
     'Внести данные по контролю качества',
   );
+
   let getBackButton = document.getElementById('backButton');
   getBackButton.addEventListener('click', () => {
     router.navigate('/info');
-    document.body.removeChild(document.getElementById('main-content-div'));
+    document.body.removeChild(document.getElementById('main-content-div')); //ошиббка
   });
   let getNextButton = document.getElementById('forwardButton');
   getNextButton.addEventListener('click', getDataIvr);
@@ -112,8 +113,5 @@ const makeNewRow = (workDiv) => {
     router.navigate('/kk');
     document.body.removeChild(document.getElementById('main-content-div'));
   });
-
   result.counter += 1;
 };
-
-document.onload = 'default';

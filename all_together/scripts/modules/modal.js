@@ -94,21 +94,19 @@ export const modalWindowCsat = (hash) => {
   createForwardButtonDiv(
     {
       type: 'div',
-      classname: 'last-div',
+      classname: 'last-div-modal',
       idHtmlToAppend: 'modalFooter',
     },
     'НЕТ',
     'ДА',
   );
-  let lastDiv = document.getElementById('modalFooter').querySelector('.last-div');
-  lastDiv.style.margin = '15px';
 };
 
 export const launchModal = () => {
   let modal = document.getElementById('myModal');
   let span = document.getElementsByClassName('close')[0];
 
-  modal.style.display = 'block';
+  modal.classList.add('show');
 
   span.onclick = () => {
     document.body.removeChild(modal);
@@ -128,11 +126,11 @@ export const launchModalCsat = () => {
   modal.style.display = 'block';
 
   span.onclick = () => {
-    modal.style.display = 'none';
+    modal.classList.add('visibility');
   };
   window.onclick = (event) => {
     if (event.target == modal) {
-      modal.style.display = 'none';
+      modal.classList.add('visibility');
     }
   };
 
@@ -158,8 +156,16 @@ export const failed = () => {
   let modalBody = document.querySelector('.modal-body');
   let modalFooter = document.querySelector('.modal-footer');
   let mainModalBox = document.querySelector('.modal-content');
-  modalHeader.style.color = '#ff4757';
-  modalBody.style.color = '#ff4757';
-  modalFooter.style.color = '#ff4757';
-  mainModalBox.style.borderColor = '#ff4757';
+  modalHeader.classList.remove('modal-header');
+  modalBody.classList.remove('modal-body');
+  modalFooter.classList.remove('modal-footer');
+  mainModalBox.classList.remove('modal-content');
+
+  modalHeader.classList.add('modal-header-fail');
+  modalBody.classList.add('modal-body-fail');
+  modalFooter.classList.add('modal-footer-fail');
+  mainModalBox.classList.add('modal-content-fail');
 };
+
+// $on(window, 'load', setView)
+// $on(window,'hashchange', setView)

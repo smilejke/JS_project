@@ -19,3 +19,7 @@ router.add(/^salary$/, makeSalaryPage);
 router.listen();
 
 export default router;
+
+export const getRounter = () => {
+  return router;
+};

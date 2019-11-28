@@ -145,19 +145,19 @@ export const extraActivityNavigation = () => {
     createForwardButtonDiv(
       {
         type: 'div',
-        classname: 'last-div',
+        classname: 'last-div-center',
         idHtmlToAppend: 'buttonDiv2',
       },
       'Вернуться к CSAT',
       'Подсчет итогов',
     );
   } else {
-    document.querySelector('#buttonDiv2').removeChild(document.querySelector('.last-div'));
+    document.querySelector('#buttonDiv2').removeChild(document.querySelector('.last-div-center'));
     result.marker = true;
     createForwardButtonDiv(
       {
         type: 'div',
-        classname: 'last-div',
+        classname: 'last-div-center',
         idHtmlToAppend: 'buttonDiv2',
       },
       'Вернуться к CSAT',

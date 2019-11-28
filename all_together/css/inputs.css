@@ -10,6 +10,13 @@
   min-width: 80px;
   position: relative;
 }
+.col-4 {
+  float: left;
+  width: 240px;
+  min-width: 80px;
+  position: relative;
+  margin-top: 35px;
+}
 .main-div input[type='text'] {
   text-align: center;
   font: 15px/24px 'Lato', Arial, sans-serif;

@@ -97,3 +97,37 @@
   background-color: #487eb0;
   color: #e1b12c;
 }
+
+.modal-header-fail {
+  text-align: center;
+  padding: 2px 16px;
+  background-color: #487eb0;
+  color: #ff4757;
+}
+.modal-body-fail {
+  background-color: #f5f6fa;
+  text-align: center;
+  font-size: 1.3em;
+  color: #ff4757;
+  padding: 2px 16px;
+}
+.modal-footer-fail {
+  text-align: center;
+  padding: 2px 16px;
+  background-color: #487eb0;
+  color: #ff4757;
+}
+.modal-content-fail {
+  font-family: 'Play', sans-serif;
+  position: relative;
+  background-color: inherit;
+  margin: auto;
+  padding: 0;
+  border: 2px solid #e1b12c;
+  width: 40%;
+  box-shadow: 0 0 5em 0.5em #3bb4e5;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}

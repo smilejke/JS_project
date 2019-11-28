@@ -72,6 +72,14 @@ body {
   margin: 10px auto;
 }
 
+.form-div-center {
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+}
+
 .button-div {
   margin-top: 10px;
   height: 8vh;
@@ -82,6 +90,20 @@ body {
 }
 
 .last-div {
+  margin-top: 50px;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.last-div-modal {
+  margin: 15px;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.last-div-center {
   margin-top: 50px;
   height: 8vh;
   display: flex;

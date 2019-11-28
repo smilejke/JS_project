@@ -56,8 +56,8 @@ export const makeExtraActivity = () => {
     placeToAppendForm: buttonDiv,
   });
   const howManyDaysInput = document.getElementById('buttonDiv1').querySelector('.col-3');
-  howManyDaysInput.style.width = '240px';
-  howManyDaysInput.style.marginTop = '35px';
+  howManyDaysInput.classList.remove('col-3');
+  howManyDaysInput.classList.add('col-4');
 
   button.addEventListener('click', () => {
     getExtraDays();
@@ -78,12 +78,11 @@ export const makeExtraActivity = () => {
 const makeExtraRow = (buttonDiv2) => {
   const extraInpitDiv = createExtraInputDiv({
     type: 'div',
-    classname: 'form-div',
+    classname: 'form-div-center',
     id: 'extra_input_div',
     placeToPushId: result.extraInputDivIds,
     placeToAppend: buttonDiv2,
   });
-  extraInpitDiv.style.justifyContent = 'center';
 
   createInput({
     optionalClass: 'input-date',
@@ -115,9 +114,6 @@ const makeExtraRow = (buttonDiv2) => {
   extraInpitDiv.appendChild(createRemoveButton(result.removeExtraIds, removeNodeCallBackExtra));
 
   extraActivityNavigation();
-  const lastDiv = document.querySelector('.last-div');
-  lastDiv.style.justifyContent = 'center';
-  lastDiv.style.marginTop = '25px';
 
   const inputs = document.getElementById('buttonDiv2').querySelectorAll('.col-3');
   for (let i = 0; i < inputs.length; i += 1) {
