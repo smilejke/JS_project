@@ -47,6 +47,7 @@ export const makeExtraActivity = () => {
   });
 
   createInput({
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'dayCounter',
     placeToPushId: result.extraDaysId,
@@ -56,8 +57,6 @@ export const makeExtraActivity = () => {
     placeToAppendForm: buttonDiv,
   });
   const howManyDaysInput = document.getElementById('buttonDiv1').querySelector('.col-3');
-  howManyDaysInput.classList.remove('col-3');
-  howManyDaysInput.classList.add('col-4');
 
   button.addEventListener('click', () => {
     getExtraDays();
@@ -77,6 +76,7 @@ export const makeExtraActivity = () => {
 
 const makeExtraRow = (buttonDiv2) => {
   const extraInpitDiv = createExtraInputDiv({
+    col: 'col-2',
     type: 'div',
     classname: 'form-div-center',
     id: 'extra_input_div',
@@ -85,6 +85,7 @@ const makeExtraRow = (buttonDiv2) => {
   });
 
   createInput({
+    col: 'col-2',
     optionalClass: 'input-date',
     id: 'dateExtra',
     placeToPushId: result.dateExtraIds,
@@ -94,6 +95,7 @@ const makeExtraRow = (buttonDiv2) => {
     placeToAppendForm: extraInpitDiv,
   });
   createInput({
+    col: 'col-2',
     optionalClass: 'input-date',
     id: 'hoursExtra',
     placeToPushId: result.hoursExtraIds,
@@ -103,6 +105,7 @@ const makeExtraRow = (buttonDiv2) => {
     placeToAppendForm: extraInpitDiv,
   });
   createInput({
+    col: 'col-2',
     optionalClass: 'input-date',
     id: 'extraIVR',
     placeToPushId: result.extraIVRIds,
@@ -114,11 +117,6 @@ const makeExtraRow = (buttonDiv2) => {
   extraInpitDiv.appendChild(createRemoveButton(result.removeExtraIds, removeNodeCallBackExtra));
 
   extraActivityNavigation();
-
-  const inputs = document.getElementById('buttonDiv2').querySelectorAll('.col-3');
-  for (let i = 0; i < inputs.length; i += 1) {
-    inputs[i].style.margin = '0 40px';
-  }
 
   let getBackButton = document.getElementById('backButton');
   getBackButton.addEventListener('click', () => {

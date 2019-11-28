@@ -39,6 +39,7 @@ export default () => {
           result,
         );
         const numberValue = createInput({
+          col: 'col-3',
           optionalClass: 'input-date',
           id: 'numberKK',
           placeToPushId: result.numberCsatIds,
@@ -51,6 +52,7 @@ export default () => {
         numberValue.value = result.counter;
 
         const dateKkData = createInput({
+          col: 'col-3',
           optionalClass: 'input-date',
           id: 'date',
           placeToPushId: result.dateCsatIds,
@@ -67,6 +69,7 @@ export default () => {
           dateKkData.classList.add('valid');
         }
         createInput({
+          col: 'col-3',
           optionalClass: 'input-date',
           id: 'csat',
           placeToPushId: result.csatIds,

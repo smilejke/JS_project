@@ -36,6 +36,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'month',
     placeToPushId: money.monthId,
@@ -46,6 +47,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'name',
     placeToPushId: money.nameId,
@@ -56,6 +58,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'department',
     placeToPushId: money.departmentId,
@@ -66,6 +69,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'daysWorkedId',
     placeToPushId: money.daysWorkedId,
@@ -76,6 +80,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'hoursWorkedId',
     placeToPushId: money.hoursWorkedId,
@@ -86,6 +91,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'middleIvr',
     placeToPushId: money.middleIvrId,
@@ -96,6 +102,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'middleKk',
     placeToPushId: money.middleKkId,
@@ -105,6 +112,7 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'middleCsat',
     placeToPushId: money.middleCsatId,
@@ -114,6 +122,7 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'extramoney',
     placeToPushId: money.extraMoneyId,
@@ -123,6 +132,7 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'rate',
     placeToPushId: money.rateId,
@@ -132,6 +142,7 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
+    col: 'col-5',
     optionalClass: 'input-date',
     id: 'shift',
     placeToPushId: money.shiftId,
@@ -140,11 +151,6 @@ export const makeSalaryPage = () => {
     readOnlyParam: true,
     placeToAppendForm: newInputDiv,
   });
-
-  const inputDivs = document.getElementsByClassName('col-3');
-  for (let i = 0; i < inputDivs.length; i += 1) {
-    inputDivs[i].style.width = '250px';
-  }
 
   button.addEventListener('click', () => {
     if (result.marker) {
@@ -212,14 +218,8 @@ let justDoIt = () => {
 
   for (let i = 0; i < inputs.length; i += 1) {
     if (!inputs[i].value == '') {
-      for (let j = 0; j < inputs.length; j += 1) {
-        // labels[j].classList.add('just-do-it');
-        labels[j].style.top = '-18px';
-        labels[j].style.left = '0';
-        labels[j].style.fontSize = '12px';
-        labels[j].style.color = '#1289a7';
-        labels[j].style.transition = '0.3s';
-      }
+      inputs[i].classList.remove('input-style');
+      inputs[i].classList.add('input-style-final');
     }
   }
 };

@@ -103,20 +103,15 @@ const isCredValid = () => {
   } else {
     attempt--;
     if (attempt == 0) {
+      failed();
+    } else {
       modalWindow({
-        loginStatus: 'You are blocked.',
-        loginText: 'You have entered wrong Username/Password too often.',
-        loginText2: 'Please, contact your manager for further information.',
+        loginStatus: 'Login failed.',
+        loginText: 'You have left ' + attempt + ' attempt.',
+        loginText2: 'Be careful, if you fail validation, form will be blocked.',
         loginFooterText: 'Have a nice day!',
       });
-      failed();
     }
-    modalWindow({
-      loginStatus: 'Login failed.',
-      loginText: 'You have left ' + attempt + ' attempt.',
-      loginText2: 'Be careful, if you fail validation, form will be blocked.',
-      loginFooterText: 'Have a nice day!',
-    });
 
     if (attempt === 0) {
       document.getElementById('username').disabled = true;

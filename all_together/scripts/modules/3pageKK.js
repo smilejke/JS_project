@@ -30,6 +30,7 @@ export const makeKkTable = () => {
       if (i < result.numberIvrIds.length) {
         const kkInputDiv = createInputDiv(
           {
+            col: 'col-3',
             type: 'div',
             classname: 'form-div',
             id: 'kkInputDiv',
@@ -39,6 +40,7 @@ export const makeKkTable = () => {
           result,
         );
         const numberValue = createInput({
+          col: 'col-3',
           optionalClass: 'input-date',
           id: 'numberKK',
           placeToPushId: result.numberKkIds,
@@ -51,6 +53,7 @@ export const makeKkTable = () => {
         numberValue.value = result.counter;
 
         const dateKkData = createInput({
+          col: 'col-3',
           optionalClass: 'input-date',
           id: 'date_kk',
           placeToPushId: result.dateKkIds,
@@ -67,6 +70,7 @@ export const makeKkTable = () => {
           dateKkData.classList.add('valid');
         }
         createInput({
+          col: 'col-3',
           optionalClass: 'input-date',
           id: 'kk',
           placeToPushId: result.kkIds,

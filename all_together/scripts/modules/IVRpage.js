@@ -47,6 +47,7 @@ const makeNewRow = (workDiv) => {
   });
 
   const numberValue = createInput({
+    col: 'col-3',
     optionalClass: 'input-number',
     id: 'number',
     placeToPushId: result.numberIvrIds,
@@ -59,6 +60,7 @@ const makeNewRow = (workDiv) => {
   numberValue.value = result.counter + 1;
 
   createInput({
+    col: 'col-3',
     optionalClass: 'input-date',
     id: 'date',
     placeToPushId: result.dateIvrIds,
@@ -68,6 +70,7 @@ const makeNewRow = (workDiv) => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
+    col: 'col-3',
     optionalClass: 'input-date',
     id: 'ivr',
     placeToPushId: result.ivrIds,
@@ -77,6 +80,7 @@ const makeNewRow = (workDiv) => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
+    col: 'col-3',
     optionalClass: 'input-date',
     id: 'hours',
     placeToPushId: result.hoursIvrIds,

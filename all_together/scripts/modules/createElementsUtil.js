@@ -26,11 +26,11 @@ export const createWorkButton = (hash) => {
 
 export const createInput = (hash) => {
   const inputContainer = document.createElement('div');
-  inputContainer.classList.add('col-3');
+  inputContainer.classList.add(hash.col);
   hash.placeToAppendForm.appendChild(inputContainer);
 
   const input = document.createElement('input');
-  input.classList.add('effect');
+  input.classList.add('input-style');
   input.type = 'text';
   input.placeholder = hash.placeholder;
   input.classList.add(hash.optionalClass);

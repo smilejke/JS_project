@@ -55,6 +55,7 @@ export const modalWindowCsat = (hash) => {
   let modalContainer = document.createElement('div');
   modalContainer.id = 'myModal';
   modalContainer.className = 'modal';
+  modalContainer.classList.add('hide');
   document.body.appendChild(modalContainer);
 
   let modalContent = document.createElement('div');
@@ -106,7 +107,7 @@ export const launchModal = () => {
   let modal = document.getElementById('myModal');
   let span = document.getElementsByClassName('close')[0];
 
-  modal.classList.add('show');
+  modal.classList.remove('hide');
 
   span.onclick = () => {
     document.body.removeChild(modal);
@@ -123,14 +124,14 @@ export const launchModalCsat = () => {
   let span = document.getElementsByClassName('close')[0];
   let removePage = document.getElementById('main-content-div3');
 
-  modal.style.display = 'block';
+  modal.classList.remove('hide');
 
   span.onclick = () => {
-    modal.classList.add('visibility');
+    modal.classList.add('hide');
   };
   window.onclick = (event) => {
     if (event.target == modal) {
-      modal.classList.add('visibility');
+      modal.classList.add('hide');
     }
   };
 
@@ -152,6 +153,12 @@ export const launchModalCsat = () => {
 };
 
 export const failed = () => {
+  modalWindow({
+    loginStatus: 'You are blocked.',
+    loginText: 'You have entered wrong Username/Password too often.',
+    loginText2: 'Please, contact your manager for further information.',
+    loginFooterText: 'Have a nice day!',
+  });
   let modalHeader = document.querySelector('.modal-header');
   let modalBody = document.querySelector('.modal-body');
   let modalFooter = document.querySelector('.modal-footer');

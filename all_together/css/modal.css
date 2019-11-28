@@ -10,17 +10,16 @@
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
+  z-index: 1;
   padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  width: 100%;
+  height: 100%;
   overflow: none;
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -83,8 +82,6 @@
 
 .modal-body {
   background-color: #f5f6fa;
-  /* border-top: 3px solid #192a56;
-  border-bottom: 3px solid #192a56; */
   text-align: center;
   font-size: 1.3em;
   color: black;
@@ -123,7 +120,7 @@
   background-color: inherit;
   margin: auto;
   padding: 0;
-  border: 2px solid #e1b12c;
+  border: 2px solid #ff4757;
   width: 40%;
   box-shadow: 0 0 5em 0.5em #3bb4e5;
   -webkit-animation-name: animatetop;
