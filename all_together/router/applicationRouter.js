@@ -20,6 +20,6 @@ router.listen();
 
 export default router;
 
-export const getRounter = () => {
-  return router;
-};
+// export const getRounter = () => {
+//   return router;
+// };

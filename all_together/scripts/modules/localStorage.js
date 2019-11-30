@@ -32,6 +32,9 @@ const dataContainer = {
   extra: [],
   extraDays: 0,
   extraDaysId: [],
+
+  shift8: 1,
+  shift12: 0.8,
 };
 
 const information = {
@@ -58,6 +61,7 @@ const finalData = {
   sumHours: 0,
   totalDaysWorked: 0,
   totalExtraHours: 0,
+  ivrToShift: 0,
 };
 
 const salaryDataIds = {

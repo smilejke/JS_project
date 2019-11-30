@@ -36,7 +36,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'month',
     placeToPushId: money.monthId,
@@ -47,7 +47,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'name',
     placeToPushId: money.nameId,
@@ -58,7 +58,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'department',
     placeToPushId: money.departmentId,
@@ -69,7 +69,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'daysWorkedId',
     placeToPushId: money.daysWorkedId,
@@ -80,7 +80,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'hoursWorkedId',
     placeToPushId: money.hoursWorkedId,
@@ -91,7 +91,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'middleIvr',
     placeToPushId: money.middleIvrId,
@@ -102,7 +102,7 @@ export const makeSalaryPage = () => {
   });
 
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'middleKk',
     placeToPushId: money.middleKkId,
@@ -112,7 +112,7 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'middleCsat',
     placeToPushId: money.middleCsatId,
@@ -122,7 +122,7 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'extramoney',
     placeToPushId: money.extraMoneyId,
@@ -132,7 +132,7 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'rate',
     placeToPushId: money.rateId,
@@ -142,7 +142,7 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
   createInput({
-    col: 'col-5',
+    col: 'col-4',
     optionalClass: 'input-date',
     id: 'shift',
     placeToPushId: money.shiftId,
@@ -184,7 +184,7 @@ let fillData = () => {
   totalDaysWorked.value = controlData.totalDaysWorked;
 
   let middleIvr = document.getElementById('middleIvr0');
-  middleIvr.value = controlData.middleIvr;
+  middleIvr.value = controlData.ivrToShift;
 
   let totalHoursWorked = document.getElementById('hoursWorkedId0');
   totalHoursWorked.value = controlData.sumHours;
@@ -213,7 +213,6 @@ let fillData = () => {
 };
 
 let justDoIt = () => {
-  let labels = document.getElementsByTagName('label');
   let inputs = document.getElementsByClassName('input-date');
 
   for (let i = 0; i < inputs.length; i += 1) {

@@ -97,8 +97,16 @@ export const getMiddleIVR = () => {
   }
   avarage /= controlData.totalIvr.length;
   controlData.middleIvr = Math.round(avarage);
-  return controlData.middleIvr;
+
+  if (Number(info.hourShift) === 8) {
+    controlData.ivrToShift = controlData.middleIvr * result.shift8;
+  }
+  if (Number(info.hourShift) === 12) {
+    controlData.ivrToShift = controlData.middleIvr * result.shift12;
+  }
+  return controlData.ivrToShift;
 };
+
 export const countExtraMiddleIvr = () => {
   let average = 0;
   for (let i in exxxtra) {

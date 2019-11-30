@@ -1,6 +1,6 @@
 import { createForwardButtonDiv, mainContainer, createOption } from './createElementsUtil.js';
 
-import { result, updateStorageInfo } from './localStorage.js';
+import { info, result, updateStorageInfo } from './localStorage.js';
 import { getDataInfo } from './mathFunctions.js';
 import { ifNoDataInfo } from './validation.js';
 
@@ -126,6 +126,7 @@ export const informationPage = () => {
 
   let optgroup4 = document.createElement('optgroup');
   optgroup4.label = 'Смена, часов/день';
+  optgroup4.id = 'shiftId';
   createOption({ value: 8, text: '8-ми часовая смена', placeToAppend: optgroup4 });
   createOption({ value: 12, text: '12-ти часовая смена', placeToAppend: optgroup4 });
   select3.appendChild(optgroup4);
@@ -155,6 +156,9 @@ export const informationPage = () => {
     router.navigate('/ivr');
     let removePage = document.getElementById('main-content-div6');
     document.body.removeChild(removePage);
+  });
+  but.addEventListener('click', () => {
+    console.log(info);
   });
 
   let inputs = document.getElementsByTagName('input');
