@@ -25,8 +25,8 @@ body {
 #main-content-div5 {
   display: grid;
   grid-template-rows: 6fr 1fr 1fr;
-  grid-template-columns: 1fr 2fr;
-  width: 60vw;
+  grid-template-columns: 2fr 2fr 2fr;
+  width: 90vw;
   min-height: 100vh;
   height: auto;
   padding: 10px 0px;

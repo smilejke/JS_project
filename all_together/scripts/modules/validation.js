@@ -40,7 +40,7 @@ export const ifDataValid = () => {
         forwardBtn.disabled = false;
 
         for (let i in getAllinputs) {
-          if (getAllinputs[i].className == 'effect input-date invalid') {
+          if (getAllinputs[i].className == 'input-style input-date invalid') {
             forwardBtn.disabled = true;
             forwardBtn.classList.add('not-correct');
           }
@@ -82,7 +82,7 @@ export const ifNoDataInfo = () => {
   }
 };
 
-export const howGood = () => {
+export const howGoodIndicators = () => {
   const ivr = document.getElementById('middleIvr0');
   const kk = document.getElementById('middleKk0');
   const csat = document.getElementById('middleCsat0');
@@ -91,29 +91,44 @@ export const howGood = () => {
     ivr.classList.add('red-zone');
   }
   if (ivr.value > 70 && ivr.value <= 100) {
-    ivr.classList.add('green-zone');
-  }
-  if (ivr.value > 100) {
     ivr.classList.add('blue-zone');
   }
+  if (ivr.value > 100) {
+    ivr.classList.add('green-zone');
+  }
 
-  if (kk.value <= 80) {
+  if (kk.value <= 70) {
     kk.classList.add('red-zone');
   }
   if (kk.value > 80 && kk.value < 100) {
-    kk.classList.add('green-zone');
-  }
-  if (kk.value == 100) {
     kk.classList.add('blue-zone');
   }
+  if (kk.value == 100) {
+    kk.classList.add('green-zone');
+  }
 
-  if (csat.value <= 80) {
+  if (csat.value <= 70) {
     csat.classList.add('red-zone');
   }
   if (csat.value > 70 && csat.value < 100) {
-    csat.classList.add('green-zone');
+    csat.classList.add('blue-zone');
   }
   if (csat.value == 100) {
-    csat.classList.add('blue-zone');
+    csat.classList.add('green-zone');
+  }
+};
+
+export const howGoodNumbers = () => {
+  const premium = document.getElementById('premium0');
+  const dirty = document.getElementById('dirtyMoney0');
+  const extra = document.getElementById('extramoney0');
+  if (premium.value > 0) {
+    premium.classList.add('green-zone');
+  }
+  if (dirty.value > 0) {
+    dirty.classList.add('red-zone');
+  }
+  if (extra.value > 0) {
+    extra.classList.add('green-zone');
   }
 };

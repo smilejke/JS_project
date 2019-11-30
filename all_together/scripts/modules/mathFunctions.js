@@ -99,12 +99,18 @@ export const getMiddleIVR = () => {
   controlData.middleIvr = Math.round(avarage);
 
   if (Number(info.hourShift) === 8) {
-    controlData.ivrToShift = controlData.middleIvr * result.shift8;
+    controlData.ivrToShift = Math.round(controlData.middleIvr * result.shift8);
   }
   if (Number(info.hourShift) === 12) {
-    controlData.ivrToShift = controlData.middleIvr * result.shift12;
+    controlData.ivrToShift = Math.round(controlData.middleIvr * result.shift12);
   }
   return controlData.ivrToShift;
+};
+
+export const countSalaryScale = () => {
+  controlData.salary = controlData.sumHours * +info.rate;
+
+  return controlData.salary;
 };
 
 export const countExtraMiddleIvr = () => {
@@ -200,4 +206,71 @@ export const countExtraMoney = () => {
     controlData.extraMoney += 400 * controlData.totalExtraHours;
   }
   controlData.extraMoney = Math.round(controlData.extraMoney);
+};
+
+export const premium = () => {
+  if (+info.hourShift === 8) {
+    if (
+      controlData.ivrToShift >= 90 &&
+      controlData.ivrToShift <= 115 &&
+      controlData.middleCsat >= 90 &&
+      controlData.middleKk >= 90
+    ) {
+      controlData.bonus = Math.round(controlData.salary * 1.1 - controlData.salary);
+    }
+    if (
+      controlData.ivrToShift > 115 &&
+      controlData.ivrToShift < 150 &&
+      controlData.middleCsat === 100 &&
+      controlData.middleKk === 100
+    ) {
+      controlData.bonus = Math.round(controlData.salary * 1.3 - controlData.salary);
+    }
+    if (
+      controlData.ivrToShift >= 150 &&
+      controlData.middleCsat === 100 &&
+      controlData.middleKk === 100
+    ) {
+      controlData.bonus = Math.round(controlData.salary * 1.5 - controlData.salary);
+    }
+  }
+
+  if (+info.hourShift === 12) {
+    if (
+      controlData.ivrToShift >= 80 &&
+      controlData.ivrToShift <= 100 &&
+      controlData.middleCsat >= 85 &&
+      controlData.middleKk >= 85
+    ) {
+      controlData.bonus = Math.round(controlData.salary * 1.1 - controlData.salary);
+    }
+    if (
+      controlData.ivrToShift > 100 &&
+      controlData.ivrToShift < 135 &&
+      controlData.middleCsat === 95 &&
+      controlData.middleKk === 95
+    ) {
+      controlData.bonus = Math.round(controlData.salary * 1.3 - controlData.salary);
+    }
+    if (
+      controlData.ivrToShift >= 135 &&
+      controlData.middleCsat === 100 &&
+      controlData.middleKk === 100
+    ) {
+      controlData.bonus = Math.round(controlData.salary * 1.5 - controlData.salary);
+    }
+  }
+};
+
+export const badBoys = () => {
+  if (+info.hourShift === 8) {
+    if (controlData.ivrToShift < 50 || controlData.middleKk < 70 || controlData.middleCsat < 70) {
+      controlData.minus = Math.round(controlData.salary - controlData.salary * 0.8);
+    }
+  }
+  if (+info.hourShift === 12) {
+    if (controlData.ivrToShift < 65 || controlData.middleKk < 65 || controlData.middleCsat < 65) {
+      controlData.minus = Math.round(controlData.salary - controlData.salary * 0.8);
+    }
+  }
 };

@@ -9,7 +9,7 @@ import {
 } from './createElementsUtil.js';
 
 import { ifDataValid, ifNoData } from './validation.js';
-import { result, updateStorage } from './localStorage.js';
+import { info, result, updateStorage, controlData } from './localStorage.js';
 
 import {
   getMiddleIVR,
@@ -17,6 +17,7 @@ import {
   totalDaysWorked,
   getDataIvr,
   removeNodeCallBack,
+  countSalaryScale,
 } from './mathFunctions.js';
 
 import router from '../../router/applicationRouter.js';
@@ -111,6 +112,7 @@ const makeNewRow = (workDiv) => {
   getNextButton.addEventListener('click', getDataIvr);
   getNextButton.addEventListener('click', getMiddleIVR);
   getNextButton.addEventListener('click', getSumHours);
+  getNextButton.addEventListener('click', countSalaryScale);
   getNextButton.addEventListener('click', totalDaysWorked);
   getNextButton.addEventListener('click', updateStorage);
   getNextButton.addEventListener('click', () => {

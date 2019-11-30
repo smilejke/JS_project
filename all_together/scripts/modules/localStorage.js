@@ -9,6 +9,7 @@ const dataContainer = {
   kkInputDivIds: [],
   csatInputDivIds: [],
   extraInputDivIds: [],
+  salaryDivIds: [],
 
   numberIvrIds: [],
   numberKkIds: [],
@@ -62,6 +63,9 @@ const finalData = {
   totalDaysWorked: 0,
   totalExtraHours: 0,
   ivrToShift: 0,
+  bonus: 0,
+  salary: 0,
+  minus: 0,
 };
 
 const salaryDataIds = {
@@ -76,6 +80,9 @@ const salaryDataIds = {
   shiftId: [],
   departmentId: [],
   nameId: [],
+  salaryScale: [],
+  premium: [],
+  dirtyMoney: [],
 };
 
 // localStorage.clear();

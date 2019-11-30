@@ -157,9 +157,6 @@ export const informationPage = () => {
     let removePage = document.getElementById('main-content-div6');
     document.body.removeChild(removePage);
   });
-  but.addEventListener('click', () => {
-    console.log(info);
-  });
 
   let inputs = document.getElementsByTagName('input');
   for (let i = 0; i < inputs.length; i += 1) {

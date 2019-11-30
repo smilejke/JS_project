@@ -11,6 +11,7 @@ import {
 import { controlData, result, resultArr, updateStorage } from './localStorage.js';
 import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
 import { modalWindowCsat, launchModalCsat } from './modal.js';
+import { premium, badBoys } from './mathFunctions.js';
 // import router from '../../router/applicationRouter.js';
 
 export default () => {
@@ -100,6 +101,8 @@ export default () => {
     const moveForward = document.getElementById('forwardButton');
     moveForward.addEventListener('click', getDataCsat);
     moveForward.addEventListener('click', getMiddleCsat);
+    moveForward.addEventListener('click', premium);
+    moveForward.addEventListener('click', badBoys);
     moveForward.addEventListener('click', updateStorage);
     moveForward.addEventListener(
       'click',
