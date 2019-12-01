@@ -143,9 +143,9 @@ export const getTotalExtraHours = () => {
 };
 
 export const removeNodeCallBack = () => {
-  let table = document.getElementById('main-content-div');
+  let div = document.getElementById('main-content-div');
 
-  table.onclick = (event) => {
+  div.onclick = (event) => {
     let target = event.target;
 
     if (
@@ -169,9 +169,9 @@ export const removeNodeCallBack = () => {
 };
 
 export const removeNodeCallBackExtra = () => {
-  let table = document.getElementById('main-content-div4');
+  let div = document.getElementById('main-content-div4');
 
-  table.onclick = (event) => {
+  div.onclick = (event) => {
     let target = event.target;
 
     if (
@@ -211,7 +211,7 @@ export const countExtraMoney = () => {
 export const premium = () => {
   if (+info.hourShift === 8) {
     if (
-      controlData.ivrToShift >= 90 &&
+      controlData.ivrToShift >= 80 &&
       controlData.ivrToShift <= 115 &&
       controlData.middleCsat >= 90 &&
       controlData.middleKk >= 90
@@ -264,13 +264,40 @@ export const premium = () => {
 
 export const badBoys = () => {
   if (+info.hourShift === 8) {
-    if (controlData.ivrToShift < 50 || controlData.middleKk < 70 || controlData.middleCsat < 70) {
+    if (
+      controlData.ivrToShift <= 45 ||
+      controlData.middleKk <= 60 ||
+      controlData.middleCsat <= 60
+    ) {
       controlData.minus = Math.round(controlData.salary - controlData.salary * 0.8);
     }
   }
   if (+info.hourShift === 12) {
-    if (controlData.ivrToShift < 65 || controlData.middleKk < 65 || controlData.middleCsat < 65) {
+    if (
+      controlData.ivrToShift <= 60 ||
+      controlData.middleKk <= 70 ||
+      controlData.middleCsat <= 70
+    ) {
       controlData.minus = Math.round(controlData.salary - controlData.salary * 0.8);
     }
   }
+};
+
+export const countSalaryWithoutTaxes = () => {
+  controlData.salaryWithoutTax = Number(
+    controlData.salary + controlData.extraMoney + controlData.bonus - controlData.minus,
+  );
+  return controlData.salaryWithoutTax;
+};
+
+export const countTaxesOrTuryacka = () => {
+  controlData.incomeTax = Math.floor(controlData.salaryWithoutTax * 0.13 * 100) / 100;
+  controlData.fundTax = Math.floor(controlData.salaryWithoutTax * 0.01 * 100) / 100;
+  countTotalSalary();
+};
+
+export const countTotalSalary = () => {
+  controlData.totalSalary =
+    controlData.salaryWithoutTax - (controlData.incomeTax + controlData.fundTax);
+  return controlData.totalSalary;
 };

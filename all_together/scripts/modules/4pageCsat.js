@@ -1,4 +1,4 @@
-import { ifDataValid, ifNoData } from './validation.js';
+import { ifDataValid, ifNoData, placeholderEvent } from './validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -89,7 +89,7 @@ export default () => {
           idHtmlToAppend: 'main-content-div3',
         },
         'Вернуться к контролю качества',
-        'Внести доп.активность',
+        'Рассчитать зарплату',
       );
     }
 
@@ -117,6 +117,7 @@ export default () => {
     ifDataValid();
     return buttonDiv;
   });
+  placeholderEvent('main-content-div3');
 };
 
 export const makeSomeNoiseNoExtra = () => {

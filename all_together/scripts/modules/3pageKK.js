@@ -1,4 +1,4 @@
-import { ifDataValid, ifNoData } from './validation.js';
+import { ifDataValid, ifNoData, placeholderEvent } from './validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -109,4 +109,5 @@ export const makeKkTable = () => {
     ifNoData();
     ifDataValid();
   });
+  placeholderEvent('main-content-div2');
 };

@@ -1,6 +1,16 @@
 const resultParams = [];
 const resultExtra = [];
 
+const information = {
+  lastname: '',
+  name: '',
+  secondName: '',
+  job: '',
+  month: '',
+  rate: '',
+  hourShift: '',
+};
+
 const dataContainer = {
   marker: true,
   counter: 0,
@@ -38,16 +48,6 @@ const dataContainer = {
   shift12: 0.8,
 };
 
-const information = {
-  lastname: '',
-  name: '',
-  secondName: '',
-  job: '',
-  month: '',
-  rate: '',
-  hourShift: '',
-};
-
 const finalData = {
   totalIvr: [],
   totalKk: [],
@@ -66,6 +66,10 @@ const finalData = {
   bonus: 0,
   salary: 0,
   minus: 0,
+  salaryWithoutTax: 0,
+  incomeTax: 0,
+  fundTax: 0,
+  totalSalary: 0,
 };
 
 const salaryDataIds = {
@@ -83,6 +87,10 @@ const salaryDataIds = {
   salaryScale: [],
   premium: [],
   dirtyMoney: [],
+  withoutTax: [],
+  incomeTax: [],
+  fundTax: [],
+  totalSalary: [],
 };
 
 // localStorage.clear();
@@ -118,6 +126,9 @@ export const updateStorageInfo = () => {
 };
 
 export const updateStorageSalary = () => {
+  storage.setItem('result', JSON.stringify(result));
+  storage.setItem('controlData', JSON.stringify(controlData));
+  storage.setItem('info', JSON.stringify(info));
   storage.setItem('money', JSON.stringify(money));
 };
 

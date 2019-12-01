@@ -24,7 +24,7 @@ import {
   removeNodeCallBackExtra,
   countExtraMoney,
 } from './mathFunctions.js';
-import { ifNoData, ifDataValid } from './validation.js';
+import { ifNoData, ifDataValid, placeholderEvent } from './validation.js';
 import router from '../../router/applicationRouter.js';
 
 export const makeExtraActivity = () => {
@@ -134,6 +134,7 @@ const makeExtraRow = (buttonDiv2) => {
   ifNoData();
   ifDataValid();
   removeNodeCallBackExtra();
+  placeholderEvent('main-content-div4');
   result.counter += 1;
 };
 

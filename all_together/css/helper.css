@@ -10,10 +10,6 @@ input[data-rule].valid {
   border: 1px solid #3bb4e5;
 }
 
-.invalid {
-  border: 1px solid red;
-}
-
 .all-correct {
   box-shadow: 0 0 2em 0.5em #3bb4e5;
 }
@@ -25,7 +21,8 @@ input[data-rule].valid {
   box-shadow: 0 0 2em 0.1em #ea2027;
 }
 
-.red-zone {
+.red-zone,
+.invalid {
   border: 1px solid red;
 }
 .green-zone {
@@ -33,6 +30,9 @@ input[data-rule].valid {
 }
 .blue-zone {
   border: 1px solid blue;
+}
+.golden-zone {
+  border: 1px solid #e1b12c;
 }
 
 .add-grid-column-1 {

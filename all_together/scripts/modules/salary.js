@@ -5,10 +5,12 @@ import {
   mainContainer,
   createButtonDiv,
   createWorkButton,
+  fllSalaryInput,
 } from './createElementsUtil.js';
 
-import { storage, controlData, result, info, money } from './localStorage.js';
-import { howGoodNumbers, howGoodIndicators } from './validation.js';
+import { controlData, result, info, money, updateStorageSalary } from './localStorage.js';
+import { howGoodNumbers, howGoodIndicators, salaryExist, placeholderEvent } from './validation.js';
+import { countSalaryWithoutTaxes, countTaxesOrTuryacka } from './mathFunctions.js';
 
 import router from '../../router/applicationRouter.js';
 
@@ -29,16 +31,6 @@ export const makeSalaryPage = () => {
     placeToAppend: buttonDiv,
     text: 'Кто такой?',
   });
-
-  const buttonDiv3 = createButtonDiv({
-    placeToAppend: makeExtraActDiv,
-    classname: 'add-grid-button-3',
-  });
-  const taxButton = createWorkButton({
-    placeToAppend: buttonDiv3,
-    text: 'Получи profit',
-  });
-  taxButton.style.display = 'none';
 
   const newInputDiv = createInputDiv({
     type: 'div',
@@ -124,17 +116,6 @@ export const makeSalaryPage = () => {
     placeToAppendForm: newInputDiv,
   });
 
-  //==========================================================
-
-  //==========================================================
-  createInputDiv({
-    type: 'div',
-    classname: 'add-grid-column-3',
-    id: 'inputDiv',
-    placeToPushId: result.salaryDivIds,
-    placeToAppend: buttonDiv,
-  });
-
   button.addEventListener('click', () => {
     if (result.marker) {
       createForwardButtonDiv(
@@ -143,8 +124,8 @@ export const makeSalaryPage = () => {
           classname: 'add-grid-3',
           idHtmlToAppend: 'main-content-div5',
         },
-        'Вернуться назад к показателям',
-        'Посчитать налоги',
+        'Вернуться в начало',
+        'Завершить работу',
       );
       setTimeout(part2, 1000);
     }
@@ -158,43 +139,22 @@ export const makeSalaryPage = () => {
     });
     result.marker = false;
   });
+  result.counter += 1;
+  placeholderEvent('main-content-div5');
 };
 
 let fillDataInfo = () => {
-  let month = document.getElementById('month0');
-  month.value = info.month;
-
-  let name = document.getElementById('name0');
-  name.value = info.lastname + ' ' + info.name[0] + '.' + info.secondName[0];
-
-  let department = document.getElementById('department0');
-  department.value = info.job;
-
-  let shift = document.getElementById('shift0');
-  shift.value = info.hourShift;
-
-  let middleIvr = document.getElementById('middleIvr0');
-  middleIvr.value = controlData.ivrToShift;
-
-  let middleKk = document.getElementById('middleKk0');
-  middleKk.value = controlData.middleKk;
-
-  let middleCsat = document.getElementById('middleCsat0');
-  middleCsat.value = controlData.middleCsat;
-
-  draw();
-};
-
-let draw = () => {
-  let div = document.querySelector('.add-grid-column-1');
-  let inputs = div.getElementsByClassName('input-date');
-
-  for (let i = 0; i < inputs.length; i += 1) {
-    if (!inputs[i].value == '') {
-      inputs[i].classList.remove('input-style');
-      inputs[i].classList.add('input-style-final');
-    }
-  }
+  fllSalaryInput({ id: 'month0', value: info.month });
+  fllSalaryInput({
+    id: 'name0',
+    value: info.lastname + ' ' + info.name[0] + '.' + info.secondName[0],
+  });
+  fllSalaryInput({ id: 'department0', value: info.job });
+  fllSalaryInput({ id: 'shift0', value: info.hourShift });
+  fllSalaryInput({ id: 'middleIvr0', value: controlData.ivrToShift });
+  fllSalaryInput({ id: 'middleKk0', value: controlData.middleKk });
+  fllSalaryInput({ id: 'middleCsat0', value: controlData.middleCsat });
+  draw('.add-grid-column-1');
 };
 
 const part2 = () => {
@@ -285,35 +245,104 @@ const part2 = () => {
     placeToAppend: buttonDiv2,
     text: 'Что умеешь?',
   });
+
   indiButton.addEventListener('click', fillDataMoney);
   indiButton.addEventListener('click', howGoodNumbers);
+  indiButton.addEventListener('click', countSalaryWithoutTaxes);
+  indiButton.addEventListener('click', countTaxesOrTuryacka);
+  indiButton.addEventListener('click', () => {
+    setTimeout(part3, 1000);
+  });
+  result.counter += 1;
 };
 let fillDataMoney = () => {
-  let totalDaysWorked = document.getElementById('daysWorkedId0');
-  totalDaysWorked.value = controlData.totalDaysWorked;
+  fllSalaryInput({ id: 'daysWorkedId1', value: controlData.totalDaysWorked });
+  fllSalaryInput({
+    id: 'hoursWorkedId1',
+    value: controlData.sumHours,
+  });
+  fllSalaryInput({ id: 'rate1', value: info.rate });
+  fllSalaryInput({ id: 'salaryScale1', value: controlData.salary });
+  fllSalaryInput({ id: 'extramoney1', value: controlData.extraMoney });
+  fllSalaryInput({ id: 'premium1', value: controlData.bonus });
+  fllSalaryInput({ id: 'dirtyMoney1', value: controlData.minus });
 
-  let totalHoursWorked = document.getElementById('hoursWorkedId0');
-  totalHoursWorked.value = controlData.sumHours;
-
-  let rate = document.getElementById('rate0');
-  rate.value = info.rate;
-
-  let scale = document.getElementById('salaryScale0');
-  scale.value = controlData.salary;
-
-  let extramoney = document.getElementById('extramoney0');
-  extramoney.value = controlData.extraMoney;
-
-  let bonus = document.getElementById('premium0');
-  bonus.value = controlData.bonus;
-
-  let dirty = document.getElementById('dirtyMoney0');
-  dirty.value = controlData.minus;
-  draw2();
+  draw('.add-grid-column-2');
 };
 
-let draw2 = () => {
-  let div = document.querySelector('.add-grid-column-2');
+let part3 = () => {
+  const buttonDiv3 = createButtonDiv({
+    placeToAppend: document.getElementById('main-content-div5'),
+    classname: 'add-grid-button-3',
+  });
+  const taxButton = createWorkButton({
+    placeToAppend: buttonDiv3,
+    text: 'Заплати налоги',
+  });
+  const taxCounterDiv = createInputDiv({
+    type: 'div',
+    classname: 'add-grid-column-3',
+    id: 'inputDiv',
+    placeToPushId: result.salaryDivIds,
+    placeToAppend: document.querySelector('.add-grid-button-3'),
+  });
+
+  createInput({
+    col: 'col-4',
+    optionalClass: 'input-date',
+    id: 'withoutTax',
+    placeToPushId: money.withoutTax,
+    placeholder: 'Итого, без налогов',
+    backText: 'Итого, без налогов',
+    readOnlyParam: true,
+    placeToAppendForm: taxCounterDiv,
+  });
+  createInput({
+    col: 'col-4',
+    optionalClass: 'input-date',
+    id: 'incomeTax',
+    placeToPushId: money.incomeTax,
+    placeholder: 'Подоходный налог',
+    backText: 'Подоходный налог',
+    readOnlyParam: true,
+    placeToAppendForm: taxCounterDiv,
+  });
+  createInput({
+    col: 'col-4',
+    optionalClass: 'input-date',
+    id: 'fundTax',
+    placeToPushId: money.fundTax,
+    placeholder: 'ФСЗН',
+    backText: 'ФСЗН',
+    readOnlyParam: true,
+    placeToAppendForm: taxCounterDiv,
+  });
+  createInput({
+    col: 'col-4',
+    optionalClass: 'input-date',
+    id: 'totalSalary',
+    placeToPushId: money.totalSalary,
+    placeholder: 'Итого к выплате',
+    backText: 'Итого к выплате',
+    readOnlyParam: true,
+    placeToAppendForm: taxCounterDiv,
+  });
+  taxButton.addEventListener('click', fillDataTax);
+  taxButton.addEventListener('click', updateStorageSalary);
+};
+
+const fillDataTax = () => {
+  fllSalaryInput({ id: 'withoutTax2', value: controlData.salaryWithoutTax });
+  fllSalaryInput({ id: 'incomeTax2', value: controlData.incomeTax });
+  fllSalaryInput({ id: 'fundTax2', value: controlData.fundTax });
+  fllSalaryInput({ id: 'totalSalary2', value: controlData.totalSalary });
+
+  draw('.add-grid-column-3');
+  salaryExist();
+};
+
+let draw = (querySel) => {
+  let div = document.querySelector(querySel);
   let inputs = div.getElementsByClassName('input-date');
 
   for (let i = 0; i < inputs.length; i += 1) {

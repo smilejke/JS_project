@@ -8,8 +8,8 @@ import {
   createWorkButton,
 } from './createElementsUtil.js';
 
-import { ifDataValid, ifNoData } from './validation.js';
-import { info, result, updateStorage, controlData } from './localStorage.js';
+import { ifDataValid, ifNoData, placeholderEvent } from './validation.js';
+import { result, updateStorage } from './localStorage.js';
 
 import {
   getMiddleIVR,
@@ -27,6 +27,7 @@ export const makeIvrPage = () => {
   result.marker = true;
 
   let main = mainContainer({ type: 'div', id: 'main-content-div' });
+
   let workDiv = createButtonDiv({ placeToAppend: main, classname: 'button-div' });
   let button = createWorkButton({ placeToAppend: workDiv, text: 'Добавить рабочий день' });
   button.addEventListener('click', () => {
@@ -37,6 +38,7 @@ export const makeIvrPage = () => {
     ifDataValid();
   });
   removeNodeCallBack();
+  placeholderEvent('main-content-div');
 };
 
 const makeNewRow = (workDiv) => {
@@ -106,7 +108,7 @@ const makeNewRow = (workDiv) => {
   let getBackButton = document.getElementById('backButton');
   getBackButton.addEventListener('click', () => {
     router.navigate('/info');
-    document.body.removeChild(document.getElementById('main-content-div')); //ошиббка
+    document.body.removeChild(document.getElementById('main-content-div'));
   });
   let getNextButton = document.getElementById('forwardButton');
   getNextButton.addEventListener('click', getDataIvr);
@@ -116,8 +118,9 @@ const makeNewRow = (workDiv) => {
   getNextButton.addEventListener('click', totalDaysWorked);
   getNextButton.addEventListener('click', updateStorage);
   getNextButton.addEventListener('click', () => {
+    let main = document.getElementById('main-content-div');
+    document.body.removeChild(main);
     router.navigate('/kk');
-    document.body.removeChild(document.getElementById('main-content-div'));
   });
   result.counter += 1;
 };

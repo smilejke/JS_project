@@ -2,7 +2,7 @@ export const ifDataValid = () => {
   let inputs = document.querySelectorAll('input[data-rule]');
 
   for (let input of inputs) {
-    input.addEventListener('blur', () => {
+    input.addEventListener('change', () => {
       let rule = input.dataset.rule;
       let rule2 = input.dataset.rule2;
       let value = input.value;
@@ -87,13 +87,13 @@ export const howGoodIndicators = () => {
   const kk = document.getElementById('middleKk0');
   const csat = document.getElementById('middleCsat0');
 
-  if (ivr.value <= 70) {
+  if (ivr.value <= 45) {
     ivr.classList.add('red-zone');
   }
-  if (ivr.value > 70 && ivr.value <= 100) {
+  if (ivr.value > 45 && ivr.value <= 80) {
     ivr.classList.add('blue-zone');
   }
-  if (ivr.value > 100) {
+  if (ivr.value > 80) {
     ivr.classList.add('green-zone');
   }
 
@@ -119,9 +119,9 @@ export const howGoodIndicators = () => {
 };
 
 export const howGoodNumbers = () => {
-  const premium = document.getElementById('premium0');
-  const dirty = document.getElementById('dirtyMoney0');
-  const extra = document.getElementById('extramoney0');
+  const premium = document.getElementById('premium1');
+  const dirty = document.getElementById('dirtyMoney1');
+  const extra = document.getElementById('extramoney1');
   if (premium.value > 0) {
     premium.classList.add('green-zone');
   }
@@ -131,4 +131,22 @@ export const howGoodNumbers = () => {
   if (extra.value > 0) {
     extra.classList.add('green-zone');
   }
+};
+
+export const salaryExist = () => {
+  const salary = document.getElementById('totalSalary2');
+  if (salary.value > 0) {
+    salary.classList.add('golden-zone');
+  }
+};
+
+export const placeholderEvent = (divId) => {
+  let div = document.getElementById(divId);
+
+  div.onclick = (event) => {
+    let target = event.target;
+    if (target.tagName == 'INPUT') {
+      target.placeholder = '';
+    }
+  };
 };

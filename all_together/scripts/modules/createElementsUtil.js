@@ -36,9 +36,6 @@ export const createInput = (hash) => {
   input.classList.add(hash.optionalClass);
   input.id = hash.id + result.counter;
   hash.placeToPushId.push(input.id);
-  input.addEventListener('click', () => {
-    input.placeholder = '';
-  });
   input.addEventListener('blur', () => {
     input.placeholder = hash.placeholder;
   });
@@ -171,4 +168,10 @@ export const createOption = (hash) => {
   option.value = hash.value;
   option.innerHTML = hash.text;
   hash.placeToAppend.appendChild(option);
+};
+
+export const fllSalaryInput = (hash) => {
+  let inpt = document.getElementById(hash.id);
+  inpt.value = hash.value;
+  return inpt;
 };

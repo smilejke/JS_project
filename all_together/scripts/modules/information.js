@@ -160,6 +160,6 @@ export const informationPage = () => {
 
   let inputs = document.getElementsByTagName('input');
   for (let i = 0; i < inputs.length; i += 1) {
-    inputs[i].addEventListener('blur', ifNoDataInfo);
+    inputs[i].addEventListener('change', ifNoDataInfo);
   }
 };
