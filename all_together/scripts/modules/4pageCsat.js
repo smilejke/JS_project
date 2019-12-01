@@ -114,8 +114,7 @@ export default () => {
     );
     moveForward.addEventListener('click', launchModalCsat);
     ifNoData();
-    ifDataValid();
-    return buttonDiv;
+    ifDataValid('main-content-div3');
   });
   placeholderEvent('main-content-div3');
 };

@@ -6,6 +6,13 @@
   display: block;
 }
 
+.form-input-wrong {
+  border: 1px solid #ff7979 !important;
+}
+.form-input-correct {
+  border: 1px solid rgb(2, 253, 2) !important;
+}
+
 input[data-rule].valid {
   border: 1px solid #3bb4e5;
 }

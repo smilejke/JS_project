@@ -30,8 +30,11 @@ import router from '../../router/applicationRouter.js';
 export const makeExtraActivity = () => {
   result.counter = 1;
   result.marker = true;
+
   let modal = document.getElementById('myModal');
-  document.body.removeChild(modal);
+  if (modal) {
+    document.body.removeChild(modal);
+  }
 
   const makeExtraActDiv = mainContainer({
     type: 'div',
@@ -66,8 +69,8 @@ export const makeExtraActivity = () => {
     }
     const getInput = document.getElementById('dayCounter1');
     getInput.value = 1;
+    removeNodeCallBackExtra();
   });
-  return buttonDiv;
 };
 
 const makeExtraRow = (buttonDiv2) => {
@@ -111,7 +114,6 @@ const makeExtraRow = (buttonDiv2) => {
     placeToAppendForm: extraInpitDiv,
   });
   extraInpitDiv.appendChild(createRemoveButton(result.removeExtraIds));
-
   extraActivityNavigation();
 
   let getBackButton = document.getElementById('backButton');
@@ -132,8 +134,8 @@ const makeExtraRow = (buttonDiv2) => {
     document.body.removeChild(removePage);
   });
   ifNoData();
-  ifDataValid();
-  removeNodeCallBackExtra();
+  ifDataValid('main-content-div4');
+
   placeholderEvent('main-content-div4');
   result.counter += 1;
 };

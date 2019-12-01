@@ -34,10 +34,11 @@ export const makeIvrPage = () => {
     if (result.counter <= 30) {
       makeNewRow(workDiv);
     }
-    ifNoData();
-    ifDataValid();
+    removeNodeCallBack();
   });
-  removeNodeCallBack();
+
+  ifNoData();
+  ifDataValid('main-content-div');
   placeholderEvent('main-content-div');
 };
 

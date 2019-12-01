@@ -2,7 +2,7 @@ import { createForwardButtonDiv, mainContainer, createOption } from './createEle
 
 import { info, result, updateStorageInfo } from './localStorage.js';
 import { getDataInfo } from './mathFunctions.js';
-import { ifNoDataInfo } from './validation.js';
+import { formValidation } from './validation.js';
 
 import router from '../../router/applicationRouter.js';
 
@@ -132,7 +132,7 @@ export const informationPage = () => {
   select3.appendChild(optgroup4);
 
   let inputLegend4 = document.createElement('input');
-  inputLegend4.type = 'text';
+  inputLegend4.type = 'number';
   inputLegend4.name = 'rate';
   inputLegend4.id = 'rate';
   inputLegend4.placeholder = 'Ставка, руб/ч *';
@@ -148,8 +148,8 @@ export const informationPage = () => {
     'Перейти к заполнению показателей',
   );
   let but = document.getElementById('forwardButton');
-  but.disabled = true;
-  but.classList.add('not-correct');
+  // but.disabled = true;
+  // but.classList.add('not-correct');
   but.addEventListener('click', getDataInfo);
   but.addEventListener('click', updateStorageInfo);
   but.addEventListener('click', () => {
@@ -157,9 +157,5 @@ export const informationPage = () => {
     let removePage = document.getElementById('main-content-div6');
     document.body.removeChild(removePage);
   });
-
-  let inputs = document.getElementsByTagName('input');
-  for (let i = 0; i < inputs.length; i += 1) {
-    inputs[i].addEventListener('change', ifNoDataInfo);
-  }
+  formValidation();
 };

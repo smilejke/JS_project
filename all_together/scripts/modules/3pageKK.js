@@ -107,7 +107,7 @@ export const makeKkTable = () => {
       });
     }
     ifNoData();
-    ifDataValid();
+    ifDataValid('main-content-div2');
   });
   placeholderEvent('main-content-div2');
 };

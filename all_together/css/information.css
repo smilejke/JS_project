@@ -32,7 +32,7 @@
 .form-style-5 select {
   font-family: 'Play', sans-serif;
   background: #f5f6fa;
-  border: none;
+  border: 1px solid;
   border-radius: 4px;
   font-size: 17px;
   margin: 0;

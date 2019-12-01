@@ -1,58 +1,65 @@
-export const ifDataValid = () => {
-  let inputs = document.querySelectorAll('input[data-rule]');
+export const ifDataValid = (contId) => {
+  let eventContainer = document.getElementById(contId);
 
-  for (let input of inputs) {
-    input.addEventListener('change', () => {
-      let rule = input.dataset.rule;
-      let rule2 = input.dataset.rule2;
-      let value = input.value;
-      let check;
-      let check2;
-      let forwardBtn = document.getElementById('forwardButton');
-      let getAllinputs = document.getElementsByTagName('input');
+  eventContainer.addEventListener('click', (event) => {
+    let target = event.target;
+    if (target.tagName == 'INPUT') {
+      let inputs = document.querySelectorAll('input[data-rule]');
 
-      switch (rule2) {
-        case 'length':
-          let length = value.length;
-          let from = Number(input.dataset.from);
-          let to = Number(input.dataset.to);
-          check2 = length >= from && length <= to;
-          break;
-      }
-      input.classList.remove('valid');
-      input.classList.remove('invalid');
-      if (check) {
-        input.classList.add('valid');
-      } else {
-        input.classList.add('invalid');
-      }
+      for (let input of inputs) {
+        input.addEventListener('change', () => {
+          let rule = input.dataset.rule;
+          let rule2 = input.dataset.rule2;
+          let value = input.value;
+          let check;
+          let check2;
+          let forwardBtn = document.getElementById('forwardButton');
+          let getAllinputs = document.getElementsByTagName('input');
 
-      switch (rule) {
-        case 'number':
-          check = /^\d+$/.test(value);
-          break;
-      }
+          switch (rule2) {
+            case 'length':
+              let length = value.length;
+              let from = Number(input.dataset.from);
+              let to = Number(input.dataset.to);
+              check2 = length >= from && length <= to;
+              break;
+          }
+          input.classList.remove('valid');
+          input.classList.remove('invalid');
+          if (check) {
+            input.classList.add('valid');
+          } else {
+            input.classList.add('invalid');
+          }
 
-      if (check && check2) {
-        input.classList.add('valid');
-        forwardBtn.classList.remove('not-correct');
-        forwardBtn.classList.add('all-correct');
-        forwardBtn.disabled = false;
+          switch (rule) {
+            case 'number':
+              check = /^\d+$/.test(value);
+              break;
+          }
 
-        for (let i in getAllinputs) {
-          if (getAllinputs[i].className == 'input-style input-date invalid') {
+          if (check && check2) {
+            input.classList.add('valid');
+            forwardBtn.classList.remove('not-correct');
+            forwardBtn.classList.add('all-correct');
+            forwardBtn.disabled = false;
+
+            for (let i in getAllinputs) {
+              if (getAllinputs[i].className == 'input-style input-date invalid') {
+                forwardBtn.disabled = true;
+                forwardBtn.classList.add('not-correct');
+              }
+            }
+          } else {
+            input.classList.add('invalid');
             forwardBtn.disabled = true;
             forwardBtn.classList.add('not-correct');
           }
-        }
-      } else {
-        input.classList.add('invalid');
-        forwardBtn.disabled = true;
-        forwardBtn.classList.add('not-correct');
+          ifNoData();
+        });
       }
-      ifNoData();
-    });
-  }
+    }
+  });
 };
 
 export const ifNoData = () => {
@@ -62,22 +69,6 @@ export const ifNoData = () => {
     if (inputs[i].value === '') {
       goNext.disabled = true;
       goNext.classList.add('not-correct');
-    }
-  }
-};
-
-export const ifNoDataInfo = () => {
-  let inputs = document.getElementsByTagName('input');
-  let goNext = document.getElementById('forwardButton');
-
-  for (let i = 0; i < inputs.length; i += 1) {
-    if (inputs[i].value === '') {
-      goNext.disabled = true;
-      goNext.classList.add('not-correct');
-    } else {
-      goNext.disabled = false;
-      goNext.classList.remove('not-correct');
-      goNext.classList.add('all-correct');
     }
   }
 };
@@ -147,6 +138,40 @@ export const placeholderEvent = (divId) => {
     let target = event.target;
     if (target.tagName == 'INPUT') {
       target.placeholder = '';
+    }
+  };
+};
+
+export const formValidation = () => {
+  let form = document.getElementById('formUser');
+
+  form.onclick = (event) => {
+    let target = event.target;
+    if (target.type === 'text') {
+      target.addEventListener('change', () => {
+        let check;
+        check = /^[а-яА-ЯёЁ]+$/.test(target.value);
+        target.classList.remove('form-input-wrong');
+        target.classList.remove('form-input-correct');
+        if (check) {
+          target.classList.add('form-input-correct');
+        } else {
+          target.classList.add('form-input-wrong');
+        }
+      });
+    }
+    if (target.type === 'number') {
+      target.addEventListener('blur', () => {
+        let check;
+        check = /^\d+$/.test(target.value);
+        target.classList.remove('form-input-wrong');
+        target.classList.remove('form-input-correct');
+        if (check) {
+          target.classList.add('form-input-correct');
+        } else {
+          target.classList.add('form-input-wrong');
+        }
+      });
     }
   };
 };
