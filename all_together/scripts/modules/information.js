@@ -1,6 +1,6 @@
 import { createForwardButtonDiv, mainContainer, createOption } from './createElementsUtil.js';
 
-import { info, result, updateStorageInfo } from './localStorage.js';
+import { result, updateStorageInfo } from './localStorage.js';
 import { getDataInfo } from './mathFunctions.js';
 import { formValidation } from './validation.js';
 
@@ -148,8 +148,8 @@ export const informationPage = () => {
     'Перейти к заполнению показателей',
   );
   let but = document.getElementById('forwardButton');
-  // but.disabled = true;
-  // but.classList.add('not-correct');
+  but.disabled = true;
+  but.classList.add('not-correct');
   but.addEventListener('click', getDataInfo);
   but.addEventListener('click', updateStorageInfo);
   but.addEventListener('click', () => {

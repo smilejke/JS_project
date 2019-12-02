@@ -144,15 +144,17 @@ export const placeholderEvent = (divId) => {
 
 export const formValidation = () => {
   let form = document.getElementById('formUser');
+  let goNext = document.getElementById('forwardButton');
 
   form.onclick = (event) => {
     let target = event.target;
+
     if (target.type === 'text') {
       target.addEventListener('change', () => {
         let check;
         check = /^[а-яА-ЯёЁ]+$/.test(target.value);
-        target.classList.remove('form-input-wrong');
         target.classList.remove('form-input-correct');
+        target.classList.remove('form-input-wrong');
         if (check) {
           target.classList.add('form-input-correct');
         } else {
@@ -161,7 +163,7 @@ export const formValidation = () => {
       });
     }
     if (target.type === 'number') {
-      target.addEventListener('blur', () => {
+      target.addEventListener('change', () => {
         let check;
         check = /^\d+$/.test(target.value);
         target.classList.remove('form-input-wrong');
@@ -173,5 +175,38 @@ export const formValidation = () => {
         }
       });
     }
+    if (target.tagName === 'INPUT') {
+      target.addEventListener('blur', () => {
+        if (target.value === '') {
+          goNext.disabled = true;
+          goNext.classList.add('not-correct');
+        } else {
+          ifYouCanGoNext();
+        }
+        console.log(goNext.disabled);
+      });
+    }
   };
+};
+
+const ifYouCanGoNext = () => {
+  let inputs = document.getElementsByTagName('input');
+  let goNext = document.getElementById('forwardButton');
+
+  for (let i = 0; i < inputs.length; i += 1) {
+    if (inputs[i].value == '') {
+      goNext.disabled = true;
+      goNext.classList.add('not-correct');
+    } else {
+      goNext.disabled = false;
+      goNext.classList.remove('not-correct');
+      goNext.classList.add('all-correct');
+    }
+  }
+  for (let i = 0; i < inputs.length; i += 1) {
+    if (inputs[i].className == 'form-input-wrong') {
+      goNext.disabled = true;
+      goNext.classList.add('not-correct');
+    }
+  }
 };

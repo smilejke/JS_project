@@ -128,6 +128,10 @@ export const makeSalaryPage = () => {
         'Завершить работу',
       );
       setTimeout(part2, 1000);
+      setTimeout(() => {
+        button.disabled = true;
+        button.classList.remove('all-correct');
+      }, 1000);
     }
     button.addEventListener('click', fillDataInfo());
     button.addEventListener('click', howGoodIndicators());
@@ -252,6 +256,10 @@ const part2 = () => {
   indiButton.addEventListener('click', countTaxesOrTuryacka);
   indiButton.addEventListener('click', () => {
     setTimeout(part3, 1000);
+    setTimeout(() => {
+      indiButton.disabled = true;
+      indiButton.classList.remove('all-correct');
+    }, 1000);
   });
   result.counter += 1;
 };
@@ -329,6 +337,12 @@ let part3 = () => {
   });
   taxButton.addEventListener('click', fillDataTax);
   taxButton.addEventListener('click', updateStorageSalary);
+  taxButton.addEventListener('click', () => {
+    setTimeout(() => {
+      taxButton.disabled = true;
+      taxButton.classList.remove('all-correct');
+    }, 1000);
+  });
 };
 
 const fillDataTax = () => {

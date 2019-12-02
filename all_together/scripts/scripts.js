@@ -7,4 +7,4 @@ import { makeExtraActivity } from './modules/extraActivity.js';
 
 let doc = document;
 
-doc.onload = informationPage();
+doc.onload = makeSalaryPage();
