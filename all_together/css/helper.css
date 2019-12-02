@@ -73,9 +73,16 @@ input[data-rule].valid {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   height: 100%;
   margin: 0 20px;
+}
+.add-grid-column-3 .col-4 {
+  height: 7vh;
+}
+.add-grid-column-3 .col-4 input {
+  height: 7vh;
+  font-size: 1.1em;
 }
 .add-grid-button-1 {
   grid-row: 2/3;
@@ -127,4 +134,9 @@ input[data-rule].valid {
 
 .add-margin {
   min-width: 250px;
+}
+
+.go-up {
+  transition: 0.5s ease;
+  transform: translateY(-80px);
 }

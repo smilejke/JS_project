@@ -129,8 +129,7 @@ export const makeSalaryPage = () => {
       );
       setTimeout(part2, 1000);
       setTimeout(() => {
-        button.disabled = true;
-        button.classList.remove('all-correct');
+        buttonDiv.removeChild(button);
       }, 1000);
     }
     button.addEventListener('click', fillDataInfo());
@@ -257,8 +256,7 @@ const part2 = () => {
   indiButton.addEventListener('click', () => {
     setTimeout(part3, 1000);
     setTimeout(() => {
-      indiButton.disabled = true;
-      indiButton.classList.remove('all-correct');
+      buttonDiv2.remove(indiButton);
     }, 1000);
   });
   result.counter += 1;
@@ -339,8 +337,13 @@ let part3 = () => {
   taxButton.addEventListener('click', updateStorageSalary);
   taxButton.addEventListener('click', () => {
     setTimeout(() => {
-      taxButton.disabled = true;
-      taxButton.classList.remove('all-correct');
+      buttonDiv3.remove(taxButton);
+    }, 1000);
+  });
+  taxButton.addEventListener('click', () => {
+    setTimeout(() => {
+      let lastDiv = document.querySelector('.add-grid-3');
+      lastDiv.classList.add('go-up');
     }, 1000);
   });
 };

@@ -18,6 +18,7 @@ import {
   getDataIvr,
   removeNodeCallBack,
   countSalaryScale,
+  getRemoveBut,
 } from './mathFunctions.js';
 
 import router from '../../router/applicationRouter.js';
@@ -35,6 +36,9 @@ export const makeIvrPage = () => {
       makeNewRow(workDiv);
     }
     removeNodeCallBack();
+  });
+  button.addEventListener('click', () => {
+    setInterval(getRemoveBut, 500);
   });
 
   ifNoData();
@@ -96,6 +100,7 @@ const makeNewRow = (workDiv) => {
   });
 
   newInputDiv.appendChild(createRemoveButton(result.removeIds));
+
   createForwardButtonDiv(
     {
       type: 'div',
@@ -123,5 +128,6 @@ const makeNewRow = (workDiv) => {
     document.body.removeChild(main);
     router.navigate('/kk');
   });
+
   result.counter += 1;
 };

@@ -12,6 +12,7 @@ export const informationPage = () => {
     type: 'div',
     id: 'main-content-div6',
   });
+
   let mainCont = document.getElementById('main-content-div6');
   mainCont.classList.remove('main-div');
 

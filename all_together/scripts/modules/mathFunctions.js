@@ -193,6 +193,28 @@ export const removeNodeCallBackExtra = () => {
   };
 };
 
+// export const getRemoveBut = () => {
+//   let get = document.querySelectorAll('.icon-btn');
+
+//   for (let i = 0; i < get.length; i += 1) {
+//     get[i].addEventListener('click', () => {
+//       const getAllNumberInputs = document.querySelectorAll('.input-number');
+//       for (let i = 0; i < getAllNumberInputs.length; i += 1) {
+//         getAllNumberInputs[i].value = Number([i]) + 1;
+//         result.counter = getAllNumberInputs.length;
+//       }
+//     });
+//   }
+// };
+
+export const getRemoveBut = () => {
+  const getAllNumberInputs = document.querySelectorAll('.input-number');
+  for (let i = 0; i < getAllNumberInputs.length; i += 1) {
+    getAllNumberInputs[i].value = Number([i]) + 1;
+    result.counter = getAllNumberInputs.length;
+  }
+};
+
 export const countExtraMoney = () => {
   let totalIvr = 0;
   let ivrPerHour = totalIvr / controlData.totalExtraHours;

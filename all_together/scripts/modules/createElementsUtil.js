@@ -75,15 +75,6 @@ export const createRemoveButton = (placeToPushId) => {
   removeButton.id = result.counter;
   placeToPushId.push(removeButton.id);
   removeButton.classList.add('icon-btn', 'add-btn');
-  // removeButton.addEventListener('click', callback);
-
-  removeButton.addEventListener('click', () => {
-    const getAllNumberInputs = document.querySelectorAll('.input-number');
-    for (let i = 0; i < getAllNumberInputs.length; i += 1) {
-      getAllNumberInputs[i].value = Number([i]) + 1;
-      result.counter = getAllNumberInputs.length;
-    }
-  });
 
   let removeDiv = document.createElement('div');
   removeDiv.className = 'btn-txt';
