@@ -1,4 +1,4 @@
-import { ifDataValid, ifNoData, placeholderEvent } from './validation.js';
+import { ifDataValid, ifNoData, placeholderEvent, moreThan100 } from './validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -14,7 +14,7 @@ import { modalWindowCsat, launchModalCsat } from './modal.js';
 import { premium, badBoys } from './mathFunctions.js';
 // import router from '../../router/applicationRouter.js';
 
-export default () => {
+export const makeCsatTable = () => {
   result.counter = 1;
   result.marker = true;
 
@@ -113,6 +113,7 @@ export default () => {
       }),
     );
     moveForward.addEventListener('click', launchModalCsat);
+    moreThan100('main-content-div3');
     ifNoData();
     ifDataValid('main-content-div3');
   });
@@ -122,7 +123,7 @@ export default () => {
 export const makeSomeNoiseNoExtra = () => {
   console.log(resultArr);
   console.log(`Total days worked is ${controlData.totalDaysWorked}`);
-  console.log(`Average IVR is ${controlData.middleIvr}`);
+  console.log(`Average IVR is ${controlData.ivrToShift}`);
   console.log(`Total hours are ${controlData.sumHours}`);
   console.log(`Avarage KK is ${controlData.middleKk}`);
   console.log(`Avarage CSAT is ${controlData.middleCsat}`);

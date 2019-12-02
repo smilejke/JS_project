@@ -1,4 +1,4 @@
-import { ifDataValid, ifNoData, placeholderEvent } from './validation.js';
+import { ifDataValid, ifNoData, placeholderEvent, moreThan100 } from './validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -101,6 +101,7 @@ export const makeKkTable = () => {
       nextPage.addEventListener('click', getDataKK);
       nextPage.addEventListener('click', getMiddleKK);
       nextPage.addEventListener('click', updateStorage);
+
       nextPage.addEventListener('click', () => {
         router.navigate('/csat');
         document.body.removeChild(document.getElementById('main-content-div2'));
@@ -108,6 +109,8 @@ export const makeKkTable = () => {
     }
     ifNoData();
     ifDataValid('main-content-div2');
+    moreThan100('main-content-div2');
   });
+
   placeholderEvent('main-content-div2');
 };

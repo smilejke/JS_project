@@ -44,6 +44,7 @@ export const createInput = (hash) => {
   input.setAttribute('data-rule2', 'length');
   input.setAttribute('data-from', 1);
   input.setAttribute('data-to', 3);
+  input.setAttribute('data-max', 100);
   input.type = 'text';
   inputContainer.appendChild(input);
 

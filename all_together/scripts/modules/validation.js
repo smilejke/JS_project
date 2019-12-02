@@ -210,3 +210,52 @@ const ifYouCanGoNext = () => {
     }
   }
 };
+
+export const moreThan100 = (divId) => {
+  let mainDiv = document.getElementById(divId);
+  let goNext = document.getElementById('forwardButton');
+
+  mainDiv.onclick = (event) => {
+    let target = event.target;
+    let max = Number(target.dataset.max);
+    if (max === 100) {
+      target.addEventListener('blur', () => {
+        if (target.value > max) {
+          target.classList.remove('valid');
+          target.classList.add('invalid');
+          goNext.disabled = true;
+          goNext.classList.remove('all-correct');
+          goNext.classList.add('not-correct');
+        }
+      });
+    }
+  };
+};
+
+export const setAttr = (inputPath, hash) => {
+  for (let i = 0; i < inputPath.length; i += 1) {
+    document.getElementById(inputPath[i]).setAttribute(hash.name, hash.data);
+  }
+  validateHour('main-content-div');
+};
+
+export const validateHour = (divId) => {
+  let mainDiv = document.getElementById(divId);
+  let goNext = document.getElementById('forwardButton');
+
+  mainDiv.onclick = (event) => {
+    let target = event.target;
+    let hour = Number(target.dataset.hour);
+    if (hour === 24) {
+      target.addEventListener('blur', () => {
+        if (target.value > hour) {
+          target.classList.remove('valid');
+          target.classList.add('invalid');
+          goNext.disabled = true;
+          goNext.classList.remove('all-correct');
+          goNext.classList.add('not-correct');
+        }
+      });
+    }
+  };
+};
