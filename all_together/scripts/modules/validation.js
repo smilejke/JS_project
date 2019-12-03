@@ -24,11 +24,12 @@ export const ifDataValid = (contId) => {
               check2 = length >= from && length <= to;
               break;
           }
-          input.classList.remove('valid');
-          input.classList.remove('invalid');
+
           if (check) {
+            input.classList.remove('invalid');
             input.classList.add('valid');
           } else {
+            input.classList.remove('valid');
             input.classList.add('invalid');
           }
 
@@ -39,6 +40,7 @@ export const ifDataValid = (contId) => {
           }
 
           if (check && check2) {
+            input.classList.remove('invalid');
             input.classList.add('valid');
             forwardBtn.classList.remove('not-correct');
             forwardBtn.classList.add('all-correct');
@@ -51,6 +53,7 @@ export const ifDataValid = (contId) => {
               }
             }
           } else {
+            input.classList.remove('valid');
             input.classList.add('invalid');
             forwardBtn.disabled = true;
             forwardBtn.classList.add('not-correct');
@@ -131,17 +134,6 @@ export const salaryExist = () => {
   }
 };
 
-export const placeholderEvent = (divId) => {
-  let div = document.getElementById(divId);
-
-  div.onclick = (event) => {
-    let target = event.target;
-    if (target.tagName == 'INPUT') {
-      target.placeholder = '';
-    }
-  };
-};
-
 export const formValidation = () => {
   let form = document.getElementById('formUser');
   let goNext = document.getElementById('forwardButton');
@@ -183,7 +175,6 @@ export const formValidation = () => {
         } else {
           ifYouCanGoNext();
         }
-        console.log(goNext.disabled);
       });
     }
   };
@@ -211,16 +202,37 @@ const ifYouCanGoNext = () => {
   }
 };
 
-export const moreThan100 = (divId) => {
+export const kkMoreThan100 = (divId) => {
   let mainDiv = document.getElementById(divId);
   let goNext = document.getElementById('forwardButton');
 
   mainDiv.onclick = (event) => {
     let target = event.target;
-    let max = Number(target.dataset.max);
-    if (max === 100) {
+    let kk = Number(target.dataset.kk);
+    if (kk === 100) {
       target.addEventListener('blur', () => {
-        if (target.value > max) {
+        if (target.value > kk) {
+          target.classList.remove('valid');
+          target.classList.add('invalid');
+          goNext.disabled = true;
+          goNext.classList.remove('all-correct');
+          goNext.classList.add('not-correct');
+        }
+      });
+    }
+  };
+};
+
+export const csatMoreThan100 = (divId) => {
+  let mainDiv = document.getElementById(divId);
+  let goNext = document.getElementById('forwardButton');
+
+  mainDiv.onclick = (event) => {
+    let target = event.target;
+    let csat = Number(target.dataset.csat);
+    if (csat === 100) {
+      target.addEventListener('blur', () => {
+        if (target.value > csat) {
           target.classList.remove('valid');
           target.classList.add('invalid');
           goNext.disabled = true;
@@ -236,26 +248,4 @@ export const setAttr = (inputPath, hash) => {
   for (let i = 0; i < inputPath.length; i += 1) {
     document.getElementById(inputPath[i]).setAttribute(hash.name, hash.data);
   }
-  validateHour('main-content-div');
-};
-
-export const validateHour = (divId) => {
-  let mainDiv = document.getElementById(divId);
-  let goNext = document.getElementById('forwardButton');
-
-  mainDiv.onclick = (event) => {
-    let target = event.target;
-    let hour = Number(target.dataset.hour);
-    if (hour === 24) {
-      target.addEventListener('blur', () => {
-        if (target.value > hour) {
-          target.classList.remove('valid');
-          target.classList.add('invalid');
-          goNext.disabled = true;
-          goNext.classList.remove('all-correct');
-          goNext.classList.add('not-correct');
-        }
-      });
-    }
-  };
 };

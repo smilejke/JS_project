@@ -9,7 +9,7 @@ import {
 } from './createElementsUtil.js';
 
 import { controlData, result, info, money, updateStorageSalary } from './localStorage.js';
-import { howGoodNumbers, howGoodIndicators, salaryExist, placeholderEvent } from './validation.js';
+import { howGoodNumbers, howGoodIndicators, salaryExist } from './validation.js';
 import { countSalaryWithoutTaxes, countTaxesOrTuryacka } from './mathFunctions.js';
 
 import router from '../../router/applicationRouter.js';
@@ -137,13 +137,12 @@ export const makeSalaryPage = () => {
 
     let getBackButton = document.getElementById('backButton');
     getBackButton.addEventListener('click', () => {
-      router.navigate('/csat');
+      router.navigate('/info');
       document.body.removeChild(document.getElementById('main-content-div5'));
     });
     result.marker = false;
   });
   result.counter += 1;
-  placeholderEvent('main-content-div5');
 };
 
 let fillDataInfo = () => {

@@ -8,7 +8,7 @@ import {
   createWorkButton,
 } from './createElementsUtil.js';
 
-import { ifDataValid, ifNoData, placeholderEvent, setAttr } from './validation.js';
+import { ifDataValid, ifNoData } from './validation.js';
 import { result, updateStorage } from './localStorage.js';
 
 import {
@@ -35,17 +35,10 @@ export const makeIvrPage = () => {
     if (result.counter <= 30) {
       makeNewRow(workDiv);
     }
+  });
+  button.addEventListener('click', () => {
     removeNodeCallBack();
   });
-  button.addEventListener('click', () => {
-    setInterval(getRemoveBut, 500);
-  });
-  button.addEventListener('click', placeholderEvent('main-content-div'));
-  button.addEventListener('click', () => {
-    setAttr(result.hoursIvrIds, { name: 'data-hour', data: 24 });
-  });
-  ifNoData();
-  ifDataValid('main-content-div');
 };
 
 const makeNewRow = (workDiv) => {
@@ -130,6 +123,10 @@ const makeNewRow = (workDiv) => {
     document.body.removeChild(main);
     router.navigate('/kk');
   });
+
+  setInterval(getRemoveBut, 500);
+  ifNoData();
+  ifDataValid('main-content-div');
 
   result.counter += 1;
 };

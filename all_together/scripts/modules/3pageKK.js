@@ -1,4 +1,4 @@
-import { ifDataValid, ifNoData, placeholderEvent, moreThan100 } from './validation.js';
+import { ifDataValid, ifNoData, setAttr, kkMoreThan100 } from './validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -109,8 +109,7 @@ export const makeKkTable = () => {
     }
     ifNoData();
     ifDataValid('main-content-div2');
-    moreThan100('main-content-div2');
+    setAttr(result.kkIds, { name: 'data-kk', data: 100 });
+    kkMoreThan100('main-content-div2');
   });
-
-  placeholderEvent('main-content-div2');
 };

@@ -1,4 +1,4 @@
-import { ifDataValid, ifNoData, placeholderEvent, moreThan100 } from './validation.js';
+import { ifDataValid, ifNoData, csatMoreThan100, setAttr } from './validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -113,11 +113,11 @@ export const makeCsatTable = () => {
       }),
     );
     moveForward.addEventListener('click', launchModalCsat);
-    moreThan100('main-content-div3');
+
+    csatMoreThan100('main-content-div3'), setAttr(result.csatIds, { name: 'data-csat', data: 100 });
     ifNoData();
     ifDataValid('main-content-div3');
   });
-  placeholderEvent('main-content-div3');
 };
 
 export const makeSomeNoiseNoExtra = () => {
