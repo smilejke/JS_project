@@ -244,8 +244,8 @@ export const csatMoreThan100 = (divId) => {
   };
 };
 
-export const validateHourAndDate = () => {
-  let formDiv = document.querySelectorAll('.form-div');
+export const validateHourAndDate = (formDivClass) => {
+  let formDiv = document.querySelectorAll(formDivClass);
   let goNext = document.getElementById('forwardButton');
 
   for (let i = 0; i < formDiv.length; i += 1) {

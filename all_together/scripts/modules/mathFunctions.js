@@ -147,7 +147,6 @@ export const removeNodeCallBack = () => {
 
   div.onclick = (event) => {
     let target = event.target;
-
     if (
       target.className === 'icon-btn' ||
       target.className === 'add-btn' ||

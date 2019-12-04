@@ -5,7 +5,7 @@
   padding: 20px;
   background: linear-gradient(125deg, #fdcb6e, #7bed9f, #eccc68, #ff9ff3);
   background-size: 400%;
-  animation: bganimation 15s infinite;
+  animation: bganimation 10s infinite;
   border-radius: 15px;
   font-family: 'Play', sans-serif;
 }

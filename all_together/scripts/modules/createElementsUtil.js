@@ -60,7 +60,6 @@ export const createInput = (hash) => {
   const italic = document.createElement('i');
   span.appendChild(italic);
   inputContainer.appendChild(span);
-
   return input;
 };
 
@@ -85,7 +84,6 @@ export const createRemoveButton = (placeToPushId) => {
   removeDiv.id = result.counter;
   removeDiv.innerHTML = 'Удалить';
   removeButton.appendChild(removeDiv);
-
   return removeButton;
 };
 

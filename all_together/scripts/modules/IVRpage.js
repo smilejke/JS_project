@@ -29,9 +29,9 @@ export const makeIvrPage = () => {
   result.marker = true;
 
   let main = mainContainer({ type: 'div', id: 'main-content-div' });
-
   let workDiv = createButtonDiv({ placeToAppend: main, classname: 'button-div' });
   let button = createWorkButton({ placeToAppend: workDiv, text: 'Добавить рабочий день' });
+
   button.addEventListener('click', () => {
     if (result.counter <= 30) {
       makeNewRow(workDiv);
@@ -131,6 +131,6 @@ const makeNewRow = (workDiv) => {
   ifDataValid('main-content-div');
   setAttr(result.hoursIvrIds, { name: 'data-hour', data: 24 });
   setAttr(result.dateIvrIds, { name: 'data-date', data: 31 });
-  validateHourAndDate('main-content-div');
+  validateHourAndDate('.form-div');
   result.counter += 1;
 };

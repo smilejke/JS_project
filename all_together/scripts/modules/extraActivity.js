@@ -25,7 +25,7 @@ import {
   removeNodeCallBackExtra,
   countExtraMoney,
 } from './mathFunctions.js';
-import { ifNoData, ifDataValid } from './validation.js';
+import { ifNoData, ifDataValid, setAttr, validateHourAndDate } from './validation.js';
 import router from '../../router/applicationRouter.js';
 
 export const makeExtraActivity = () => {
@@ -136,6 +136,9 @@ const makeExtraRow = (buttonDiv2) => {
   ifNoData();
   ifDataValid('main-content-div4');
 
+  setAttr(result.hoursExtraIds, { name: 'data-hour', data: 24 });
+  setAttr(result.dateExtraIds, { name: 'data-date', data: 31 });
+  validateHourAndDate('.form-div-center');
   result.counter += 1;
 };
 

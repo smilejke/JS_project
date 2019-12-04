@@ -86,8 +86,8 @@ const isCredValid = () => {
   let password = document.getElementById('password').value;
 
   if (username == 'Smilejke' && password == 'Admin') {
-    let get_div_and_make_invisible = document.getElementById('dissap');
-    document.body.removeChild(get_div_and_make_invisible);
+    let removeDiv = document.getElementById('dissap');
+    document.body.removeChild(removeDiv);
 
     modalWindow({
       loginStatus: 'Login successfuly.',
@@ -97,7 +97,9 @@ const isCredValid = () => {
     }),
       launchModal();
 
-    informationPage();
+    if (launchModal) {
+      informationPage();
+    }
 
     return false;
   } else {
