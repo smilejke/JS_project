@@ -1,4 +1,4 @@
-import { createForwardButtonDiv } from './createElementsUtil.js';
+import { createForwardButtonDiv, clearContainer } from './createElementsUtil.js';
 import { result } from './localStorage.js';
 import { makeSomeNoiseNoExtra } from './4pageCsat.js';
 import router from '../../router/applicationRouter.js';
@@ -122,7 +122,6 @@ export const launchModal = () => {
 export const launchModalCsat = () => {
   let modal = document.getElementById('myModal');
   let span = document.getElementsByClassName('close')[0];
-  let removePage = document.getElementById('main-content-div3');
 
   modal.classList.remove('hide');
 
@@ -138,17 +137,15 @@ export const launchModalCsat = () => {
   let nope = document.getElementById('modalFooter').querySelector('#backButton');
   nope.disabled = false;
   nope.addEventListener('click', () => {
-    if (removePage) {
-      router.navigate('/salary');
-      document.body.removeChild(modal);
-      document.body.removeChild(removePage);
-      makeSomeNoiseNoExtra();
-    }
+    router.navigate('/salary');
+    document.body.removeChild(modal);
+    clearContainer('main-content-div3');
+    makeSomeNoiseNoExtra();
   });
   let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
   yeah.addEventListener('click', () => {
     router.navigate('/extra');
-    document.body.removeChild(removePage);
+    clearContainer('main-content-div3');
   });
 };
 

@@ -2,9 +2,10 @@ import { result } from './localStorage.js';
 
 export const mainContainer = (hash) => {
   const main = document.createElement(hash.type);
+  const cont = document.getElementById('container');
   main.className = 'main-div';
   main.id = hash.id;
-  document.body.appendChild(main);
+  cont.appendChild(main);
   return main;
 };
 export const createButtonDiv = (hash) => {
@@ -89,27 +90,31 @@ export const createRemoveButton = (placeToPushId) => {
 };
 
 export const createInputDiv = (hash) => {
-  const input_div = document.createElement(hash.type);
-  input_div.className = hash.classname;
-  input_div.id = hash.id + result.counter;
-  hash.placeToPushId.push(input_div.id);
-  hash.placeToAppend.before(input_div);
-  return input_div;
+  const inputDiv = document.createElement(hash.type);
+  inputDiv.className = hash.classname;
+  inputDiv.id = hash.id + result.counter;
+  hash.placeToPushId.push(inputDiv.id);
+  hash.placeToAppend.before(inputDiv);
+  setTimeout(() => {
+    inputDiv.classList.toggle('form-div-active');
+  });
+  return inputDiv;
 };
+
 export const createExtraInputDiv = (hash) => {
-  const input_div = document.createElement(hash.type);
-  input_div.className = hash.classname;
-  input_div.id = hash.id + result.counter;
-  hash.placeToPushId.push(input_div.id);
-  hash.placeToAppend.appendChild(input_div);
-  return input_div;
+  const inputDiv = document.createElement(hash.type);
+  inputDiv.className = hash.classname;
+  inputDiv.id = hash.id + result.counter;
+  hash.placeToPushId.push(inputDiv.id);
+  hash.placeToAppend.appendChild(inputDiv);
+  return inputDiv;
 };
 
 export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
   if (result.marker) {
-    const last_div = document.createElement(hash.type);
-    last_div.className = hash.classname;
-    document.getElementById(hash.idHtmlToAppend).appendChild(last_div);
+    const lastDiv = document.createElement(hash.type);
+    lastDiv.className = hash.classname;
+    document.getElementById(hash.idHtmlToAppend).appendChild(lastDiv);
 
     createNewButton({
       type: 'button',
@@ -117,7 +122,7 @@ export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
       classname: 'forward',
       disabled: false,
       text: textOnBackward,
-      placeToAppend: last_div,
+      placeToAppend: lastDiv,
     });
     createNewButton({
       type: 'button',
@@ -125,7 +130,7 @@ export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
       classname: 'forward',
       disabled: false,
       text: textOnForward,
-      placeToAppend: last_div,
+      placeToAppend: lastDiv,
     });
   }
   result.marker = false;
@@ -168,4 +173,10 @@ export const fllSalaryInput = (hash) => {
   let inpt = document.getElementById(hash.id);
   inpt.value = hash.value;
   return inpt;
+};
+
+export const clearContainer = (divId) => {
+  const container = document.getElementById('container');
+  const main = document.getElementById(divId);
+  container.removeChild(main);
 };

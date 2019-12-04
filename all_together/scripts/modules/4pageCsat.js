@@ -6,6 +6,7 @@ import {
   mainContainer,
   createButtonDiv,
   createWorkButton,
+  clearContainer,
 } from './createElementsUtil.js';
 
 import { controlData, result, resultArr, updateStorage } from './localStorage.js';
@@ -17,6 +18,7 @@ import { premium, badBoys } from './mathFunctions.js';
 export const makeCsatTable = () => {
   result.counter = 1;
   result.marker = true;
+  result.eventPretender = true;
 
   const makeCsatDiv3 = mainContainer({ type: 'div', id: 'main-content-div3' });
   const buttonDiv = createButtonDiv({ placeToAppend: makeCsatDiv3, classname: 'button-div' });
@@ -92,27 +94,29 @@ export const makeCsatTable = () => {
         'Рассчитать зарплату',
       );
     }
-
-    let getBackButton = document.getElementById('backButton');
-    getBackButton.addEventListener('click', () => {
-      router.navigate('/kk');
-      document.body.removeChild(document.getElementById('main-content-div3'));
-    });
-    const moveForward = document.getElementById('forwardButton');
-    moveForward.addEventListener('click', getDataCsat);
-    moveForward.addEventListener('click', getMiddleCsat);
-    moveForward.addEventListener('click', premium);
-    moveForward.addEventListener('click', badBoys);
-    moveForward.addEventListener('click', updateStorage);
-    moveForward.addEventListener(
-      'click',
-      modalWindowCsat({
-        loginStatus: 'Внимание!',
-        loginText: 'Следующий показатель необязателен.',
-        loginText2: 'Была ли у сотрудника доп.активность?',
-      }),
-    );
-    moveForward.addEventListener('click', launchModalCsat);
+    if (result.eventPretender) {
+      let getBackButton = document.getElementById('backButton');
+      getBackButton.addEventListener('click', () => {
+        router.navigate('/kk');
+        clearContainer('main-content-div3');
+      });
+      const moveForward = document.getElementById('forwardButton');
+      moveForward.addEventListener('click', getDataCsat);
+      moveForward.addEventListener('click', getMiddleCsat);
+      moveForward.addEventListener('click', premium);
+      moveForward.addEventListener('click', badBoys);
+      moveForward.addEventListener('click', updateStorage);
+      moveForward.addEventListener(
+        'click',
+        modalWindowCsat({
+          loginStatus: 'Внимание!',
+          loginText: 'Следующий показатель необязателен.',
+          loginText2: 'Была ли у сотрудника доп.активность?',
+        }),
+      );
+      moveForward.addEventListener('click', launchModalCsat);
+      result.eventPretender = false;
+    }
 
     csatMoreThan100('main-content-div3'), setAttr(result.csatIds, { name: 'data-csat', data: 100 });
     ifNoData();

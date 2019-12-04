@@ -6,6 +6,7 @@ import {
   mainContainer,
   createButtonDiv,
   createWorkButton,
+  clearContainer,
 } from './createElementsUtil.js';
 
 import { resultArr, result, updateStorage } from './localStorage.js';
@@ -15,6 +16,7 @@ import router from '../../router/applicationRouter.js';
 export const makeKkTable = () => {
   result.counter = 1;
   result.marker = true;
+  result.eventPretender = true;
 
   const makeKkDiv2 = mainContainer({ type: 'div', id: 'main-content-div2' });
 
@@ -92,20 +94,24 @@ export const makeKkTable = () => {
         'Вернуться к ИВР',
         'Внести данные CSAT',
       );
-      let getBackButton = document.getElementById('backButton');
-      getBackButton.addEventListener('click', () => {
-        router.navigate('/ivr');
-        document.body.removeChild(document.getElementById('main-content-div2'));
-      });
-      const nextPage = document.getElementById('forwardButton');
-      nextPage.addEventListener('click', getDataKK);
-      nextPage.addEventListener('click', getMiddleKK);
-      nextPage.addEventListener('click', updateStorage);
 
-      nextPage.addEventListener('click', () => {
-        router.navigate('/csat');
-        document.body.removeChild(document.getElementById('main-content-div2'));
-      });
+      if (result.eventPretender) {
+        let getBackButton = document.getElementById('backButton');
+        getBackButton.addEventListener('click', () => {
+          router.navigate('/ivr');
+          clearContainer('main-content-div2');
+        });
+        const nextPage = document.getElementById('forwardButton');
+        nextPage.addEventListener('click', getDataKK);
+        nextPage.addEventListener('click', getMiddleKK);
+        nextPage.addEventListener('click', updateStorage);
+
+        nextPage.addEventListener('click', () => {
+          router.navigate('/csat');
+          clearContainer('main-content-div2');
+        });
+        result.eventPretender = false;
+      }
     }
     ifNoData();
     ifDataValid('main-content-div2');

@@ -193,7 +193,7 @@ export const removeNodeCallBackExtra = () => {
   };
 };
 
-export const getRemoveBut = () => {
+export const newNumbers = () => {
   const getAllNumberInputs = document.querySelectorAll('.input-number');
   for (let i = 0; i < getAllNumberInputs.length; i += 1) {
     getAllNumberInputs[i].value = Number([i]) + 1;

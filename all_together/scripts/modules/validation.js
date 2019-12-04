@@ -244,6 +244,42 @@ export const csatMoreThan100 = (divId) => {
   };
 };
 
+export const validateHourAndDate = () => {
+  let formDiv = document.querySelectorAll('.form-div');
+  let goNext = document.getElementById('forwardButton');
+
+  for (let i = 0; i < formDiv.length; i += 1) {
+    formDiv[i].onclick = (event) => {
+      let target = event.target;
+      let hour = +target.dataset.hour;
+      let date = +target.dataset.date;
+
+      if (hour === 24) {
+        target.addEventListener('blur', () => {
+          if (target.value > hour) {
+            target.classList.remove('valid');
+            target.classList.add('invalid');
+            goNext.disabled = true;
+            goNext.classList.remove('all-correct');
+            goNext.classList.add('not-correct');
+          }
+        });
+      }
+      if (date === 31) {
+        target.addEventListener('blur', () => {
+          if (target.value > date) {
+            target.classList.remove('valid');
+            target.classList.add('invalid');
+            goNext.disabled = true;
+            goNext.classList.remove('all-correct');
+            goNext.classList.add('not-correct');
+          }
+        });
+      }
+    };
+  }
+};
+
 export const setAttr = (inputPath, hash) => {
   for (let i = 0; i < inputPath.length; i += 1) {
     document.getElementById(inputPath[i]).setAttribute(hash.name, hash.data);

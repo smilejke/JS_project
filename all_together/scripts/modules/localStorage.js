@@ -13,6 +13,7 @@ const information = {
 
 const dataContainer = {
   marker: true,
+  eventPretender: true,
   counter: 0,
 
   inputDivIds: [],

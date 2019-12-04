@@ -1,4 +1,9 @@
-import { createForwardButtonDiv, mainContainer, createOption } from './createElementsUtil.js';
+import {
+  createForwardButtonDiv,
+  mainContainer,
+  createOption,
+  clearContainer,
+} from './createElementsUtil.js';
 
 import { result, updateStorageInfo } from './localStorage.js';
 import { getDataInfo } from './mathFunctions.js';
@@ -155,8 +160,7 @@ export const informationPage = () => {
   but.addEventListener('click', updateStorageInfo);
   but.addEventListener('click', () => {
     router.navigate('/ivr');
-    let removePage = document.getElementById('main-content-div6');
-    document.body.removeChild(removePage);
+    clearContainer('main-content-div6');
   });
   formValidation();
 };

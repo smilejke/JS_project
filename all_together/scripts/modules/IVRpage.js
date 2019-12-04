@@ -6,9 +6,10 @@ import {
   mainContainer,
   createButtonDiv,
   createWorkButton,
+  clearContainer,
 } from './createElementsUtil.js';
 
-import { ifDataValid, ifNoData } from './validation.js';
+import { ifDataValid, ifNoData, validateHourAndDate, setAttr } from './validation.js';
 import { result, updateStorage } from './localStorage.js';
 
 import {
@@ -18,7 +19,7 @@ import {
   getDataIvr,
   removeNodeCallBack,
   countSalaryScale,
-  getRemoveBut,
+  newNumbers,
 } from './mathFunctions.js';
 
 import router from '../../router/applicationRouter.js';
@@ -49,7 +50,6 @@ const makeNewRow = (workDiv) => {
     placeToPushId: result.inputDivIds,
     placeToAppend: workDiv,
   });
-
   const numberValue = createInput({
     col: 'col-3',
     optionalClass: 'input-number',
@@ -106,27 +106,31 @@ const makeNewRow = (workDiv) => {
     'Внести данные по контролю качества',
   );
 
-  let getBackButton = document.getElementById('backButton');
-  getBackButton.addEventListener('click', () => {
-    router.navigate('/info');
-    document.body.removeChild(document.getElementById('main-content-div'));
-  });
-  let getNextButton = document.getElementById('forwardButton');
-  getNextButton.addEventListener('click', getDataIvr);
-  getNextButton.addEventListener('click', getMiddleIVR);
-  getNextButton.addEventListener('click', getSumHours);
-  getNextButton.addEventListener('click', countSalaryScale);
-  getNextButton.addEventListener('click', totalDaysWorked);
-  getNextButton.addEventListener('click', updateStorage);
-  getNextButton.addEventListener('click', () => {
-    let main = document.getElementById('main-content-div');
-    document.body.removeChild(main);
-    router.navigate('/kk');
-  });
+  if (result.eventPretender) {
+    let getBackButton = document.getElementById('backButton');
+    getBackButton.addEventListener('click', () => {
+      router.navigate('/info');
+      clearContainer('main-content-div');
+    });
+    let getNextButton = document.getElementById('forwardButton');
+    getNextButton.addEventListener('click', getDataIvr);
+    getNextButton.addEventListener('click', getMiddleIVR);
+    getNextButton.addEventListener('click', getSumHours);
+    getNextButton.addEventListener('click', countSalaryScale);
+    getNextButton.addEventListener('click', totalDaysWorked);
+    getNextButton.addEventListener('click', updateStorage);
+    getNextButton.addEventListener('click', () => {
+      clearContainer('main-content-div');
+      router.navigate('/kk');
+    });
+    result.eventPretender = false;
+  }
 
-  setInterval(getRemoveBut, 500);
+  setInterval(newNumbers, 500);
   ifNoData();
   ifDataValid('main-content-div');
-
+  setAttr(result.hoursIvrIds, { name: 'data-hour', data: 24 });
+  setAttr(result.dateIvrIds, { name: 'data-date', data: 31 });
+  validateHourAndDate('main-content-div');
   result.counter += 1;
 };

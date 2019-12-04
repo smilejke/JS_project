@@ -5,13 +5,18 @@
 
 body {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Muli', sans-serif;
+  background: url('../background/geometry2.png');
+}
+
+#container {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   min-height: 90vh;
-  font-family: 'Muli', sans-serif;
-  background: url('../background/geometry2.png');
 }
 
 #main-content-div,
@@ -65,11 +70,17 @@ body {
 }
 
 .form-div {
-  height: 8vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  height: 8vh;
   margin: 10px auto;
+  transform: translateX(-100%);
+  transition: all 0.3s ease-in;
+}
+
+.form-div-active {
+  transform: translateX(0%);
 }
 
 .form-div-center {
@@ -81,7 +92,7 @@ body {
 }
 
 .button-div {
-  margin-top: 10px;
+  margin-top: 20px;
   height: 8vh;
   width: 100%;
   display: flex;
@@ -90,7 +101,7 @@ body {
 }
 
 .last-div {
-  margin-top: 50px;
+  margin-top: 40px;
   height: 8vh;
   display: flex;
   justify-content: center;

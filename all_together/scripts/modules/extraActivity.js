@@ -6,6 +6,7 @@ import {
   extraActivityNavigation,
   createExtraInputDiv,
   createRemoveButton,
+  clearContainer,
 } from './createElementsUtil.js';
 import {
   controlData,
@@ -119,7 +120,7 @@ const makeExtraRow = (buttonDiv2) => {
   let getBackButton = document.getElementById('backButton');
   getBackButton.addEventListener('click', () => {
     router.navigate('/csat');
-    document.body.removeChild(document.getElementById('main-content-div4'));
+    clearContainer('main-content-div4');
   });
   let nextButton = document.getElementById('forwardButton');
   nextButton.addEventListener('click', getExtraData);
@@ -130,8 +131,7 @@ const makeExtraRow = (buttonDiv2) => {
   nextButton.addEventListener('click', makeSomeNoise);
   nextButton.addEventListener('click', () => {
     router.navigate('/salary');
-    let removePage = document.getElementById('main-content-div4');
-    document.body.removeChild(removePage);
+    clearContainer('main-content-div4');
   });
   ifNoData();
   ifDataValid('main-content-div4');
