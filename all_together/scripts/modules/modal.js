@@ -151,10 +151,10 @@ export const launchModalCsat = () => {
 
 export const failed = () => {
   modalWindow({
-    loginStatus: 'You are blocked.',
-    loginText: 'You have entered wrong Username/Password too often.',
-    loginText2: 'Please, contact your manager for further information.',
-    loginFooterText: 'Have a nice day!',
+    loginStatus: 'Ошибка авторизации.',
+    loginText: 'Вы вводили неверные данные слишком часто.',
+    loginText2: 'Пожалуйста, обратитесь к своему менеджеру для разблокировки.',
+    loginFooterText: 'Вы заблокированны в системе.',
   });
   let modalHeader = document.querySelector('.modal-header');
   let modalBody = document.querySelector('.modal-body');

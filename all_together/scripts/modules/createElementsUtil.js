@@ -93,9 +93,7 @@ export const createInputDiv = (hash) => {
   inputDiv.id = hash.id + result.counter;
   hash.placeToPushId.push(inputDiv.id);
   hash.placeToAppend.before(inputDiv);
-  setTimeout(() => {
-    inputDiv.classList.toggle('form-div-active');
-  });
+
   return inputDiv;
 };
 

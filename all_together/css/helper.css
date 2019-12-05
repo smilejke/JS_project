@@ -51,7 +51,16 @@ input[data-rule].valid {
   justify-content: flex-start;
   height: 100%;
   margin: 0 20px;
+  transform: translateY(200%);
+  transition: all 0.3s ease;
 }
+
+.add-grid-column-1-active,
+.add-grid-column-2-active,
+.add-grid-column-3-active {
+  transform: translateY(0%) !important;
+}
+
 .add-grid-column-1 .col-4,
 .add-grid-column-2 .col-4,
 .add-grid-column-3 .col-4 {
@@ -66,6 +75,8 @@ input[data-rule].valid {
   justify-content: flex-start;
   height: 100%;
   margin: 0 20px;
+  transform: translateY(200%);
+  transition: all 0.3s ease;
 }
 .add-grid-column-3 {
   grid-row: 1/2;
@@ -76,6 +87,8 @@ input[data-rule].valid {
   justify-content: flex-start;
   height: 100%;
   margin: 0 20px;
+  transform: translateY(200%);
+  transition: all 0.3s ease;
 }
 .add-grid-column-3 .col-4 {
   height: 7vh;
@@ -137,6 +150,6 @@ input[data-rule].valid {
 }
 
 .go-up {
-  transition: 0.5s ease;
+  transition: all 0.5s ease;
   transform: translateY(-80px);
 }

@@ -41,6 +41,9 @@ export const makeKkTable = () => {
           },
           result,
         );
+        setTimeout(() => {
+          kkInputDiv.classList.toggle('form-div-active');
+        });
         const numberValue = createInput({
           col: 'col-3',
           optionalClass: 'input-date',

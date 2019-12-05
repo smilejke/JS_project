@@ -6,6 +6,7 @@ import {
   createButtonDiv,
   createWorkButton,
   fllSalaryInput,
+  clearContainer,
 } from './createElementsUtil.js';
 
 import { controlData, result, info, money, updateStorageSalary } from './localStorage.js';
@@ -38,6 +39,9 @@ export const makeSalaryPage = () => {
     id: 'inputDiv',
     placeToPushId: result.salaryDivIds,
     placeToAppend: buttonDiv,
+  });
+  setTimeout(() => {
+    newInputDiv.classList.toggle('add-grid-column-1-active');
   });
 
   createInput({
@@ -127,7 +131,7 @@ export const makeSalaryPage = () => {
         'Вернуться в начало',
         'Завершить работу',
       );
-      setTimeout(part2, 1000);
+      part2();
       setTimeout(() => {
         buttonDiv.removeChild(button);
       }, 1000);
@@ -138,7 +142,7 @@ export const makeSalaryPage = () => {
     let getBackButton = document.getElementById('backButton');
     getBackButton.addEventListener('click', () => {
       router.navigate('/info');
-      document.body.removeChild(document.getElementById('main-content-div5'));
+      clearContainer('main-content-div5');
     });
     result.marker = false;
   });
@@ -166,6 +170,9 @@ const part2 = () => {
     id: 'inputDiv',
     placeToPushId: result.salaryDivIds,
     placeToAppend: document.querySelector('.add-grid-button-1'),
+  });
+  setTimeout(() => {
+    salaryCounterDiv.classList.toggle('add-grid-column-2-active');
   });
 
   createInput({
@@ -253,7 +260,7 @@ const part2 = () => {
   indiButton.addEventListener('click', countSalaryWithoutTaxes);
   indiButton.addEventListener('click', countTaxesOrTuryacka);
   indiButton.addEventListener('click', () => {
-    setTimeout(part3, 1000);
+    part3();
     setTimeout(() => {
       buttonDiv2.remove(indiButton);
     }, 1000);
@@ -290,6 +297,9 @@ let part3 = () => {
     id: 'inputDiv',
     placeToPushId: result.salaryDivIds,
     placeToAppend: document.querySelector('.add-grid-button-3'),
+  });
+  setTimeout(() => {
+    taxCounterDiv.classList.toggle('add-grid-column-3-active');
   });
 
   createInput({
@@ -357,8 +367,8 @@ const fillDataTax = () => {
   salaryExist();
 };
 
-let draw = (querySel) => {
-  let div = document.querySelector(querySel);
+let draw = (querySelClass) => {
+  let div = document.querySelector(querySelClass);
   let inputs = div.getElementsByClassName('input-date');
 
   for (let i = 0; i < inputs.length; i += 1) {

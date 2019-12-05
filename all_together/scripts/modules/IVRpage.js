@@ -50,6 +50,9 @@ const makeNewRow = (workDiv) => {
     placeToPushId: result.inputDivIds,
     placeToAppend: workDiv,
   });
+  setTimeout(() => {
+    newInputDiv.classList.toggle('form-div-active');
+  });
   const numberValue = createInput({
     col: 'col-3',
     optionalClass: 'input-number',

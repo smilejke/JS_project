@@ -1,18 +1,19 @@
 let attempt = 3;
 import { modalWindow, launchModal, failed } from './modal.js';
 import { informationPage } from './information.js';
+import { clearContainer } from './createElementsUtil.js';
 
 export const createForm = () => {
   let loginContainer = document.createElement('div');
   loginContainer.id = 'dissap';
-  document.body.appendChild(loginContainer);
+  document.getElementById('container').appendChild(loginContainer);
 
   let mainLoginDiv = document.createElement('div');
   mainLoginDiv.classList.add('main');
   loginContainer.appendChild(mainLoginDiv);
 
   let loginHeader = document.createElement('h2');
-  loginHeader.innerHTML = 'The system of calculating earnings of an employee';
+  loginHeader.innerHTML = 'Система расчета зароботка сотрудника';
   mainLoginDiv.appendChild(loginHeader);
 
   let loginForm = document.createElement('form');
@@ -22,7 +23,7 @@ export const createForm = () => {
   mainLoginDiv.appendChild(loginForm);
 
   let label_userName = document.createElement('span');
-  label_userName.innerHTML = 'User Name :';
+  label_userName.innerHTML = 'Имя пользователя :';
   loginForm.appendChild(label_userName);
 
   let input_text = document.createElement('input');
@@ -33,7 +34,7 @@ export const createForm = () => {
   loginForm.appendChild(input_text);
 
   let spanUserName2 = document.createElement('span');
-  spanUserName2.innerHTML = 'Password :';
+  spanUserName2.innerHTML = 'Пароль :';
   loginForm.appendChild(spanUserName2);
 
   let input_password = document.createElement('input');
@@ -45,7 +46,7 @@ export const createForm = () => {
 
   let login_button = document.createElement('input');
   login_button.type = 'button';
-  login_button.value = 'Login';
+  login_button.value = 'Войти';
   login_button.id = 'submit';
   login_button.className = 'admin_button';
   login_button.addEventListener('click', isCredValid);
@@ -59,7 +60,7 @@ export const createForm = () => {
   bold_text1.innerHTML = 'Note:';
   span_text.appendChild(bold_text1);
 
-  let text_node = document.createTextNode(' For this demo use following username and password.');
+  let text_node = document.createTextNode(' For this demo use following username and password:');
   span_text.appendChild(text_node);
 
   let br1 = document.createElement('br');
@@ -86,14 +87,14 @@ const isCredValid = () => {
   let password = document.getElementById('password').value;
 
   if (username == 'Smilejke' && password == 'Admin') {
-    let removeDiv = document.getElementById('dissap');
-    document.body.removeChild(removeDiv);
+    clearContainer('dissap');
 
     modalWindow({
-      loginStatus: 'Login successfuly.',
-      loginText: 'Congratulations!',
-      loginText2: 'Your next step is to enter main indicators.',
-      loginFooterText: 'Have a nice day!',
+      loginStatus: 'Авторизация прошла успешно.',
+      loginText: '',
+      loginText2:
+        'Для получения данных по зароботной плате необходимо ввести показатели эффективности работы сотрудника.',
+      loginFooterText: 'Хорошего дня!',
     }),
       launchModal();
 
@@ -108,10 +109,11 @@ const isCredValid = () => {
       failed();
     } else {
       modalWindow({
-        loginStatus: 'Login failed.',
-        loginText: 'You have left ' + attempt + ' attempt.',
-        loginText2: 'Be careful, if you fail validation, form will be blocked.',
-        loginFooterText: 'Have a nice day!',
+        loginStatus: 'Ошибка авторизации.',
+        loginText:
+          'В случае частого неверного ввода имени пользователя или пароля, вы будете заблокированны в системе.',
+        loginText2: 'Число оставшихся попыток: ' + ' ' + attempt,
+        loginFooterText: 'Будте внимательны!',
       });
     }
 
