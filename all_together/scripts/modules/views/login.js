@@ -1,8 +1,7 @@
 let attempt = 3;
 import { modalWindow, launchModal, failed } from './modal.js';
-import informationPage from './information.js';
-import { clearContainer } from './createElementsUtil.js';
-import Router from '../router/router.js';
+import { clearContainer } from '../createElementsUtil.js';
+import { clearStorage, storage } from '../localStorage.js';
 
 export default (context) => {
   const login = () => {
@@ -128,5 +127,6 @@ export default (context) => {
       }
     }
   };
+
   return login();
 };

@@ -1,5 +1,5 @@
-import { createForwardButtonDiv, clearContainer } from './createElementsUtil.js';
-import { result } from './localStorage.js';
+import { createForwardButtonDiv, clearContainer } from '../createElementsUtil.js';
+import { result, clearStorage } from '../localStorage.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');
@@ -120,7 +120,6 @@ export const launchModal = () => {
 export const launchModalCsat = (context) => {
   //замыкание
   const launchModal = () => {
-    console.log(context);
     let modal = document.getElementById('myModal');
     let span = document.getElementsByClassName('close')[0];
 
@@ -141,7 +140,6 @@ export const launchModalCsat = (context) => {
       context.router.navigate('/page7');
       document.body.removeChild(modal);
       clearContainer('main-content-div3');
-      makeSomeNoiseNoExtra();
     });
     let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
     yeah.addEventListener('click', () => {

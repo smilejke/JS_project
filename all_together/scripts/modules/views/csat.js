@@ -1,4 +1,4 @@
-import { ifDataValid, ifNoData, csatMoreThan100, setAttr } from './validation.js';
+import { ifDataValid, ifNoData, csatMoreThan100, setAttr } from '../validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -7,12 +7,12 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
-} from './createElementsUtil.js';
+} from '../createElementsUtil.js';
 
-import { controlData, result, resultArr, updateStorage } from './localStorage.js';
-import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
+import { result, resultArr, updateStorage } from '../localStorage.js';
+import { getMiddleCsat, getDataCsat } from '../mathFunctions.js';
 import { modalWindowCsat, launchModalCsat } from './modal.js';
-import { premium, badBoys } from './mathFunctions.js';
+import { premium, badBoys } from '../mathFunctions.js';
 
 export default (context) => {
   const makeCsatTable = () => {

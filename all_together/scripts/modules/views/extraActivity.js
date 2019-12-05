@@ -7,15 +7,8 @@ import {
   createExtraInputDiv,
   createRemoveButton,
   clearContainer,
-} from './createElementsUtil.js';
-import {
-  controlData,
-  info,
-  resultArr,
-  exxxtra,
-  result,
-  updateExtraStorage,
-} from './localStorage.js';
+} from '../createElementsUtil.js';
+import { result, updateExtraStorage } from '../localStorage.js';
 
 import {
   getExtraDays,
@@ -24,8 +17,8 @@ import {
   getExtraData,
   removeNodeCallBackExtra,
   countExtraMoney,
-} from './mathFunctions.js';
-import { ifNoData, ifDataValid, setAttr, validateHourAndDate } from './validation.js';
+} from '../mathFunctions.js';
+import { ifNoData, ifDataValid, setAttr, validateHourAndDate } from '../validation.js';
 
 export default (context) => {
   const makeExtraActivity = () => {
@@ -131,7 +124,6 @@ export default (context) => {
     nextButton.addEventListener('click', getTotalExtraHours);
     nextButton.addEventListener('click', updateExtraStorage);
     nextButton.addEventListener('click', countExtraMoney);
-    nextButton.addEventListener('click', makeSomeNoise);
     nextButton.addEventListener('click', () => {
       context.router.navigate('/page7');
       clearContainer('main-content-div4');
@@ -145,17 +137,5 @@ export default (context) => {
     result.counter += 1;
   };
 
-  const makeSomeNoise = () => {
-    console.log(exxxtra);
-    console.log(resultArr);
-    console.log(info);
-    console.log(`Total days worked is ${controlData.totalDaysWorked}`);
-    console.log(`Average IVR is ${controlData.middleIvr}`);
-    console.log(`Total hours are ${controlData.sumHours}`);
-    console.log(`Avarage KK is ${controlData.middleKk}`);
-    console.log(`Avarage CSAT is ${controlData.middleCsat}`);
-    console.log(`Average extra IVR is ${controlData.middleExtraIvr}`);
-    console.log(`Total extra hours are ${controlData.totalExtraHours}`);
-  };
   return makeExtraActivity();
 };

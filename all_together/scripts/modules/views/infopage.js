@@ -3,14 +3,13 @@ import {
   mainContainer,
   createOption,
   clearContainer,
-} from './createElementsUtil.js';
+} from '../createElementsUtil.js';
 
-import { result, updateStorageInfo } from './localStorage.js';
-import { getDataInfo } from './mathFunctions.js';
-import { formValidation } from './validation.js';
+import { result, updateStorageInfo, storage } from '../localStorage.js';
+import { getDataInfo } from '../mathFunctions.js';
+import { formValidation } from '../validation.js';
 
 export default (context) => {
-  console.log(context);
   result.marker = true;
   mainContainer({
     type: 'div',
@@ -152,6 +151,7 @@ export default (context) => {
     'Выйти из программы',
     'Перейти к заполнению показателей',
   );
+
   let but = document.getElementById('forwardButton');
   but.disabled = true;
   but.classList.add('not-correct');
@@ -166,5 +166,6 @@ export default (context) => {
     context.router.navigate('/');
     clearContainer('main-content-div6');
   });
+
   formValidation();
 };

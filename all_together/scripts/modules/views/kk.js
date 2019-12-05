@@ -1,4 +1,4 @@
-import { ifDataValid, ifNoData, setAttr, kkMoreThan100 } from './validation.js';
+import { ifDataValid, ifNoData, setAttr, kkMoreThan100 } from '../validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -7,14 +7,12 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
-} from './createElementsUtil.js';
+} from '../createElementsUtil.js';
 
-import { resultArr, result, updateStorage } from './localStorage.js';
-import { getMiddleKK, getDataKK } from './mathFunctions.js';
+import { resultArr, result, updateStorage } from '../localStorage.js';
+import { getMiddleKK, getDataKK } from '../mathFunctions.js';
 
 export default (context) => {
-  console.log(context);
-
   result.counter = 1;
   result.marker = true;
   result.eventPretender = true;

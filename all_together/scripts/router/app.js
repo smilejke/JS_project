@@ -1,12 +1,12 @@
 import Router from './router.js';
 
-import login from '../modules/login.js';
-import information from '../modules/information.js';
-import ivr from '../modules/IVRpage.js';
-import kk from '../modules/3pageKK.js';
-import csat from '../modules/4pageCsat.js';
-import extra from '../modules/extraActivity.js';
-import salary from '../modules/salary.js';
+import login from '../modules/controllers/login.js';
+import information from '../modules/controllers/infopage.js';
+import ivr from '../modules/controllers/ivr.js';
+import kk from '../modules/controllers/kk.js';
+import csat from '../modules/controllers/csat.js';
+import extra from '../modules/controllers/extraActivity.js';
+import salary from '../modules/controllers/salary.js';
 
 export default (appRootId, appRootPath, state) => {
   const router = new Router([], 'history', appRootPath);

@@ -134,3 +134,7 @@ export const updateStorageSalary = () => {
 };
 
 export const getDataFromLS = (field) => JSON.parse(storage.getItem(field));
+
+export const clearStorage = () => {
+  storage.clear();
+};

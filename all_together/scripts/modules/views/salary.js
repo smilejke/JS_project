@@ -7,11 +7,18 @@ import {
   createWorkButton,
   fllSalaryInput,
   clearContainer,
-} from './createElementsUtil.js';
+} from '../createElementsUtil.js';
 
-import { controlData, result, info, money, updateStorageSalary } from './localStorage.js';
-import { howGoodNumbers, howGoodIndicators, salaryExist } from './validation.js';
-import { countSalaryWithoutTaxes, countTaxesOrTuryacka } from './mathFunctions.js';
+import {
+  controlData,
+  result,
+  info,
+  money,
+  updateStorageSalary,
+  clearStorage,
+} from '../localStorage.js';
+import { howGoodNumbers, howGoodIndicators, salaryExist } from '../validation.js';
+import { countSalaryWithoutTaxes, countTaxesOrTuryacka } from '../mathFunctions.js';
 
 export default (context) => {
   const makeSalaryPage = () => {
@@ -137,16 +144,16 @@ export default (context) => {
       }
       button.addEventListener('click', fillDataInfo());
       button.addEventListener('click', howGoodIndicators());
+
       const finalButton = document.getElementById('forwardButton');
       finalButton.addEventListener('click', () => {
-        context.router.navigate(context.router.root);
+        context.router.navigate('/');
         clearContainer('main-content-div5');
-
-        const getBackButton = document.getElementById('backButton');
-        getBackButton.addEventListener('click', () => {
-          context.router.navigate('/page2');
-          clearContainer('main-content-div5');
-        });
+      });
+      const getBackButton = document.getElementById('backButton');
+      getBackButton.addEventListener('click', () => {
+        context.router.navigate('/page2');
+        clearContainer('main-content-div5');
       });
       result.marker = false;
     });
@@ -347,17 +354,19 @@ export default (context) => {
       placeToAppendForm: taxCounterDiv,
     });
     taxButton.addEventListener('click', fillDataTax);
-    taxButton.addEventListener('click', updateStorageSalary);
     taxButton.addEventListener('click', () => {
       setTimeout(() => {
         buttonDiv3.remove(taxButton);
       }, 1000);
     });
+
     taxButton.addEventListener('click', () => {
-      setTimeout(() => {
-        let lastDiv = document.querySelector('.add-grid-3');
-        lastDiv.classList.add('go-up');
-      }, 1000);
+      let lastDiv = document.querySelector('.add-grid-3');
+      if (lastDiv) {
+        setTimeout(() => {
+          lastDiv.classList.add('go-up');
+        }, 1000);
+      }
     });
   };
 
