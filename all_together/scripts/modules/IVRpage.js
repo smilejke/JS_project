@@ -22,8 +22,6 @@ import {
   newNumbers,
 } from './mathFunctions.js';
 
-import router from '../../router/applicationRouter.js';
-
 export const makeIvrPage = () => {
   result.counter = 0;
   result.marker = true;
@@ -112,7 +110,6 @@ const makeNewRow = (workDiv) => {
   if (result.eventPretender) {
     let getBackButton = document.getElementById('backButton');
     getBackButton.addEventListener('click', () => {
-      router.navigate('/info');
       clearContainer('main-content-div');
     });
     let getNextButton = document.getElementById('forwardButton');
@@ -124,7 +121,6 @@ const makeNewRow = (workDiv) => {
     getNextButton.addEventListener('click', updateStorage);
     getNextButton.addEventListener('click', () => {
       clearContainer('main-content-div');
-      router.navigate('/kk');
     });
     result.eventPretender = false;
   }

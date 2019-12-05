@@ -13,8 +13,6 @@ import { controlData, result, info, money, updateStorageSalary } from './localSt
 import { howGoodNumbers, howGoodIndicators, salaryExist } from './validation.js';
 import { countSalaryWithoutTaxes, countTaxesOrTuryacka } from './mathFunctions.js';
 
-import router from '../../router/applicationRouter.js';
-
 export const makeSalaryPage = () => {
   result.counter = 0;
   result.marker = true;
@@ -141,7 +139,6 @@ export const makeSalaryPage = () => {
 
     let getBackButton = document.getElementById('backButton');
     getBackButton.addEventListener('click', () => {
-      router.navigate('/info');
       clearContainer('main-content-div5');
     });
     result.marker = false;

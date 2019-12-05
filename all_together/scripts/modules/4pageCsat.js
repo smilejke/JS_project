@@ -13,7 +13,6 @@ import { controlData, result, resultArr, updateStorage } from './localStorage.js
 import { getMiddleCsat, getDataCsat } from './mathFunctions.js';
 import { modalWindowCsat, launchModalCsat } from './modal.js';
 import { premium, badBoys } from './mathFunctions.js';
-// import router from '../../router/applicationRouter.js';
 
 export const makeCsatTable = () => {
   result.counter = 1;
@@ -100,7 +99,6 @@ export const makeCsatTable = () => {
     if (result.eventPretender) {
       let getBackButton = document.getElementById('backButton');
       getBackButton.addEventListener('click', () => {
-        router.navigate('/kk');
         clearContainer('main-content-div3');
       });
       const moveForward = document.getElementById('forwardButton');

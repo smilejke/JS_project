@@ -26,7 +26,6 @@ import {
   countExtraMoney,
 } from './mathFunctions.js';
 import { ifNoData, ifDataValid, setAttr, validateHourAndDate } from './validation.js';
-import router from '../../router/applicationRouter.js';
 
 export const makeExtraActivity = () => {
   result.counter = 1;
@@ -119,7 +118,6 @@ const makeExtraRow = (buttonDiv2) => {
 
   let getBackButton = document.getElementById('backButton');
   getBackButton.addEventListener('click', () => {
-    router.navigate('/csat');
     clearContainer('main-content-div4');
   });
   let nextButton = document.getElementById('forwardButton');

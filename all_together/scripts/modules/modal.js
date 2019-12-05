@@ -1,7 +1,6 @@
 import { createForwardButtonDiv, clearContainer } from './createElementsUtil.js';
 import { result } from './localStorage.js';
 import { makeSomeNoiseNoExtra } from './4pageCsat.js';
-import router from '../../router/applicationRouter.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');
@@ -137,14 +136,12 @@ export const launchModalCsat = () => {
   let nope = document.getElementById('modalFooter').querySelector('#backButton');
   nope.disabled = false;
   nope.addEventListener('click', () => {
-    router.navigate('/salary');
     document.body.removeChild(modal);
     clearContainer('main-content-div3');
     makeSomeNoiseNoExtra();
   });
   let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
   yeah.addEventListener('click', () => {
-    router.navigate('/extra');
     clearContainer('main-content-div3');
   });
 };

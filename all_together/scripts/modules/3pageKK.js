@@ -11,7 +11,6 @@ import {
 
 import { resultArr, result, updateStorage } from './localStorage.js';
 import { getMiddleKK, getDataKK } from './mathFunctions.js';
-import router from '../../router/applicationRouter.js';
 
 export const makeKkTable = () => {
   result.counter = 1;
@@ -101,7 +100,6 @@ export const makeKkTable = () => {
       if (result.eventPretender) {
         let getBackButton = document.getElementById('backButton');
         getBackButton.addEventListener('click', () => {
-          router.navigate('/ivr');
           clearContainer('main-content-div2');
         });
         const nextPage = document.getElementById('forwardButton');
@@ -110,7 +108,6 @@ export const makeKkTable = () => {
         nextPage.addEventListener('click', updateStorage);
 
         nextPage.addEventListener('click', () => {
-          router.navigate('/csat');
           clearContainer('main-content-div2');
         });
         result.eventPretender = false;

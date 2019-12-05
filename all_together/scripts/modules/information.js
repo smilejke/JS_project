@@ -9,8 +9,6 @@ import { result, updateStorageInfo } from './localStorage.js';
 import { getDataInfo } from './mathFunctions.js';
 import { formValidation } from './validation.js';
 
-import router from '../../router/applicationRouter.js';
-
 export const informationPage = () => {
   result.marker = true;
   mainContainer({
@@ -159,7 +157,6 @@ export const informationPage = () => {
   but.addEventListener('click', getDataInfo);
   but.addEventListener('click', updateStorageInfo);
   but.addEventListener('click', () => {
-    router.navigate('/ivr');
     clearContainer('main-content-div6');
   });
   formValidation();
