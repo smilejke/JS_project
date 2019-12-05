@@ -12,7 +12,9 @@ import {
 import { resultArr, result, updateStorage } from './localStorage.js';
 import { getMiddleKK, getDataKK } from './mathFunctions.js';
 
-export const makeKkTable = () => {
+export default (context) => {
+  console.log(context);
+
   result.counter = 1;
   result.marker = true;
   result.eventPretender = true;
@@ -100,6 +102,7 @@ export const makeKkTable = () => {
       if (result.eventPretender) {
         let getBackButton = document.getElementById('backButton');
         getBackButton.addEventListener('click', () => {
+          context.router.navigate('/page3');
           clearContainer('main-content-div2');
         });
         const nextPage = document.getElementById('forwardButton');
@@ -108,6 +111,7 @@ export const makeKkTable = () => {
         nextPage.addEventListener('click', updateStorage);
 
         nextPage.addEventListener('click', () => {
+          context.router.navigate('/page5');
           clearContainer('main-content-div2');
         });
         result.eventPretender = false;

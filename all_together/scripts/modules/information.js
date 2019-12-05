@@ -9,7 +9,8 @@ import { result, updateStorageInfo } from './localStorage.js';
 import { getDataInfo } from './mathFunctions.js';
 import { formValidation } from './validation.js';
 
-export const informationPage = () => {
+export default (context) => {
+  console.log(context);
   result.marker = true;
   mainContainer({
     type: 'div',
@@ -157,6 +158,12 @@ export const informationPage = () => {
   but.addEventListener('click', getDataInfo);
   but.addEventListener('click', updateStorageInfo);
   but.addEventListener('click', () => {
+    context.router.navigate('/page3');
+    clearContainer('main-content-div6');
+  });
+  let back = document.getElementById('backButton');
+  back.addEventListener('click', () => {
+    context.router.navigate('/');
     clearContainer('main-content-div6');
   });
   formValidation();

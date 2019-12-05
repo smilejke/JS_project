@@ -1,10 +1,10 @@
-import { createForm } from './modules/login.js';
+import run from '../scripts/router/app.js';
 
-import { informationPage } from './modules/information.js';
-import { makeSalaryPage } from './modules/salary.js';
-import { makeIvrPage } from './modules/IVRpage.js';
-import { makeExtraActivity } from './modules/extraActivity.js';
+const state = {
+  counter: 1,
+  iteration: 0,
+};
 
-let doc = document;
-
-doc.onload = createForm();
+window.addEventListener('load', () => {
+  run('container', '/', state);
+});

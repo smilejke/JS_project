@@ -1,6 +1,5 @@
 import { createForwardButtonDiv, clearContainer } from './createElementsUtil.js';
 import { result } from './localStorage.js';
-import { makeSomeNoiseNoExtra } from './4pageCsat.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');
@@ -118,32 +117,40 @@ export const launchModal = () => {
   };
 };
 
-export const launchModalCsat = () => {
-  let modal = document.getElementById('myModal');
-  let span = document.getElementsByClassName('close')[0];
+export const launchModalCsat = (context) => {
+  //замыкание
+  const launchModal = () => {
+    console.log(context);
+    let modal = document.getElementById('myModal');
+    let span = document.getElementsByClassName('close')[0];
 
-  modal.classList.remove('hide');
+    modal.classList.remove('hide');
 
-  span.onclick = () => {
-    modal.classList.add('hide');
-  };
-  window.onclick = (event) => {
-    if (event.target == modal) {
+    span.onclick = () => {
       modal.classList.add('hide');
-    }
+    };
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.classList.add('hide');
+      }
+    };
+
+    let nope = document.getElementById('modalFooter').querySelector('#backButton');
+    nope.disabled = false;
+    nope.addEventListener('click', () => {
+      context.router.navigate('/page7');
+      document.body.removeChild(modal);
+      clearContainer('main-content-div3');
+      makeSomeNoiseNoExtra();
+    });
+    let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
+    yeah.addEventListener('click', () => {
+      context.router.navigate('/page6');
+      clearContainer('main-content-div3');
+    });
   };
 
-  let nope = document.getElementById('modalFooter').querySelector('#backButton');
-  nope.disabled = false;
-  nope.addEventListener('click', () => {
-    document.body.removeChild(modal);
-    clearContainer('main-content-div3');
-    makeSomeNoiseNoExtra();
-  });
-  let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
-  yeah.addEventListener('click', () => {
-    clearContainer('main-content-div3');
-  });
+  return launchModal;
 };
 
 export const failed = () => {
