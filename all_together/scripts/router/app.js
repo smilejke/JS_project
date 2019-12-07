@@ -18,7 +18,7 @@ export default (appRootId, appRootPath, state) => {
     // prevPage:
   };
 
-  router.add(/^\/$/, () => {
+  router.add(/^\/all_together\/$/, () => {
     login(context);
   });
 
