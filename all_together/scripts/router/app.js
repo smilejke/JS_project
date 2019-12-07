@@ -54,5 +54,6 @@ export default (appRootId, appRootPath, state) => {
     salary(context);
   });
   router.listen();
-  router.navigate('/');
+  router.check();
+  // router.navigate('/');
 };

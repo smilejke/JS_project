@@ -7,30 +7,25 @@ export default class Router {
 
   config(options) {
     this.mode =
-      options &&
-      options.mode &&
-      options.mode == "history" &&
-      !!history.pushState
-        ? "history"
-        : "hash";
+      options && options.mode && options.mode == 'history' && !!history.pushState
+        ? 'history'
+        : 'hash';
     this.root =
-      options && options.root && options.root != "/"
-        ? "/" + this.clearSlashes(options.root) + "/"
-        : "/";
+      options && options.root && options.root != '/'
+        ? '/' + this.clearSlashes(options.root) + '/'
+        : '/';
     return this;
   }
 
   getFragment() {
-    let fragment = "";
-    if (this.mode === "history") {
-      fragment = this.clearSlashes(
-        decodeURI(location.pathname + location.search)
-      );
-      fragment = fragment.replace(/\?(.*)$/, "");
-      fragment = this.root != "/" ? fragment.replace(this.root, "") : fragment;
+    let fragment = '';
+    if (this.mode === 'history') {
+      fragment = this.clearSlashes(decodeURI(location.pathname + location.search));
+      fragment = fragment.replace(/\?(.*)$/, '');
+      fragment = this.root != '/' ? fragment.replace(this.root, '') : fragment;
     } else {
       let match = window.location.href.match(/#(.*)$/g);
-      fragment = match ? match[1] : "";
+      fragment = match ? match[1] : '';
     }
     return this.clearSlashes(fragment);
   }
@@ -38,8 +33,8 @@ export default class Router {
   clearSlashes(path) {
     return path
       .toString()
-      .replace(/\/$/g, "")
-      .replace(/^\//g, "");
+      .replace(/\/$/g, '')
+      .replace(/^\//g, '');
   }
 
   add(re, handler) {
@@ -48,11 +43,8 @@ export default class Router {
   }
 
   remove(param) {
-    this.routes.forEach(router => {
-      if (
-        router.handler === param ||
-        router.re.toString() === param.toString()
-      ) {
+    this.routes.forEach((router) => {
+      if (router.handler === param || router.re.toString() === param.toString()) {
         routes.splice(i, 1);
         return this;
       }
@@ -63,9 +55,9 @@ export default class Router {
   check(f) {
     let fragment = f || this.getFragment();
 
-    if (fragment == "") fragment = "/";
+    if (fragment == '') fragment = '/';
 
-    const matchedRoute = this.routes.find(route => {
+    const matchedRoute = this.routes.find((route) => {
       return Array.isArray(fragment.match(route.re));
     });
 
@@ -81,27 +73,26 @@ export default class Router {
 
   listen() {
     window.addEventListener(
-      "navigate",
-      e => {
+      'navigate',
+      (e) => {
         this.check(this.getFragment());
       },
-      false
+      false,
     );
 
     return this;
   }
 
   navigate(path) {
-    path = path ? path : "";
+    path = path ? path : '';
 
-    if (this.mode === "history") {
+    if (this.mode === 'history') {
       history.pushState(null, null, this.root + this.clearSlashes(path));
     } else {
-      window.location.href =
-        window.location.href.replace(/#.*$/g, "") + "#" + path;
+      window.location.href = window.location.href.replace(/#.*$/g, '') + '#' + path;
     }
 
-    const event = new CustomEvent("navigate", { detail: path });
+    const event = new CustomEvent('navigate', { detail: path });
     window.dispatchEvent(event);
 
     return this;
