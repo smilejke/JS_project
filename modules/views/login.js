@@ -1,10 +1,6 @@
 let attempt = 3;
-import {
-  modalWindow,
-  launchModal,
-  failed,
-} from '../../../../all_together/scripts/modules/views/modal.js';
-import { clearContainer } from '../../../../all_together/scripts/modules/createElementsUtil.js';
+import { modalWindow, launchModal, failed } from '../../../JS_project/modules/views/modal.js';
+import { clearContainer } from '../../../JS_project/modules/createElementsUtil.js';
 // import { clearStorage, storage } from '../localStorage.js';
 
 export default (context) => {

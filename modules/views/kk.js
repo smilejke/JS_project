@@ -3,7 +3,7 @@ import {
   ifNoData,
   setAttr,
   kkMoreThan100,
-} from '../../../../all_together/scripts/modules/validation.js';
+} from '../../../JS_project/modules/validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -12,14 +12,10 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
-} from '../../../../all_together/scripts/modules/createElementsUtil.js';
+} from '../../../JS_project/modules/createElementsUtil.js';
 
-import {
-  resultArr,
-  result,
-  updateStorage,
-} from '../../../../all_together/scripts/modules/localStorage.js';
-import { getMiddleKK, getDataKK } from '../../../../all_together/scripts/modules/mathFunctions.js';
+import { resultArr, result, updateStorage } from '../../../JS_project/modules/localStorage.js';
+import { getMiddleKK, getDataKK } from '../../../JS_project/modules/mathFunctions.js';
 
 export default (context) => {
   result.counter = 1;

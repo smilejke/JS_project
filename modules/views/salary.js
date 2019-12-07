@@ -7,7 +7,7 @@ import {
   createWorkButton,
   fllSalaryInput,
   clearContainer,
-} from '../../../../all_together/scripts/modules/createElementsUtil.js';
+} from '../../../JS_project/modules/createElementsUtil.js';
 
 import {
   controlData,
@@ -15,16 +15,16 @@ import {
   info,
   money,
   clearStorage,
-} from '../../../../all_together/scripts/modules/localStorage.js';
+} from '../../../JS_project/modules/localStorage.js';
 import {
   howGoodNumbers,
   howGoodIndicators,
   salaryExist,
-} from '../../../../all_together/scripts/modules/validation.js';
+} from '../../../JS_project/modules/validation.js';
 import {
   countSalaryWithoutTaxes,
   countTaxesOrTuryacka,
-} from '../../../../all_together/scripts/modules/mathFunctions.js';
+} from '../../../JS_project/modules/mathFunctions.js';
 
 export default (context) => {
   const makeSalaryPage = () => {

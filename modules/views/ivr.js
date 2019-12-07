@@ -7,15 +7,15 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
-} from '../../../../all_together/scripts/modules/createElementsUtil.js';
+} from '../../../JS_project/modules/createElementsUtil.js';
 
 import {
   ifDataValid,
   ifNoData,
   validateHourAndDate,
   setAttr,
-} from '../../../../all_together/scripts/modules/validation.js';
-import { result, updateStorage } from '../../../../all_together/scripts/modules/localStorage.js';
+} from '../../../JS_project/modules/validation.js';
+import { result, updateStorage } from '../../../JS_project/modules/localStorage.js';
 
 import {
   getMiddleIVR,
@@ -25,7 +25,7 @@ import {
   removeNodeCallBack,
   countSalaryScale,
   newNumbers,
-} from '../../../../all_together/scripts/modules/mathFunctions.js';
+} from '../../../JS_project/modules/mathFunctions.js';
 
 export default (context) => {
   const renderIvrPage = () => {

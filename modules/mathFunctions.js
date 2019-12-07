@@ -4,7 +4,7 @@ import {
   result,
   exxxtra,
   info,
-} from '../../../all_together/scripts/modules/localStorage.js';
+} from '../../JS_project/modules/localStorage.js';
 
 export const getMiddleKK = () => {
   let middle = 0;

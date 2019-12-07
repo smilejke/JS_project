@@ -1,4 +1,4 @@
-import run from '../../all_together/scripts/router/app.js';
+import run from '../JS_project/router/app.js';
 
 const state = {
   counter: 1,

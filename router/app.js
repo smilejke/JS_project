@@ -1,12 +1,12 @@
-import Router from '../../../all_together/scripts/router/router.js';
+import Router from '../../JS_project/router/router.js';
 
-import login from '../../../all_together/scripts/modules/controllers/login.js';
-import information from '../../../all_together/scripts/modules/controllers/infopage.js';
-import ivr from '../../../all_together/scripts/modules/controllers/ivr.js';
-import kk from '../../../all_together/scripts/modules/controllers/kk.js';
-import csat from '../../../all_together/scripts/modules/controllers/csat.js';
-import extra from '../../../all_together/scripts/modules/controllers/extraActivity.js';
-import salary from '../../../all_together/scripts/modules/controllers/salary.js';
+import login from '../../JS_project/modules/controllers/login.js';
+import information from '../../JS_project/modules/controllers/infopage.js';
+import ivr from '../../JS_project/modules/controllers/ivr.js';
+import kk from '../../JS_project/modules/controllers/kk.js';
+import csat from '../../JS_project/modules/controllers/csat.js';
+import extra from '../../JS_project/modules/controllers/extraActivity.js';
+import salary from '../../JS_project/modules/controllers/salary.js';
 
 export default (appRootId, appRootPath, state) => {
   const router = new Router([], 'history', appRootPath);
@@ -15,9 +15,10 @@ export default (appRootId, appRootPath, state) => {
     root: document.getElementById(appRootId),
     router: router,
     state: state,
+    // prevPage:
   };
 
-  router.add(/^all_together\/$/, () => {
+  router.add(/^\/$/, () => {
     login(context);
   });
 
@@ -53,6 +54,5 @@ export default (appRootId, appRootPath, state) => {
     salary(context);
   });
   router.listen();
-  router.check();
-  // router.navigate('/');
+  router.navigate('/');
 };

@@ -3,7 +3,7 @@ import {
   ifNoData,
   csatMoreThan100,
   setAttr,
-} from '../../../../all_together/scripts/modules/validation.js';
+} from '../../../JS_project/modules/validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -12,22 +12,16 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
-} from '../../../../all_together/scripts/modules/createElementsUtil.js';
+} from '../../../JS_project/modules/createElementsUtil.js';
 
-import {
-  result,
-  resultArr,
-  updateStorage,
-} from '../../../../all_together/scripts/modules/localStorage.js';
+import { result, resultArr, updateStorage } from '../../../JS_project/modules/localStorage.js';
 import {
   getMiddleCsat,
   getDataCsat,
-} from '../../../../all_together/scripts/modules/mathFunctions.js';
-import {
-  modalWindowCsat,
-  launchModalCsat,
-} from '../../../../all_together/scripts/modules/views/modal.js';
-import { premium, badBoys } from '../../../../all_together/scripts/modules/mathFunctions.js';
+  premium,
+  badBoys,
+} from '../../../JS_project/modules/mathFunctions.js';
+import { modalWindowCsat, launchModalCsat } from '../../../JS_project/modules/views/modal.js';
 
 export default (context) => {
   const makeCsatTable = () => {
