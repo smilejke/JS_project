@@ -15,10 +15,9 @@ export default (appRootId, appRootPath, state) => {
     root: document.getElementById(appRootId),
     router: router,
     state: state,
-    // prevPage:
   };
 
-  router.add(/^\/all_together\/$/, () => {
+  router.add(/^all_together\/$/, () => {
     login(context);
   });
 
