@@ -1,4 +1,10 @@
-import { controlData, resultArr, result, exxxtra, info, storage } from './localStorage.js';
+import {
+  controlData,
+  resultArr,
+  result,
+  exxxtra,
+  info,
+} from '../../../all_together/scripts/modules/localStorage.js';
 
 export const getMiddleKK = () => {
   let middle = 0;

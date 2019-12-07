@@ -7,8 +7,11 @@ import {
   createExtraInputDiv,
   createRemoveButton,
   clearContainer,
-} from '../createElementsUtil.js';
-import { result, updateExtraStorage } from '../localStorage.js';
+} from '../../../../all_together/scripts/modules/createElementsUtil.js';
+import {
+  result,
+  updateExtraStorage,
+} from '../../../../all_together/scripts/modules/localStorage.js';
 
 import {
   getExtraDays,
@@ -18,7 +21,12 @@ import {
   removeNodeCallBackExtra,
   countExtraMoney,
 } from '../mathFunctions.js';
-import { ifNoData, ifDataValid, setAttr, validateHourAndDate } from '../validation.js';
+import {
+  ifNoData,
+  ifDataValid,
+  setAttr,
+  validateHourAndDate,
+} from '../../../../all_together/scripts/modules/validation.js';
 
 export default (context) => {
   const makeExtraActivity = () => {

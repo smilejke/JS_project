@@ -7,18 +7,24 @@ import {
   createWorkButton,
   fllSalaryInput,
   clearContainer,
-} from '../createElementsUtil.js';
+} from '../../../../all_together/scripts/modules/createElementsUtil.js';
 
 import {
   controlData,
   result,
   info,
   money,
-  updateStorageSalary,
   clearStorage,
-} from '../localStorage.js';
-import { howGoodNumbers, howGoodIndicators, salaryExist } from '../validation.js';
-import { countSalaryWithoutTaxes, countTaxesOrTuryacka } from '../mathFunctions.js';
+} from '../../../../all_together/scripts/modules/localStorage.js';
+import {
+  howGoodNumbers,
+  howGoodIndicators,
+  salaryExist,
+} from '../../../../all_together/scripts/modules/validation.js';
+import {
+  countSalaryWithoutTaxes,
+  countTaxesOrTuryacka,
+} from '../../../../all_together/scripts/modules/mathFunctions.js';
 
 export default (context) => {
   const makeSalaryPage = () => {

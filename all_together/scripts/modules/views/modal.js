@@ -1,5 +1,8 @@
-import { createForwardButtonDiv, clearContainer } from '../createElementsUtil.js';
-import { result, clearStorage } from '../localStorage.js';
+import {
+  createForwardButtonDiv,
+  clearContainer,
+} from '../../../../all_together/scripts/modules/createElementsUtil.js';
+import { result, clearStorage } from '../../../../all_together/scripts/modules/localStorage.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');

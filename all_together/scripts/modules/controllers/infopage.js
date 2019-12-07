@@ -1,4 +1,4 @@
-import renderInfo from '../views/infopage.js';
+import renderInfo from '../../../../all_together/scripts/modules/views/infopage.js';
 
 export default (context) => {
   renderInfo(context);

@@ -3,11 +3,15 @@ import {
   mainContainer,
   createOption,
   clearContainer,
-} from '../createElementsUtil.js';
+} from '../../../../all_together/scripts/modules/createElementsUtil.js';
 
-import { result, updateStorageInfo, storage } from '../localStorage.js';
-import { getDataInfo } from '../mathFunctions.js';
-import { formValidation } from '../validation.js';
+import {
+  result,
+  updateStorageInfo,
+  storage,
+} from '../../../../all_together/scripts/modules/localStorage.js';
+import { getDataInfo } from '../../../../all_together/scripts/modules/mathFunctions.js';
+import { formValidation } from '../../../../all_together/scripts/modules/validation.js';
 
 export default (context) => {
   result.marker = true;

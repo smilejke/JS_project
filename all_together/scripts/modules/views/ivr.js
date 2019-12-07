@@ -7,10 +7,15 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
-} from '../createElementsUtil.js';
+} from '../../../../all_together/scripts/modules/createElementsUtil.js';
 
-import { ifDataValid, ifNoData, validateHourAndDate, setAttr } from '../validation.js';
-import { result, updateStorage, clearStorage, storage } from '../localStorage.js';
+import {
+  ifDataValid,
+  ifNoData,
+  validateHourAndDate,
+  setAttr,
+} from '../../../../all_together/scripts/modules/validation.js';
+import { result, updateStorage } from '../../../../all_together/scripts/modules/localStorage.js';
 
 import {
   getMiddleIVR,
@@ -20,7 +25,7 @@ import {
   removeNodeCallBack,
   countSalaryScale,
   newNumbers,
-} from '../mathFunctions.js';
+} from '../../../../all_together/scripts/modules/mathFunctions.js';
 
 export default (context) => {
   const renderIvrPage = () => {
@@ -122,6 +127,7 @@ export default (context) => {
       getNextButton.addEventListener('click', countSalaryScale);
       getNextButton.addEventListener('click', totalDaysWorked);
       getNextButton.addEventListener('click', updateStorage);
+
       getNextButton.addEventListener('click', () => {
         context.router.navigate('/page4');
         clearContainer('main-content-div');
@@ -129,7 +135,11 @@ export default (context) => {
       result.eventPretender = false;
     }
     if (document.getElementById('main-content-div')) {
-      setInterval(newNumbers, 500);
+      let timeId = setInterval(newNumbers, 500);
+      let getNextButton = document.getElementById('forwardButton');
+      getNextButton.addEventListener('click', () => {
+        clearInterval(timeId);
+      });
     }
 
     ifNoData();

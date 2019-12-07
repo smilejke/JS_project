@@ -1,4 +1,9 @@
-import { ifDataValid, ifNoData, csatMoreThan100, setAttr } from '../validation.js';
+import {
+  ifDataValid,
+  ifNoData,
+  csatMoreThan100,
+  setAttr,
+} from '../../../../all_together/scripts/modules/validation.js';
 import {
   createInputDiv,
   createForwardButtonDiv,
@@ -7,12 +12,22 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
-} from '../createElementsUtil.js';
+} from '../../../../all_together/scripts/modules/createElementsUtil.js';
 
-import { result, resultArr, updateStorage } from '../localStorage.js';
-import { getMiddleCsat, getDataCsat } from '../mathFunctions.js';
-import { modalWindowCsat, launchModalCsat } from './modal.js';
-import { premium, badBoys } from '../mathFunctions.js';
+import {
+  result,
+  resultArr,
+  updateStorage,
+} from '../../../../all_together/scripts/modules/localStorage.js';
+import {
+  getMiddleCsat,
+  getDataCsat,
+} from '../../../../all_together/scripts/modules/mathFunctions.js';
+import {
+  modalWindowCsat,
+  launchModalCsat,
+} from '../../../../all_together/scripts/modules/views/modal.js';
+import { premium, badBoys } from '../../../../all_together/scripts/modules/mathFunctions.js';
 
 export default (context) => {
   const makeCsatTable = () => {

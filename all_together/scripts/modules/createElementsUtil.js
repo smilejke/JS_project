@@ -1,4 +1,4 @@
-import { result } from './localStorage.js';
+import { result } from '../../../all_together/scripts/modules/localStorage.js';
 
 export const mainContainer = (hash) => {
   const main = document.createElement(hash.type);
