@@ -14,7 +14,6 @@ import {
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
-// import { context, context.resultArr, updateStorage } from '../../../JS_project/modules/localStorage.js';
 import {
   getMiddleCsat,
   getDataCsat,
@@ -53,46 +52,51 @@ export default (context) => {
           setTimeout(() => {
             csatInputDiv.classList.toggle('form-div-active');
           });
-          const numberValue = createInput({
-            col: 'col-3',
-            optionalClass: 'input-date',
-            id: 'numberKK',
-            placeToPushId: context.numberCsatIds,
-            placeholder: 'Номер',
-            backText: 'Номер',
-            readOnlyParam: true,
-            placeToAppendForm: csatInputDiv,
-          });
+          const numberValue = createInput(
+            {
+              col: 'col-3',
+              optionalClass: 'input-date',
+              id: 'numberKK',
+              placeToPushId: context.numberCsatIds,
+              placeholder: 'Номер',
+              backText: 'Номер',
+              readOnlyParam: true,
+              placeToAppendForm: csatInputDiv,
+            },
+            context,
+          );
 
           numberValue.value = context.counter;
 
-          const dateKkData = createInput({
-            col: 'col-3',
-            optionalClass: 'input-date',
-            id: 'date',
-            placeToPushId: context.dateCsatIds,
-            placeholder: 'Дата',
-            backText: 'Дата',
-            readOnlyParam: false,
-            placeToAppendForm: csatInputDiv,
-          });
+          const dateKkData = createInput(
+            {
+              col: 'col-3',
+              optionalClass: 'input-date',
+              id: 'date',
+              placeToPushId: context.dateCsatIds,
+              placeholder: 'Дата',
+              backText: 'Дата',
+              readOnlyParam: false,
+              placeToAppendForm: csatInputDiv,
+            },
+            context,
+          );
 
           dateKkData.value = context.resultArr[i].date;
-          if (dateKkData.value == 0) {
-            dateKkData.value = '';
-          } else {
-            dateKkData.classList.add('valid');
-          }
-          createInput({
-            col: 'col-3',
-            optionalClass: 'input-date',
-            id: 'csat',
-            placeToPushId: context.csatIds,
-            placeholder: 'CSAT',
-            backText: 'CSAT',
-            readOnlyParam: false,
-            placeToAppendForm: csatInputDiv,
-          });
+
+          createInput(
+            {
+              col: 'col-3',
+              optionalClass: 'input-date',
+              id: 'csat',
+              placeToPushId: context.csatIds,
+              placeholder: 'CSAT',
+              backText: 'CSAT',
+              readOnlyParam: false,
+              placeToAppendForm: csatInputDiv,
+            },
+            context,
+          );
 
           context.counter += 1;
         }
@@ -104,6 +108,7 @@ export default (context) => {
           },
           'Вернуться к контролю качества',
           'Рассчитать зарплату',
+          context,
         );
       }
       if (context.eventPretender) {
@@ -113,20 +118,22 @@ export default (context) => {
           clearContainer('main-content-div3');
         });
         const moveForward = document.getElementById('forwardButton');
-        moveForward.addEventListener('click', getDataCsat);
-        moveForward.addEventListener('click', getMiddleCsat);
-        moveForward.addEventListener('click', premium);
-        moveForward.addEventListener('click', badBoys);
-        // moveForward.addEventListener('click', updateStorage);
-        moveForward.addEventListener(
-          'click',
-          modalWindowCsat({
-            loginStatus: 'Внимание!',
-            loginText: 'Следующий показатель необязателен.',
-            loginText2: 'Была ли у сотрудника доп.активность?',
-          }),
-        );
-        moveForward.addEventListener('click', launchModalCsat(context));
+        moveForward.addEventListener('click', () => {
+          getDataCsat(context);
+          getMiddleCsat(context);
+          premium(context);
+          badBoys(context);
+          modalWindowCsat(
+            {
+              loginStatus: 'Внимание!',
+              loginText: 'Следующий показатель необязателен.',
+              loginText2: 'Была ли у сотрудника доп.активность?',
+            },
+            context,
+          );
+          launchModalCsat(context);
+        });
+
         context.eventPretender = false;
       }
 

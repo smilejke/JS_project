@@ -1,154 +1,151 @@
-import {
-  controlData,
-  resultArr,
-  result,
-  exxxtra,
-  info,
-} from '../../JS_project/modules/localStorage.js';
-
-export const getMiddleKK = () => {
+export const getMiddleKK = (context) => {
   let middle = 0;
-  for (let i in resultArr) {
-    controlData.totalKk.push(resultArr[i].kk);
+  for (let i in context.resultArr) {
+    context.totalKk.push(context.resultArr[i].kk);
   }
-  for (let i in controlData.totalKk) {
-    middle += controlData.totalKk[i];
+  for (let i in context.totalKk) {
+    middle += context.totalKk[i];
   }
-  middle /= controlData.totalKk.length;
-  controlData.middleKk = Math.round(middle);
-  return controlData.middleKk;
+  middle /= context.totalKk.length;
+  context.middleKk = Math.round(middle);
+  return context.middleKk;
 };
 
-export const getMiddleCsat = () => {
+export const getMiddleCsat = (context) => {
   let middle = 0;
-  for (let i in resultArr) {
-    controlData.totalCsat.push(resultArr[i].csat);
+  for (let i in context.resultArr) {
+    context.totalCsat.push(context.resultArr[i].csat);
   }
-  for (let i in controlData.totalCsat) {
-    middle += controlData.totalCsat[i];
+  for (let i in context.totalCsat) {
+    middle += context.totalCsat[i];
   }
-  middle /= controlData.totalCsat.length;
-  controlData.middleCsat = Math.round(middle);
-  return controlData.middleCsat;
+  middle /= context.totalCsat.length;
+  context.middleCsat = Math.round(middle);
+  return context.middleCsat;
 };
 
-export const getSumHours = () => {
+export const getSumHours = (context) => {
   let sum = 0;
-  for (let i in resultArr) {
-    sum += resultArr[i].hours;
+  for (let i in context.resultArr) {
+    sum += context.resultArr[i].hours;
   }
-  controlData.sumHours = sum;
-  return controlData.sumHours;
+  context.sumHours = sum;
+  return context.sumHours;
 };
 
-export const totalDaysWorked = () => {
-  controlData.totalDaysWorked = result.numberIvrIds.length;
-  return controlData.totalDaysWorked;
+export const totalDaysWorked = (context) => {
+  context.totalDaysWorked = context.numberIvrIds.length;
+  return context.totalDaysWorked;
 };
 
-export const getDataIvr = () => {
-  for (let i in result.dateIvrIds) {
+export const getDataIvr = (context) => {
+  for (let i in context.dateIvrIds) {
     const day = {
-      number: Number(document.getElementById(result.numberIvrIds[i]).value),
-      date: Number(document.getElementById(result.dateIvrIds[i]).value),
-      ivr: Number(document.getElementById(result.ivrIds[i]).value),
-      hours: Number(document.getElementById(result.hoursIvrIds[i]).value),
+      number: Number(document.getElementById(context.numberIvrIds[i]).value),
+      date: Number(document.getElementById(context.dateIvrIds[i]).value),
+      ivr: Number(document.getElementById(context.ivrIds[i]).value),
+      hours: Number(document.getElementById(context.hoursIvrIds[i]).value),
     };
-    resultArr.push(day);
+    context.resultArr.push(day);
   }
 };
 
-export const getExtraData = () => {
-  for (let i in result.extraIVRIds) {
+export const getExtraData = (context) => {
+  for (let i in context.extraIVRIds) {
     const extraDay = {
-      date: Number(document.getElementById(result.dateExtraIds[i]).value),
-      ivr: Number(document.getElementById(result.extraIVRIds[i]).value),
-      hours: Number(document.getElementById(result.hoursExtraIds[i]).value),
+      date: Number(document.getElementById(context.dateExtraIds[i]).value),
+      ivr: Number(document.getElementById(context.extraIVRIds[i]).value),
+      hours: Number(document.getElementById(context.hoursExtraIds[i]).value),
     };
-    exxxtra.push(extraDay);
+    context.exxxtra.push(extraDay);
   }
 };
 
-export const getDataInfo = () => {
-  info.lastname = document.getElementById('lastname').value;
-  info.name = document.getElementById('name').value;
-  info.secondName = document.getElementById('secondName').value;
-  info.job = document.getElementById('job').value;
-  info.month = document.getElementById('month').value;
-  info.rate = document.getElementById('rate').value;
-  info.hourShift = document.getElementById('hourShift').value;
+export const getDataInfo = (context) => {
+  context.lastname = document.getElementById('lastname').value;
+  context.name = document.getElementById('name').value;
+  context.secondName = document.getElementById('secondName').value;
+  context.job = document.getElementById('job').value;
+  context.month = document.getElementById('month').value;
+  context.rate = document.getElementById('rate').value;
+  context.hourShift = document.getElementById('hourShift').value;
 };
 
-export const getDataCsat = () => {
-  for (let i in result.csatIds) {
+export const getDataCsat = (context) => {
+  for (let i in context.csatIds) {
     let csat = 0;
-    csat += Number(document.getElementById(result.csatIds[i]).value);
-    resultArr[i].csat = csat;
+    csat += Number(document.getElementById(context.csatIds[i]).value);
+    context.resultArr[i].csat = csat;
   }
 };
-export const getDataKK = () => {
-  for (let i in result.kkIds) {
+export const getDataKK = (context) => {
+  for (let i in context.kkIds) {
     let kk = 0;
-    kk += Number(document.getElementById(result.kkIds[i]).value);
-    resultArr[i].kk = kk;
+    kk += Number(document.getElementById(context.kkIds[i]).value);
+    context.resultArr[i].kk = kk;
   }
 };
-export const getMiddleIVR = () => {
+export const getMiddleIVR = (context) => {
   let avarage = 0;
-  for (let i in resultArr) {
-    controlData.totalIvr.push(resultArr[i].ivr);
+  for (let i in context.resultArr) {
+    context.totalIvr.push(context.resultArr[i].ivr);
   }
-  for (let i in controlData.totalIvr) {
-    avarage += controlData.totalIvr[i];
+  for (let i in context.totalIvr) {
+    avarage += context.totalIvr[i];
   }
-  avarage /= controlData.totalIvr.length;
-  controlData.middleIvr = Math.round(avarage);
+  avarage /= context.totalIvr.length;
+  context.middleIvr = Math.round(avarage);
 
-  if (Number(info.hourShift) === 8) {
-    controlData.ivrToShift = Math.round(controlData.middleIvr * result.shift8);
+  if (Number(context.hourShift) === 8) {
+    context.ivrToShift = Math.round(context.middleIvr * context.shift8);
   }
-  if (Number(info.hourShift) === 12) {
-    controlData.ivrToShift = Math.round(controlData.middleIvr * result.shift12);
+  if (Number(context.hourShift) === 12) {
+    context.ivrToShift = Math.round(context.middleIvr * context.shift12);
   }
-  return controlData.ivrToShift;
+  return context.ivrToShift;
 };
 
-export const countSalaryScale = () => {
-  controlData.salary = controlData.sumHours * +info.rate;
+export const countSalaryScale = (context) => {
+  context.salary = context.sumHours * +context.rate;
 
-  return controlData.salary;
+  return context.salary;
 };
 
-export const countExtraMiddleIvr = () => {
+export const countExtraMiddleIvr = (context) => {
   let average = 0;
-  for (let i in exxxtra) {
-    controlData.totalExtraIvr.push(exxxtra[i].ivr);
+  for (let i in context.exxxtra) {
+    context.totalExtraIvr.push(context.exxxtra[i].ivr);
   }
-  for (let i in controlData.totalExtraIvr) {
-    average += controlData.totalExtraIvr[i];
+  for (let i in context.totalExtraIvr) {
+    average += context.totalExtraIvr[i];
   }
-  average /= controlData.totalExtraIvr.length;
-  controlData.middleExtraIvr = Math.round(average);
-  return controlData.middleExtraIvr;
+  average /= context.totalExtraIvr.length;
+  context.middleExtraIvr = Math.round(average);
+  return context.middleExtraIvr;
 };
-export const getExtraDays = () => {
-  for (let i in result.extraDaysId) {
-    let extra = 0;
-    extra += Number(document.getElementById(result.extraDaysId[i]).value);
-    result.extraDays = extra;
+export const getExtraDays = (context) => {
+  const getInput = document.getElementById('dayCounter1');
+  if (!getInput.value == '') {
+    for (let i in context.extraDaysId) {
+      let extra = 0;
+      extra += Number(document.getElementById(context.extraDaysId[i]).value);
+      context.extraDays = extra;
+    }
+  } else {
+    getInput.value = 1;
   }
 };
 
-export const getTotalExtraHours = () => {
+export const getTotalExtraHours = (context) => {
   let hours = 0;
-  for (let i in exxxtra) {
-    hours += exxxtra[i].hours;
+  for (let i in context.exxxtra) {
+    hours += context.exxxtra[i].hours;
   }
-  controlData.totalExtraHours = hours;
-  return controlData.totalExtraHours;
+  context.totalExtraHours = hours;
+  return context.totalExtraHours;
 };
 
-export const removeNodeCallBack = () => {
+export const removeNodeCallBack = (context) => {
   let div = document.getElementById('main-content-div');
 
   div.onclick = (event) => {
@@ -159,21 +156,22 @@ export const removeNodeCallBack = () => {
       target.className === 'btn-txt' ||
       target.className === 'icon-btn add-btn'
     ) {
-      const elemId = result.removeIds.findIndex((el) => el === event.target.id);
-      result.inputDivIds.splice(elemId, 1);
-      result.numberIvrIds.splice(elemId, 1);
-      result.dateIvrIds.splice(elemId, 1);
-      result.ivrIds.splice(elemId, 1);
-      result.hoursIvrIds.splice(elemId, 1);
-      result.removeIds.splice(elemId, 1);
+      const elemId = context.removeIds.findIndex((el) => el === event.target.id);
+      context.inputDivIds.splice(elemId, 1);
+      context.numberIvrIds.splice(elemId, 1);
+      context.dateIvrIds.splice(elemId, 1);
+      context.ivrIds.splice(elemId, 1);
+      context.hoursIvrIds.splice(elemId, 1);
+      context.removeIds.splice(elemId, 1);
       document
         .getElementById('main-content-div')
         .removeChild(document.getElementById('inputDiv' + event.target.id));
+      setInterval(newNumbers(context), 500);
     }
   };
 };
 
-export const removeNodeCallBackExtra = () => {
+export const removeNodeCallBackExtra = (context) => {
   let div = document.getElementById('main-content-div4');
 
   div.onclick = (event) => {
@@ -185,12 +183,12 @@ export const removeNodeCallBackExtra = () => {
       target.className === 'btn-txt' ||
       target.className === 'icon-btn add-btn'
     ) {
-      const elemId = result.removeExtraIds.findIndex((el) => el === event.target.id);
-      result.extraInputDivIds.splice(elemId, 1);
-      result.dateExtraIds.splice(elemId, 1);
-      result.extraIVRIds.splice(elemId, 1);
-      result.hoursExtraIds.splice(elemId, 1);
-      result.removeExtraIds.splice(elemId, 1);
+      const elemId = context.removeExtraIds.findIndex((el) => el === event.target.id);
+      context.extraInputDivIds.splice(elemId, 1);
+      context.dateExtraIds.splice(elemId, 1);
+      context.extraIVRIds.splice(elemId, 1);
+      context.hoursExtraIds.splice(elemId, 1);
+      context.removeExtraIds.splice(elemId, 1);
       document
         .querySelector('.extra-div-2')
         .removeChild(document.getElementById('extra_input_div' + event.target.id));
@@ -198,119 +196,102 @@ export const removeNodeCallBackExtra = () => {
   };
 };
 
-export const newNumbers = () => {
+export const newNumbers = (context) => {
   const getAllNumberInputs = document.querySelectorAll('.input-number');
   for (let i = 0; i < getAllNumberInputs.length; i += 1) {
     getAllNumberInputs[i].value = Number([i]) + 1;
-    result.counter = getAllNumberInputs.length;
+    context.counter = getAllNumberInputs.length;
   }
 };
 
-export const countExtraMoney = () => {
+export const countExtraMoney = (context) => {
   let totalIvr = 0;
-  let ivrPerHour = totalIvr / controlData.totalExtraHours;
+  let ivrPerHour = totalIvr / context.totalExtraHours;
 
-  for (let i in controlData.totalExtraIvr) {
-    totalIvr += controlData.totalExtraIvr[i];
+  for (let i in context.totalExtraIvr) {
+    totalIvr += context.totalExtraIvr[i];
   }
   if (ivrPerHour < 15) {
-    controlData.extraMoney += 250 * controlData.totalExtraHours;
+    context.extraMoney += 250 * context.totalExtraHours;
   } else {
-    controlData.extraMoney += 400 * controlData.totalExtraHours;
+    context.extraMoney += 400 * context.totalExtraHours;
   }
-  controlData.extraMoney = Math.round(controlData.extraMoney);
+  context.extraMoney = Math.round(context.extraMoney);
 };
 
-export const premium = () => {
-  if (+info.hourShift === 8) {
+export const premium = (context) => {
+  if (+context.hourShift === 8) {
     if (
-      controlData.ivrToShift >= 80 &&
-      controlData.ivrToShift <= 115 &&
-      controlData.middleCsat >= 90 &&
-      controlData.middleKk >= 90
+      context.ivrToShift >= 80 &&
+      context.ivrToShift <= 115 &&
+      context.middleCsat >= 90 &&
+      context.middleKk >= 90
     ) {
-      controlData.bonus = Math.round(controlData.salary * 1.1 - controlData.salary);
+      context.bonus = Math.round(context.salary * 1.1 - context.salary);
     }
     if (
-      controlData.ivrToShift > 115 &&
-      controlData.ivrToShift < 150 &&
-      controlData.middleCsat === 100 &&
-      controlData.middleKk === 100
+      context.ivrToShift > 115 &&
+      context.ivrToShift < 150 &&
+      context.middleCsat === 100 &&
+      context.middleKk === 100
     ) {
-      controlData.bonus = Math.round(controlData.salary * 1.3 - controlData.salary);
+      context.bonus = Math.round(context.salary * 1.3 - context.salary);
     }
-    if (
-      controlData.ivrToShift >= 150 &&
-      controlData.middleCsat === 100 &&
-      controlData.middleKk === 100
-    ) {
-      controlData.bonus = Math.round(controlData.salary * 1.5 - controlData.salary);
+    if (context.ivrToShift >= 150 && context.middleCsat === 100 && context.middleKk === 100) {
+      context.bonus = Math.round(context.salary * 1.5 - context.salary);
     }
   }
 
-  if (+info.hourShift === 12) {
+  if (+context.hourShift === 12) {
     if (
-      controlData.ivrToShift >= 80 &&
-      controlData.ivrToShift <= 100 &&
-      controlData.middleCsat >= 85 &&
-      controlData.middleKk >= 85
+      context.ivrToShift >= 80 &&
+      context.ivrToShift <= 100 &&
+      context.middleCsat >= 85 &&
+      context.middleKk >= 85
     ) {
-      controlData.bonus = Math.round(controlData.salary * 1.1 - controlData.salary);
+      context.bonus = Math.round(context.salary * 1.1 - context.salary);
     }
     if (
-      controlData.ivrToShift > 100 &&
-      controlData.ivrToShift < 135 &&
-      controlData.middleCsat === 95 &&
-      controlData.middleKk === 95
+      context.ivrToShift > 100 &&
+      context.ivrToShift < 135 &&
+      context.middleCsat === 95 &&
+      context.middleKk === 95
     ) {
-      controlData.bonus = Math.round(controlData.salary * 1.3 - controlData.salary);
+      context.bonus = Math.round(context.salary * 1.3 - context.salary);
     }
-    if (
-      controlData.ivrToShift >= 135 &&
-      controlData.middleCsat === 100 &&
-      controlData.middleKk === 100
-    ) {
-      controlData.bonus = Math.round(controlData.salary * 1.5 - controlData.salary);
+    if (context.ivrToShift >= 135 && context.middleCsat === 100 && context.middleKk === 100) {
+      context.bonus = Math.round(context.salary * 1.5 - context.salary);
     }
   }
 };
 
-export const badBoys = () => {
-  if (+info.hourShift === 8) {
-    if (
-      controlData.ivrToShift <= 45 ||
-      controlData.middleKk <= 60 ||
-      controlData.middleCsat <= 60
-    ) {
-      controlData.minus = Math.round(controlData.salary - controlData.salary * 0.8);
+export const badBoys = (context) => {
+  if (+context.hourShift === 8) {
+    if (context.ivrToShift <= 45 || context.middleKk <= 60 || context.middleCsat <= 60) {
+      context.minus = Math.round(context.salary - context.salary * 0.8);
     }
   }
-  if (+info.hourShift === 12) {
-    if (
-      controlData.ivrToShift <= 60 ||
-      controlData.middleKk <= 70 ||
-      controlData.middleCsat <= 70
-    ) {
-      controlData.minus = Math.round(controlData.salary - controlData.salary * 0.8);
+  if (+context.hourShift === 12) {
+    if (context.ivrToShift <= 60 || context.middleKk <= 70 || context.middleCsat <= 70) {
+      context.minus = Math.round(context.salary - context.salary * 0.8);
     }
   }
 };
 
-export const countSalaryWithoutTaxes = () => {
-  controlData.salaryWithoutTax = Number(
-    controlData.salary + controlData.extraMoney + controlData.bonus - controlData.minus,
+export const countSalaryWithoutTaxes = (context) => {
+  context.salaryWithoutTax = Number(
+    context.salary + context.extraMoney + context.bonus - context.minus,
   );
-  return controlData.salaryWithoutTax;
+  return context.salaryWithoutTax;
 };
 
-export const countTaxesOrTuryacka = () => {
-  controlData.incomeTax = Math.floor(controlData.salaryWithoutTax * 0.13 * 100) / 100;
-  controlData.fundTax = Math.floor(controlData.salaryWithoutTax * 0.01 * 100) / 100;
-  countTotalSalary();
+export const countTaxesOrTuryacka = (context) => {
+  context.incomeTax = Math.floor(context.salaryWithoutTax * 0.13 * 100) / 100;
+  context.fundTax = Math.floor(context.salaryWithoutTax * 0.01 * 100) / 100;
+  countTotalSalary(context);
 };
 
-export const countTotalSalary = () => {
-  controlData.totalSalary =
-    controlData.salaryWithoutTax - (controlData.incomeTax + controlData.fundTax);
-  return controlData.totalSalary;
+export const countTotalSalary = (context) => {
+  context.totalSalary = context.salaryWithoutTax - (context.incomeTax + context.fundTax);
+  return context.totalSalary;
 };

@@ -150,14 +150,14 @@ export default (context) => {
     },
     'Выйти из программы',
     'Перейти к заполнению показателей',
+    context,
   );
 
   let but = document.getElementById('forwardButton');
   but.disabled = true;
   but.classList.add('not-correct');
-  but.addEventListener('click', getDataInfo);
-  // but.addEventListener('click', updateStorageInfo);
   but.addEventListener('click', () => {
+    getDataInfo(context);
     context.router.navigate('/page3');
     clearContainer('main-content-div6');
   });

@@ -43,67 +43,81 @@ export default (context) => {
       }
     });
     button.addEventListener('click', () => {
-      removeNodeCallBack();
+      removeNodeCallBack(context);
     });
   };
 
   const makeNewRow = (workDiv) => {
-    const newInputDiv = createInputDiv({
-      type: 'div',
-      classname: 'form-div',
-      id: 'inputDiv',
-      placeToPushId: context.inputDivIds,
-      placeToAppend: workDiv,
-    });
+    const newInputDiv = createInputDiv(
+      {
+        type: 'div',
+        classname: 'form-div',
+        id: 'inputDiv',
+        placeToPushId: context.inputDivIds,
+        placeToAppend: workDiv,
+      },
+      context,
+    );
     setTimeout(() => {
       newInputDiv.classList.toggle('form-div-active');
     });
-    const numberValue = createInput({
-      col: 'col-3',
-      optionalClass: 'input-number',
-      id: 'number',
-      placeToPushId: context.numberIvrIds,
-      placeholder: 'Номер',
-      backText: 'Номер',
-      readOnlyParam: true,
-      placeToAppendForm: newInputDiv,
-    });
+    const numberValue = createInput(
+      {
+        col: 'col-3',
+        optionalClass: 'input-number',
+        id: 'number',
+        placeToPushId: context.numberIvrIds,
+        placeholder: 'Номер',
+        backText: 'Номер',
+        readOnlyParam: true,
+        placeToAppendForm: newInputDiv,
+      },
+      context,
+    );
 
     numberValue.value = context.counter + 1;
 
-    createInput({
-      col: 'col-3',
-      optionalClass: 'input-date',
-      id: 'date',
-      placeToPushId: context.dateIvrIds,
-      placeholder: 'Дата',
-      backText: 'Дата',
-      readOnlyParam: false,
-      placeToAppendForm: newInputDiv,
-    });
-    createInput({
-      col: 'col-3',
-      optionalClass: 'input-date',
-      id: 'ivr',
-      placeToPushId: context.ivrIds,
-      backText: 'ИВР',
-      placeholder: 'ИВР',
-      readOnlyParam: false,
-      placeToAppendForm: newInputDiv,
-    });
-    createInput({
-      col: 'col-3',
-      optionalClass: 'input-date',
-      id: 'hours',
-      placeToPushId: context.hoursIvrIds,
-      placeholder: 'Часы',
-      backText: 'Часы',
-      readOnlyParam: false,
-      placeToAppendForm: newInputDiv,
-    });
+    createInput(
+      {
+        col: 'col-3',
+        optionalClass: 'input-date',
+        id: 'date',
+        placeToPushId: context.dateIvrIds,
+        placeholder: 'Дата',
+        backText: 'Дата',
+        readOnlyParam: false,
+        placeToAppendForm: newInputDiv,
+      },
+      context,
+    );
+    createInput(
+      {
+        col: 'col-3',
+        optionalClass: 'input-date',
+        id: 'ivr',
+        placeToPushId: context.ivrIds,
+        backText: 'ИВР',
+        placeholder: 'ИВР',
+        readOnlyParam: false,
+        placeToAppendForm: newInputDiv,
+      },
+      context,
+    );
+    createInput(
+      {
+        col: 'col-3',
+        optionalClass: 'input-date',
+        id: 'hours',
+        placeToPushId: context.hoursIvrIds,
+        placeholder: 'Часы',
+        backText: 'Часы',
+        readOnlyParam: false,
+        placeToAppendForm: newInputDiv,
+      },
+      context,
+    );
 
-    newInputDiv.appendChild(createRemoveButton(context.removeIds));
-
+    newInputDiv.appendChild(createRemoveButton(context.removeIds, context));
     createForwardButtonDiv(
       {
         type: 'div',
@@ -112,6 +126,7 @@ export default (context) => {
       },
       'Предыдущий показатель',
       'Внести данные по контролю качества',
+      context,
     );
 
     if (context.eventPretender) {
@@ -121,25 +136,17 @@ export default (context) => {
         clearContainer('main-content-div');
       });
       let getNextButton = document.getElementById('forwardButton');
-      getNextButton.addEventListener('click', getDataIvr);
-      getNextButton.addEventListener('click', getMiddleIVR);
-      getNextButton.addEventListener('click', getSumHours);
-      getNextButton.addEventListener('click', countSalaryScale);
-      getNextButton.addEventListener('click', totalDaysWorked);
-      // getNextButton.addEventListener('click', updateStorage);
 
       getNextButton.addEventListener('click', () => {
+        getDataIvr(context);
+        getMiddleIVR(context);
+        getSumHours(context);
+        countSalaryScale(context);
+        totalDaysWorked(context);
         context.router.navigate('/page4');
         clearContainer('main-content-div');
       });
       context.eventPretender = false;
-    }
-    if (document.getElementById('main-content-div')) {
-      let timeId = setInterval(newNumbers, 500);
-      let getNextButton = document.getElementById('forwardButton');
-      getNextButton.addEventListener('click', () => {
-        clearInterval(timeId);
-      });
     }
 
     ifNoData();

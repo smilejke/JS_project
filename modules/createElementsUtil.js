@@ -1,5 +1,3 @@
-import { result } from '../../JS_project/modules/localStorage.js';
-
 export const mainContainer = (hash) => {
   const main = document.createElement(hash.type);
   const cont = document.getElementById('container');
@@ -25,7 +23,7 @@ export const createWorkButton = (hash) => {
   return button;
 };
 
-export const createInput = (hash) => {
+export const createInput = (hash, context) => {
   const inputContainer = document.createElement('div');
   inputContainer.classList.add(hash.col);
   hash.placeToAppendForm.appendChild(inputContainer);
@@ -35,7 +33,7 @@ export const createInput = (hash) => {
   input.type = 'text';
   input.placeholder = hash.placeholder;
   input.classList.add(hash.optionalClass);
-  input.id = hash.id + result.counter;
+  input.id = hash.id + context.counter;
   hash.placeToPushId.push(input.id);
   input.addEventListener('blur', () => {
     input.placeholder = hash.placeholder;
@@ -73,40 +71,40 @@ export const createNewButton = (hash) => {
   return newButton;
 };
 
-export const createRemoveButton = (placeToPushId) => {
+export const createRemoveButton = (placeToPushId, context) => {
   const removeButton = document.createElement('button');
-  removeButton.id = result.counter;
+  removeButton.id = context.counter;
   placeToPushId.push(removeButton.id);
   removeButton.classList.add('icon-btn', 'add-btn');
 
   let removeDiv = document.createElement('div');
   removeDiv.className = 'btn-txt';
-  removeDiv.id = result.counter;
+  removeDiv.id = context.counter;
   removeDiv.innerHTML = 'Удалить';
   removeButton.appendChild(removeDiv);
   return removeButton;
 };
 
-export const createInputDiv = (hash) => {
+export const createInputDiv = (hash, context) => {
   const inputDiv = document.createElement(hash.type);
   inputDiv.className = hash.classname;
-  inputDiv.id = hash.id + result.counter;
+  inputDiv.id = hash.id + context.counter;
   hash.placeToPushId.push(inputDiv.id);
   hash.placeToAppend.before(inputDiv);
   return inputDiv;
 };
 
-export const createExtraInputDiv = (hash) => {
+export const createExtraInputDiv = (hash, context) => {
   const inputDiv = document.createElement(hash.type);
   inputDiv.className = hash.classname;
-  inputDiv.id = hash.id + result.counter;
+  inputDiv.id = hash.id + context.counter;
   hash.placeToPushId.push(inputDiv.id);
   hash.placeToAppend.appendChild(inputDiv);
   return inputDiv;
 };
 
-export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
-  if (result.marker) {
+export const createForwardButtonDiv = (hash, textOnBackward, textOnForward, context) => {
+  if (context.marker) {
     const lastDiv = document.createElement(hash.type);
     lastDiv.className = hash.classname;
     document.getElementById(hash.idHtmlToAppend).appendChild(lastDiv);
@@ -128,11 +126,11 @@ export const createForwardButtonDiv = (hash, textOnBackward, textOnForward) => {
       placeToAppend: lastDiv,
     });
   }
-  result.marker = false;
+  context.marker = false;
 };
 
-export const extraActivityNavigation = () => {
-  if (result.marker) {
+export const extraActivityNavigation = (context) => {
+  if (context.marker) {
     createForwardButtonDiv(
       {
         type: 'div',
@@ -141,10 +139,11 @@ export const extraActivityNavigation = () => {
       },
       'Вернуться к CSAT',
       'Подсчет итогов',
+      context,
     );
   } else {
     document.querySelector('#buttonDiv2').removeChild(document.querySelector('.last-div-center'));
-    result.marker = true;
+    context.marker = true;
     createForwardButtonDiv(
       {
         type: 'div',
@@ -153,6 +152,7 @@ export const extraActivityNavigation = () => {
       },
       'Вернуться к CSAT',
       'Подсчет итогов',
+      context,
     );
   }
 };

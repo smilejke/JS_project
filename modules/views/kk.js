@@ -14,7 +14,6 @@ import {
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
-// import { context.resultArr, context, updateStorage } from '../../../JS_project/modules/localStorage.js';
 import { getMiddleKK, getDataKK } from '../../../JS_project/modules/mathFunctions.js';
 
 export default (context) => {
@@ -48,46 +47,56 @@ export default (context) => {
         setTimeout(() => {
           kkInputDiv.classList.toggle('form-div-active');
         });
-        const numberValue = createInput({
-          col: 'col-3',
-          optionalClass: 'input-date',
-          id: 'numberKK',
-          placeToPushId: context.numberKkIds,
-          backText: 'Номер',
-          placeholder: 'Номер',
-          readOnlyParam: true,
-          placeToAppendForm: kkInputDiv,
-        });
+        const numberValue = createInput(
+          {
+            col: 'col-3',
+            optionalClass: 'input-date',
+            id: 'numberKK',
+            placeToPushId: context.numberKkIds,
+            backText: 'Номер',
+            placeholder: 'Номер',
+            readOnlyParam: true,
+            placeToAppendForm: kkInputDiv,
+          },
+          context,
+        );
 
         numberValue.value = context.counter;
 
-        const dateKkData = createInput({
-          col: 'col-3',
-          optionalClass: 'input-date',
-          id: 'date_kk',
-          placeToPushId: context.dateKkIds,
-          placeholder: 'Дата',
-          backText: 'Дата',
-          readOnlyParam: false,
-          placeToAppendForm: kkInputDiv,
-        });
+        const dateKkData = createInput(
+          {
+            col: 'col-3',
+            optionalClass: 'input-date',
+            id: 'date_kk',
+            placeToPushId: context.dateKkIds,
+            placeholder: 'Дата',
+            backText: 'Дата',
+            readOnlyParam: false,
+            placeToAppendForm: kkInputDiv,
+          },
+          context,
+        );
 
         dateKkData.value = context.resultArr[i].date;
+
         if (dateKkData.value == 0) {
           dateKkData.value = '';
         } else {
           dateKkData.classList.add('valid');
         }
-        createInput({
-          col: 'col-3',
-          optionalClass: 'input-date',
-          id: 'kk',
-          placeToPushId: context.kkIds,
-          backText: 'КК',
-          placeholder: 'КК',
-          readOnlyParam: false,
-          placeToAppendForm: kkInputDiv,
-        });
+        createInput(
+          {
+            col: 'col-3',
+            optionalClass: 'input-date',
+            id: 'kk',
+            placeToPushId: context.kkIds,
+            backText: 'КК',
+            placeholder: 'КК',
+            readOnlyParam: false,
+            placeToAppendForm: kkInputDiv,
+          },
+          context,
+        );
 
         context.counter += 1;
       }
@@ -100,6 +109,7 @@ export default (context) => {
         },
         'Вернуться к ИВР',
         'Внести данные CSAT',
+        context,
       );
 
       if (context.eventPretender) {
@@ -109,11 +119,10 @@ export default (context) => {
           clearContainer('main-content-div2');
         });
         const nextPage = document.getElementById('forwardButton');
-        nextPage.addEventListener('click', getDataKK);
-        nextPage.addEventListener('click', getMiddleKK);
-        // nextPage.addEventListener('click', updateStorage);
 
         nextPage.addEventListener('click', () => {
+          getDataKK(context);
+          getMiddleKK(context);
           context.router.navigate('/page5');
           clearContainer('main-content-div2');
         });

@@ -24,48 +24,38 @@ export default (appRootId, appRootPath, state) => {
     month: '',
     rate: '',
     hourShift: '',
-
     marker: true,
     eventPretender: true,
     counter: 0,
-
     inputDivIds: [],
     kkInputDivIds: [],
     csatInputDivIds: [],
     extraInputDivIds: [],
     salaryDivIds: [],
-
     numberIvrIds: [],
     numberKkIds: [],
     numberCsatIds: [],
-
     dateIvrIds: [],
     dateKkIds: [],
     dateCsatIds: [],
     dateExtraIds: [],
-
     hoursIvrIds: [],
     hoursExtraIds: [],
-
     ivrIds: [],
     kkIds: [],
     csatIds: [],
     extraIVRIds: [],
-
     removeExtraIds: [],
     removeIds: [],
     extra: [],
     extraDays: 0,
     extraDaysId: [],
-
     shift8: 1,
     shift12: 0.8,
-
     totalIvr: [],
     totalKk: [],
     totalCsat: [],
     totalExtraIvr: [],
-
     extraMoney: 0,
     middleIvr: 0,
     middleKk: 0,
@@ -82,7 +72,6 @@ export default (appRootId, appRootPath, state) => {
     incomeTax: 0,
     fundTax: 0,
     totalSalary: 0,
-
     monthId: [],
     daysWorkedId: [],
     middleIvrId: [],
@@ -98,9 +87,9 @@ export default (appRootId, appRootPath, state) => {
     premium: [],
     dirtyMoney: [],
     withoutTax: [],
-    incomeTax: [],
-    fundTax: [],
-    totalSalary: [],
+    incomeTaxIds: [],
+    fundTaxIds: [],
+    totalSalaryIds: [],
   };
 
   router.add(/^\/$/, () => {

@@ -51,7 +51,7 @@ export const modalWindow = (hash) => {
   return modalContainer;
 };
 
-export const modalWindowCsat = (hash) => {
+export const modalWindowCsat = (hash, context) => {
   context.marker = true;
   let modalContainer = document.createElement('div');
   modalContainer.id = 'myModal';
@@ -101,6 +101,7 @@ export const modalWindowCsat = (hash) => {
     },
     'НЕТ',
     'ДА',
+    context,
   );
 };
 
@@ -121,37 +122,32 @@ export const launchModal = () => {
 };
 
 export const launchModalCsat = (context) => {
-  //замыкание
-  const launchModal = () => {
-    let modal = document.getElementById('myModal');
-    let span = document.getElementsByClassName('close')[0];
+  let modal = document.getElementById('myModal');
+  let span = document.getElementsByClassName('close')[0];
 
-    modal.classList.remove('hide');
+  modal.classList.remove('hide');
 
-    span.onclick = () => {
+  span.onclick = () => {
+    modal.classList.add('hide');
+  };
+  window.onclick = (event) => {
+    if (event.target == modal) {
       modal.classList.add('hide');
-    };
-    window.onclick = (event) => {
-      if (event.target == modal) {
-        modal.classList.add('hide');
-      }
-    };
-
-    let nope = document.getElementById('modalFooter').querySelector('#backButton');
-    nope.disabled = false;
-    nope.addEventListener('click', () => {
-      context.router.navigate('/page7');
-      document.body.removeChild(modal);
-      clearContainer('main-content-div3');
-    });
-    let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
-    yeah.addEventListener('click', () => {
-      context.router.navigate('/page6');
-      clearContainer('main-content-div3');
-    });
+    }
   };
 
-  return launchModal;
+  let nope = document.getElementById('modalFooter').querySelector('#backButton');
+  nope.disabled = false;
+  nope.addEventListener('click', () => {
+    context.router.navigate('/page7');
+    document.body.removeChild(modal);
+    clearContainer('main-content-div3');
+  });
+  let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
+  yeah.addEventListener('click', () => {
+    context.router.navigate('/page6');
+    clearContainer('main-content-div3');
+  });
 };
 
 export const failed = () => {
