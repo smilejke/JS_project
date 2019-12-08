@@ -2,7 +2,7 @@ import {
   createForwardButtonDiv,
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
-import { result, clearStorage } from '../../../JS_project/modules/localStorage.js';
+// import { context, clearStorage } from '../../../JS_project/modules/localStorage.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');
@@ -52,7 +52,7 @@ export const modalWindow = (hash) => {
 };
 
 export const modalWindowCsat = (hash) => {
-  result.marker = true;
+  context.marker = true;
   let modalContainer = document.createElement('div');
   modalContainer.id = 'myModal';
   modalContainer.className = 'modal';

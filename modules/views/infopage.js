@@ -5,12 +5,12 @@ import {
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
-import { result, updateStorageInfo, storage } from '../../../JS_project/modules/localStorage.js';
+// import { context, updateStorageInfo, storage } from '../../../JS_project/modules/localStorage.js';
 import { getDataInfo } from '../../../JS_project/modules/mathFunctions.js';
 import { formValidation } from '../../../JS_project/modules/validation.js';
 
 export default (context) => {
-  result.marker = true;
+  context.marker = true;
   mainContainer({
     type: 'div',
     id: 'main-content-div6',
@@ -156,7 +156,7 @@ export default (context) => {
   but.disabled = true;
   but.classList.add('not-correct');
   but.addEventListener('click', getDataInfo);
-  but.addEventListener('click', updateStorageInfo);
+  // but.addEventListener('click', updateStorageInfo);
   but.addEventListener('click', () => {
     context.router.navigate('/page3');
     clearContainer('main-content-div6');

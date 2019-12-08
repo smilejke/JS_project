@@ -14,13 +14,13 @@ import {
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
-import { resultArr, result, updateStorage } from '../../../JS_project/modules/localStorage.js';
+// import { context.resultArr, context, updateStorage } from '../../../JS_project/modules/localStorage.js';
 import { getMiddleKK, getDataKK } from '../../../JS_project/modules/mathFunctions.js';
 
 export default (context) => {
-  result.counter = 1;
-  result.marker = true;
-  result.eventPretender = true;
+  context.counter = 1;
+  context.marker = true;
+  context.eventPretender = true;
 
   const makeKkDiv2 = mainContainer({ type: 'div', id: 'main-content-div2' });
 
@@ -28,22 +28,22 @@ export default (context) => {
 
   const button = createWorkButton({ placeToAppend: buttonDiv, text: 'Получить данные' });
   button.addEventListener('click', () => {
-    if (result.counter == 1) {
+    if (context.counter == 1) {
       button.disabled = true;
     }
 
-    for (let i in result.numberIvrIds) {
-      if (i < result.numberIvrIds.length) {
+    for (let i in context.numberIvrIds) {
+      if (i < context.numberIvrIds.length) {
         const kkInputDiv = createInputDiv(
           {
             col: 'col-3',
             type: 'div',
             classname: 'form-div',
             id: 'kkInputDiv',
-            placeToPushId: result.kkInputDivIds,
+            placeToPushId: context.kkInputDivIds,
             placeToAppend: buttonDiv,
           },
-          result,
+          context,
         );
         setTimeout(() => {
           kkInputDiv.classList.toggle('form-div-active');
@@ -52,27 +52,27 @@ export default (context) => {
           col: 'col-3',
           optionalClass: 'input-date',
           id: 'numberKK',
-          placeToPushId: result.numberKkIds,
+          placeToPushId: context.numberKkIds,
           backText: 'Номер',
           placeholder: 'Номер',
           readOnlyParam: true,
           placeToAppendForm: kkInputDiv,
         });
 
-        numberValue.value = result.counter;
+        numberValue.value = context.counter;
 
         const dateKkData = createInput({
           col: 'col-3',
           optionalClass: 'input-date',
           id: 'date_kk',
-          placeToPushId: result.dateKkIds,
+          placeToPushId: context.dateKkIds,
           placeholder: 'Дата',
           backText: 'Дата',
           readOnlyParam: false,
           placeToAppendForm: kkInputDiv,
         });
 
-        dateKkData.value = resultArr[i].date;
+        dateKkData.value = context.resultArr[i].date;
         if (dateKkData.value == 0) {
           dateKkData.value = '';
         } else {
@@ -82,14 +82,14 @@ export default (context) => {
           col: 'col-3',
           optionalClass: 'input-date',
           id: 'kk',
-          placeToPushId: result.kkIds,
+          placeToPushId: context.kkIds,
           backText: 'КК',
           placeholder: 'КК',
           readOnlyParam: false,
           placeToAppendForm: kkInputDiv,
         });
 
-        result.counter += 1;
+        context.counter += 1;
       }
 
       createForwardButtonDiv(
@@ -102,7 +102,7 @@ export default (context) => {
         'Внести данные CSAT',
       );
 
-      if (result.eventPretender) {
+      if (context.eventPretender) {
         let getBackButton = document.getElementById('backButton');
         getBackButton.addEventListener('click', () => {
           context.router.navigate('/page3');
@@ -111,18 +111,18 @@ export default (context) => {
         const nextPage = document.getElementById('forwardButton');
         nextPage.addEventListener('click', getDataKK);
         nextPage.addEventListener('click', getMiddleKK);
-        nextPage.addEventListener('click', updateStorage);
+        // nextPage.addEventListener('click', updateStorage);
 
         nextPage.addEventListener('click', () => {
           context.router.navigate('/page5');
           clearContainer('main-content-div2');
         });
-        result.eventPretender = false;
+        context.eventPretender = false;
       }
     }
     ifNoData();
     ifDataValid('main-content-div2');
-    setAttr(result.kkIds, { name: 'data-kk', data: 100 });
+    setAttr(context.kkIds, { name: 'data-kk', data: 100 });
     kkMoreThan100('main-content-div2');
   });
 };

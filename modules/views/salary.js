@@ -9,13 +9,13 @@ import {
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
-import {
-  controlData,
-  result,
-  info,
-  money,
-  clearStorage,
-} from '../../../JS_project/modules/localStorage.js';
+// import {
+//   context,
+//   context,
+//   context,
+//   context,
+//   clearStorage,
+// } from '../../../JS_project/modules/localStorage.js';
 import {
   howGoodNumbers,
   howGoodIndicators,
@@ -28,8 +28,8 @@ import {
 
 export default (context) => {
   const makeSalaryPage = () => {
-    result.counter = 0;
-    result.marker = true;
+    context.counter = 0;
+    context.marker = true;
 
     const makeExtraActDiv = mainContainer({
       type: 'div',
@@ -49,7 +49,7 @@ export default (context) => {
       type: 'div',
       classname: 'add-grid-column-1',
       id: 'inputDiv',
-      placeToPushId: result.salaryDivIds,
+      placeToPushId: context.salaryDivIds,
       placeToAppend: buttonDiv,
     });
     setTimeout(() => {
@@ -60,7 +60,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'month',
-      placeToPushId: money.monthId,
+      placeToPushId: context.monthId,
       placeholder: 'Месяц',
       backText: 'Месяц',
       readOnlyParam: true,
@@ -71,7 +71,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'name',
-      placeToPushId: money.nameId,
+      placeToPushId: context.nameId,
       placeholder: 'Ф.И.О сотрудника',
       backText: 'Ф.И.О сотрудника',
       readOnlyParam: true,
@@ -82,7 +82,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'department',
-      placeToPushId: money.departmentId,
+      placeToPushId: context.departmentId,
       placeholder: 'Отдел',
       backText: 'Отдел',
       readOnlyParam: true,
@@ -93,7 +93,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'shift',
-      placeToPushId: money.shiftId,
+      placeToPushId: context.shiftId,
       placeholder: 'Часовая смена',
       backText: 'Часовая смена',
       readOnlyParam: true,
@@ -104,7 +104,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'middleIvr',
-      placeToPushId: money.middleIvrId,
+      placeToPushId: context.middleIvrId,
       backText: 'Средний ИВР',
       placeholder: 'Средний ИВР',
       readOnlyParam: true,
@@ -115,7 +115,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'middleKk',
-      placeToPushId: money.middleKkId,
+      placeToPushId: context.middleKkId,
       placeholder: 'Контроль качества',
       backText: 'Контроль качества',
       readOnlyParam: true,
@@ -125,7 +125,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'middleCsat',
-      placeToPushId: money.middleCsatId,
+      placeToPushId: context.middleCsatId,
       placeholder: 'CSAT',
       backText: 'CSAT',
       readOnlyParam: true,
@@ -133,7 +133,7 @@ export default (context) => {
     });
 
     button.addEventListener('click', () => {
-      if (result.marker) {
+      if (context.marker) {
         createForwardButtonDiv(
           {
             type: 'div',
@@ -161,22 +161,22 @@ export default (context) => {
         context.router.navigate('/page2');
         clearContainer('main-content-div5');
       });
-      result.marker = false;
+      context.marker = false;
     });
-    result.counter += 1;
+    context.counter += 1;
   };
 
   let fillDataInfo = () => {
-    fllSalaryInput({ id: 'month0', value: info.month });
+    fllSalaryInput({ id: 'month0', value: context.month });
     fllSalaryInput({
       id: 'name0',
-      value: info.lastname + ' ' + info.name[0] + '.' + info.secondName[0],
+      value: context.lastname + ' ' + context.name[0] + '.' + context.secondName[0],
     });
-    fllSalaryInput({ id: 'department0', value: info.job });
-    fllSalaryInput({ id: 'shift0', value: info.hourShift });
-    fllSalaryInput({ id: 'middleIvr0', value: controlData.ivrToShift });
-    fllSalaryInput({ id: 'middleKk0', value: controlData.middleKk });
-    fllSalaryInput({ id: 'middleCsat0', value: controlData.middleCsat });
+    fllSalaryInput({ id: 'department0', value: context.job });
+    fllSalaryInput({ id: 'shift0', value: context.hourShift });
+    fllSalaryInput({ id: 'middleIvr0', value: context.ivrToShift });
+    fllSalaryInput({ id: 'middleKk0', value: context.middleKk });
+    fllSalaryInput({ id: 'middleCsat0', value: context.middleCsat });
     draw('.add-grid-column-1');
   };
 
@@ -185,7 +185,7 @@ export default (context) => {
       type: 'div',
       classname: 'add-grid-column-2',
       id: 'inputDiv',
-      placeToPushId: result.salaryDivIds,
+      placeToPushId: context.salaryDivIds,
       placeToAppend: document.querySelector('.add-grid-button-1'),
     });
     setTimeout(() => {
@@ -196,7 +196,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'daysWorkedId',
-      placeToPushId: money.daysWorkedId,
+      placeToPushId: context.daysWorkedId,
       placeholder: 'Итого отр.дней',
       backText: 'Итого отр.дней',
       readOnlyParam: true,
@@ -206,7 +206,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'hoursWorkedId',
-      placeToPushId: money.hoursWorkedId,
+      placeToPushId: context.hoursWorkedId,
       placeholder: 'Итого отр.часов',
       backText: 'Итого отр.часов',
       readOnlyParam: true,
@@ -216,7 +216,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'rate',
-      placeToPushId: money.rateId,
+      placeToPushId: context.rateId,
       placeholder: 'Ставка, рубли/час',
       backText: 'Ставка, рубли/час',
       readOnlyParam: true,
@@ -226,7 +226,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'salaryScale',
-      placeToPushId: money.salaryScale,
+      placeToPushId: context.salaryScale,
       placeholder: 'Оклад',
       backText: 'Оклад',
       readOnlyParam: true,
@@ -236,7 +236,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'extramoney',
-      placeToPushId: money.extraMoneyId,
+      placeToPushId: context.extraMoneyId,
       placeholder: 'Дополнительный доход',
       backText: 'Дополнительный доход',
       readOnlyParam: true,
@@ -246,7 +246,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'premium',
-      placeToPushId: money.premium,
+      placeToPushId: context.premium,
       placeholder: 'Размер премии',
       backText: 'Размер премии',
       readOnlyParam: true,
@@ -256,7 +256,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'dirtyMoney',
-      placeToPushId: money.dirtyMoney,
+      placeToPushId: context.dirtyMoney,
       placeholder: 'Размер штрафа',
       backText: 'Размер штрафа',
       readOnlyParam: false,
@@ -282,19 +282,19 @@ export default (context) => {
         buttonDiv2.remove(indiButton);
       }, 1000);
     });
-    result.counter += 1;
+    context.counter += 1;
   };
   let fillDataMoney = () => {
-    fllSalaryInput({ id: 'daysWorkedId1', value: controlData.totalDaysWorked });
+    fllSalaryInput({ id: 'daysWorkedId1', value: context.totalDaysWorked });
     fllSalaryInput({
       id: 'hoursWorkedId1',
-      value: controlData.sumHours,
+      value: context.sumHours,
     });
-    fllSalaryInput({ id: 'rate1', value: info.rate });
-    fllSalaryInput({ id: 'salaryScale1', value: controlData.salary });
-    fllSalaryInput({ id: 'extramoney1', value: controlData.extraMoney });
-    fllSalaryInput({ id: 'premium1', value: controlData.bonus });
-    fllSalaryInput({ id: 'dirtyMoney1', value: controlData.minus });
+    fllSalaryInput({ id: 'rate1', value: context.rate });
+    fllSalaryInput({ id: 'salaryScale1', value: context.salary });
+    fllSalaryInput({ id: 'extramoney1', value: context.extraMoney });
+    fllSalaryInput({ id: 'premium1', value: context.bonus });
+    fllSalaryInput({ id: 'dirtyMoney1', value: context.minus });
 
     draw('.add-grid-column-2');
   };
@@ -312,7 +312,7 @@ export default (context) => {
       type: 'div',
       classname: 'add-grid-column-3',
       id: 'inputDiv',
-      placeToPushId: result.salaryDivIds,
+      placeToPushId: context.salaryDivIds,
       placeToAppend: document.querySelector('.add-grid-button-3'),
     });
     setTimeout(() => {
@@ -323,7 +323,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'withoutTax',
-      placeToPushId: money.withoutTax,
+      placeToPushId: context.withoutTax,
       placeholder: 'Итого, без налогов',
       backText: 'Итого, без налогов',
       readOnlyParam: true,
@@ -333,7 +333,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'incomeTax',
-      placeToPushId: money.incomeTax,
+      placeToPushId: context.incomeTax,
       placeholder: 'Подоходный налог',
       backText: 'Подоходный налог',
       readOnlyParam: true,
@@ -343,7 +343,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'fundTax',
-      placeToPushId: money.fundTax,
+      placeToPushId: context.fundTax,
       placeholder: 'ФСЗН',
       backText: 'ФСЗН',
       readOnlyParam: true,
@@ -353,7 +353,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'totalSalary',
-      placeToPushId: money.totalSalary,
+      placeToPushId: context.totalSalary,
       placeholder: 'Итого к выплате',
       backText: 'Итого к выплате',
       readOnlyParam: true,
@@ -377,10 +377,10 @@ export default (context) => {
   };
 
   const fillDataTax = () => {
-    fllSalaryInput({ id: 'withoutTax2', value: controlData.salaryWithoutTax });
-    fllSalaryInput({ id: 'incomeTax2', value: controlData.incomeTax });
-    fllSalaryInput({ id: 'fundTax2', value: controlData.fundTax });
-    fllSalaryInput({ id: 'totalSalary2', value: controlData.totalSalary });
+    fllSalaryInput({ id: 'withoutTax2', value: context.salaryWithoutTax });
+    fllSalaryInput({ id: 'incomeTax2', value: context.incomeTax });
+    fllSalaryInput({ id: 'fundTax2', value: context.fundTax });
+    fllSalaryInput({ id: 'totalSalary2', value: context.totalSalary });
 
     draw('.add-grid-column-3');
     salaryExist();

@@ -8,7 +8,7 @@ import {
   createRemoveButton,
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
-import { result, updateExtraStorage } from '../../../JS_project/modules/localStorage.js';
+// import { context, updateExtraStorage } from '../../../JS_project/modules/localStorage.js';
 
 import {
   getExtraDays,
@@ -27,8 +27,8 @@ import {
 
 export default (context) => {
   const makeExtraActivity = () => {
-    result.counter = 1;
-    result.marker = true;
+    context.counter = 1;
+    context.marker = true;
 
     let modal = document.getElementById('myModal');
     if (modal) {
@@ -55,7 +55,7 @@ export default (context) => {
       col: 'col-4',
       optionalClass: 'input-date',
       id: 'dayCounter',
-      placeToPushId: result.extraDaysId,
+      placeToPushId: context.extraDaysId,
       placeholder: 'Сколько дней создать?',
       backText: 'Кол-во дней доп.активности',
       readOnlyParam: false,
@@ -64,8 +64,8 @@ export default (context) => {
 
     button.addEventListener('click', () => {
       getExtraDays();
-      for (let i = 0; i < result.extraDays; i += 1) {
-        if (i < result.extraDays) {
+      for (let i = 0; i < context.extraDays; i += 1) {
+        if (i < context.extraDays) {
           makeExtraRow(buttonDiv2);
         }
       }
@@ -81,7 +81,7 @@ export default (context) => {
       type: 'div',
       classname: 'form-div-center',
       id: 'extra_input_div',
-      placeToPushId: result.extraInputDivIds,
+      placeToPushId: context.extraInputDivIds,
       placeToAppend: buttonDiv2,
     });
 
@@ -89,7 +89,7 @@ export default (context) => {
       col: 'col-2',
       optionalClass: 'input-date',
       id: 'dateExtra',
-      placeToPushId: result.dateExtraIds,
+      placeToPushId: context.dateExtraIds,
       placeholder: 'Дата',
       backText: 'Дата',
       readOnlyParam: false,
@@ -99,7 +99,7 @@ export default (context) => {
       col: 'col-2',
       optionalClass: 'input-date',
       id: 'hoursExtra',
-      placeToPushId: result.hoursExtraIds,
+      placeToPushId: context.hoursExtraIds,
       placeholder: 'Часы',
       backText: 'Часы',
       readOnlyParam: false,
@@ -109,13 +109,13 @@ export default (context) => {
       col: 'col-2',
       optionalClass: 'input-date',
       id: 'extraIVR',
-      placeToPushId: result.extraIVRIds,
+      placeToPushId: context.extraIVRIds,
       placeholder: 'ИВР',
       backText: 'ИВР',
       readOnlyParam: false,
       placeToAppendForm: extraInpitDiv,
     });
-    extraInpitDiv.appendChild(createRemoveButton(result.removeExtraIds));
+    extraInpitDiv.appendChild(createRemoveButton(context.removeExtraIds));
     extraActivityNavigation();
 
     let getBackButton = document.getElementById('backButton');
@@ -127,7 +127,7 @@ export default (context) => {
     nextButton.addEventListener('click', getExtraData);
     nextButton.addEventListener('click', countExtraMiddleIvr);
     nextButton.addEventListener('click', getTotalExtraHours);
-    nextButton.addEventListener('click', updateExtraStorage);
+    // nextButton.addEventListener('click', updateExtraStorage);
     nextButton.addEventListener('click', countExtraMoney);
     nextButton.addEventListener('click', () => {
       context.router.navigate('/page7');
@@ -136,10 +136,10 @@ export default (context) => {
     ifNoData();
     ifDataValid('main-content-div4');
 
-    setAttr(result.hoursExtraIds, { name: 'data-hour', data: 24 });
-    setAttr(result.dateExtraIds, { name: 'data-date', data: 31 });
+    setAttr(context.hoursExtraIds, { name: 'data-hour', data: 24 });
+    setAttr(context.dateExtraIds, { name: 'data-date', data: 31 });
     validateHourAndDate('.form-div-center');
-    result.counter += 1;
+    context.counter += 1;
   };
 
   return makeExtraActivity();

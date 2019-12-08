@@ -14,7 +14,7 @@ import {
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
-import { result, resultArr, updateStorage } from '../../../JS_project/modules/localStorage.js';
+// import { context, context.resultArr, updateStorage } from '../../../JS_project/modules/localStorage.js';
 import {
   getMiddleCsat,
   getDataCsat,
@@ -25,9 +25,9 @@ import { modalWindowCsat, launchModalCsat } from '../../../JS_project/modules/vi
 
 export default (context) => {
   const makeCsatTable = () => {
-    result.counter = 1;
-    result.marker = true;
-    result.eventPretender = true;
+    context.counter = 1;
+    context.marker = true;
+    context.eventPretender = true;
 
     const makeCsatDiv3 = mainContainer({ type: 'div', id: 'main-content-div3' });
     const buttonDiv = createButtonDiv({ placeToAppend: makeCsatDiv3, classname: 'button-div' });
@@ -35,20 +35,20 @@ export default (context) => {
     button.disabled = false;
 
     button.addEventListener('click', () => {
-      if (result.counter == 1) {
+      if (context.counter == 1) {
         button.disabled = true;
       }
-      for (let i in result.numberIvrIds) {
-        if (i < result.numberIvrIds.length) {
+      for (let i in context.numberIvrIds) {
+        if (i < context.numberIvrIds.length) {
           const csatInputDiv = createInputDiv(
             {
               type: 'div',
               classname: 'form-div',
               id: 'csat_input_div',
-              placeToPushId: result.csatInputDivIds,
+              placeToPushId: context.csatInputDivIds,
               placeToAppend: buttonDiv,
             },
-            result,
+            context,
           );
           setTimeout(() => {
             csatInputDiv.classList.toggle('form-div-active');
@@ -57,27 +57,27 @@ export default (context) => {
             col: 'col-3',
             optionalClass: 'input-date',
             id: 'numberKK',
-            placeToPushId: result.numberCsatIds,
+            placeToPushId: context.numberCsatIds,
             placeholder: 'Номер',
             backText: 'Номер',
             readOnlyParam: true,
             placeToAppendForm: csatInputDiv,
           });
 
-          numberValue.value = result.counter;
+          numberValue.value = context.counter;
 
           const dateKkData = createInput({
             col: 'col-3',
             optionalClass: 'input-date',
             id: 'date',
-            placeToPushId: result.dateCsatIds,
+            placeToPushId: context.dateCsatIds,
             placeholder: 'Дата',
             backText: 'Дата',
             readOnlyParam: false,
             placeToAppendForm: csatInputDiv,
           });
 
-          dateKkData.value = resultArr[i].date;
+          dateKkData.value = context.resultArr[i].date;
           if (dateKkData.value == 0) {
             dateKkData.value = '';
           } else {
@@ -87,14 +87,14 @@ export default (context) => {
             col: 'col-3',
             optionalClass: 'input-date',
             id: 'csat',
-            placeToPushId: result.csatIds,
+            placeToPushId: context.csatIds,
             placeholder: 'CSAT',
             backText: 'CSAT',
             readOnlyParam: false,
             placeToAppendForm: csatInputDiv,
           });
 
-          result.counter += 1;
+          context.counter += 1;
         }
         createForwardButtonDiv(
           {
@@ -106,7 +106,7 @@ export default (context) => {
           'Рассчитать зарплату',
         );
       }
-      if (result.eventPretender) {
+      if (context.eventPretender) {
         let getBackButton = document.getElementById('backButton');
         getBackButton.addEventListener('click', () => {
           context.router.navigate('/page4');
@@ -117,7 +117,7 @@ export default (context) => {
         moveForward.addEventListener('click', getMiddleCsat);
         moveForward.addEventListener('click', premium);
         moveForward.addEventListener('click', badBoys);
-        moveForward.addEventListener('click', updateStorage);
+        // moveForward.addEventListener('click', updateStorage);
         moveForward.addEventListener(
           'click',
           modalWindowCsat({
@@ -127,11 +127,11 @@ export default (context) => {
           }),
         );
         moveForward.addEventListener('click', launchModalCsat(context));
-        result.eventPretender = false;
+        context.eventPretender = false;
       }
 
       csatMoreThan100('main-content-div3'),
-        setAttr(result.csatIds, { name: 'data-csat', data: 100 });
+        setAttr(context.csatIds, { name: 'data-csat', data: 100 });
       ifNoData();
       ifDataValid('main-content-div3');
     });

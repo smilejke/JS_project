@@ -15,7 +15,7 @@ import {
   validateHourAndDate,
   setAttr,
 } from '../../../JS_project/modules/validation.js';
-import { result, updateStorage } from '../../../JS_project/modules/localStorage.js';
+// import { context, updateStorage } from '../../../JS_project/modules/localStorage.js';
 
 import {
   getMiddleIVR,
@@ -29,16 +29,16 @@ import {
 
 export default (context) => {
   const renderIvrPage = () => {
-    result.counter = 0;
-    result.marker = true;
-    result.eventPretender = true;
+    context.counter = 0;
+    context.marker = true;
+    context.eventPretender = true;
 
     let main = mainContainer({ type: 'div', id: 'main-content-div' });
     let workDiv = createButtonDiv({ placeToAppend: main, classname: 'button-div' });
     let button = createWorkButton({ placeToAppend: workDiv, text: 'Добавить рабочий день' });
 
     button.addEventListener('click', () => {
-      if (result.counter <= 30) {
+      if (context.counter <= 30) {
         makeNewRow(workDiv);
       }
     });
@@ -52,7 +52,7 @@ export default (context) => {
       type: 'div',
       classname: 'form-div',
       id: 'inputDiv',
-      placeToPushId: result.inputDivIds,
+      placeToPushId: context.inputDivIds,
       placeToAppend: workDiv,
     });
     setTimeout(() => {
@@ -62,20 +62,20 @@ export default (context) => {
       col: 'col-3',
       optionalClass: 'input-number',
       id: 'number',
-      placeToPushId: result.numberIvrIds,
+      placeToPushId: context.numberIvrIds,
       placeholder: 'Номер',
       backText: 'Номер',
       readOnlyParam: true,
       placeToAppendForm: newInputDiv,
     });
 
-    numberValue.value = result.counter + 1;
+    numberValue.value = context.counter + 1;
 
     createInput({
       col: 'col-3',
       optionalClass: 'input-date',
       id: 'date',
-      placeToPushId: result.dateIvrIds,
+      placeToPushId: context.dateIvrIds,
       placeholder: 'Дата',
       backText: 'Дата',
       readOnlyParam: false,
@@ -85,7 +85,7 @@ export default (context) => {
       col: 'col-3',
       optionalClass: 'input-date',
       id: 'ivr',
-      placeToPushId: result.ivrIds,
+      placeToPushId: context.ivrIds,
       backText: 'ИВР',
       placeholder: 'ИВР',
       readOnlyParam: false,
@@ -95,14 +95,14 @@ export default (context) => {
       col: 'col-3',
       optionalClass: 'input-date',
       id: 'hours',
-      placeToPushId: result.hoursIvrIds,
+      placeToPushId: context.hoursIvrIds,
       placeholder: 'Часы',
       backText: 'Часы',
       readOnlyParam: false,
       placeToAppendForm: newInputDiv,
     });
 
-    newInputDiv.appendChild(createRemoveButton(result.removeIds));
+    newInputDiv.appendChild(createRemoveButton(context.removeIds));
 
     createForwardButtonDiv(
       {
@@ -114,7 +114,7 @@ export default (context) => {
       'Внести данные по контролю качества',
     );
 
-    if (result.eventPretender) {
+    if (context.eventPretender) {
       let getBackButton = document.getElementById('backButton');
       getBackButton.addEventListener('click', () => {
         context.router.navigate('/page2');
@@ -126,13 +126,13 @@ export default (context) => {
       getNextButton.addEventListener('click', getSumHours);
       getNextButton.addEventListener('click', countSalaryScale);
       getNextButton.addEventListener('click', totalDaysWorked);
-      getNextButton.addEventListener('click', updateStorage);
+      // getNextButton.addEventListener('click', updateStorage);
 
       getNextButton.addEventListener('click', () => {
         context.router.navigate('/page4');
         clearContainer('main-content-div');
       });
-      result.eventPretender = false;
+      context.eventPretender = false;
     }
     if (document.getElementById('main-content-div')) {
       let timeId = setInterval(newNumbers, 500);
@@ -144,10 +144,10 @@ export default (context) => {
 
     ifNoData();
     ifDataValid('main-content-div');
-    setAttr(result.hoursIvrIds, { name: 'data-hour', data: 24 });
-    setAttr(result.dateIvrIds, { name: 'data-date', data: 31 });
+    setAttr(context.hoursIvrIds, { name: 'data-hour', data: 24 });
+    setAttr(context.dateIvrIds, { name: 'data-date', data: 31 });
     validateHourAndDate('.form-div');
-    result.counter += 1;
+    context.counter += 1;
   };
   return renderIvrPage();
 };
