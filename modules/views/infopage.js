@@ -5,11 +5,12 @@ import {
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
-// import { context, updateStorageInfo, storage } from '../../../JS_project/modules/localStorage.js';
 import { getDataInfo } from '../../../JS_project/modules/mathFunctions.js';
 import { formValidation } from '../../../JS_project/modules/validation.js';
+import { clearDataContext } from '../../../JS_project/modules/contextCleaner.js';
 
 export default (context) => {
+  clearDataContext(context);
   context.marker = true;
   mainContainer({
     type: 'div',
@@ -152,7 +153,6 @@ export default (context) => {
     'Перейти к заполнению показателей',
     context,
   );
-
   let but = document.getElementById('forwardButton');
   but.disabled = true;
   but.classList.add('not-correct');
@@ -163,9 +163,8 @@ export default (context) => {
   });
   let back = document.getElementById('backButton');
   back.addEventListener('click', () => {
-    context.router.navigate('/');
+    context.router.navigate(window.onload);
     clearContainer('main-content-div6');
   });
-
   formValidation();
 };

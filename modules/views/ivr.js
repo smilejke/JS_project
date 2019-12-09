@@ -7,6 +7,7 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
+  styleStaticInputs,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
 import {
@@ -15,7 +16,6 @@ import {
   validateHourAndDate,
   setAttr,
 } from '../../../JS_project/modules/validation.js';
-// import { context, updateStorage } from '../../../JS_project/modules/localStorage.js';
 
 import {
   getMiddleIVR,
@@ -24,10 +24,12 @@ import {
   getDataIvr,
   removeNodeCallBack,
   countSalaryScale,
-  newNumbers,
 } from '../../../JS_project/modules/mathFunctions.js';
 
+import { clearContextForIVR } from '../../../JS_project/modules/contextCleaner.js';
+
 export default (context) => {
+  clearContextForIVR(context);
   const renderIvrPage = () => {
     context.counter = 0;
     context.marker = true;
@@ -74,8 +76,7 @@ export default (context) => {
       },
       context,
     );
-
-    numberValue.value = context.counter + 1;
+    styleStaticInputs(numberValue, context.counter + 1);
 
     createInput(
       {
@@ -132,11 +133,10 @@ export default (context) => {
     if (context.eventPretender) {
       let getBackButton = document.getElementById('backButton');
       getBackButton.addEventListener('click', () => {
-        context.router.navigate('/page2');
         clearContainer('main-content-div');
+        context.router.navigate('/page2');
       });
       let getNextButton = document.getElementById('forwardButton');
-
       getNextButton.addEventListener('click', () => {
         getDataIvr(context);
         getMiddleIVR(context);

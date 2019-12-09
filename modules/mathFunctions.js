@@ -216,7 +216,7 @@ export const countExtraMoney = (context) => {
   } else {
     context.extraMoney += 400 * context.totalExtraHours;
   }
-  context.extraMoney = Math.round(context.extraMoney);
+  context.extraMoney = Math.floor(context.extraMoney * 100) / 100;
 };
 
 export const premium = (context) => {

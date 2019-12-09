@@ -12,6 +12,7 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
+  styleStaticInputs,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
 import {
@@ -21,8 +22,10 @@ import {
   badBoys,
 } from '../../../JS_project/modules/mathFunctions.js';
 import { modalWindowCsat, launchModalCsat } from '../../../JS_project/modules/views/modal.js';
+import { clearContextForCsat } from '../../../JS_project/modules/contextCleaner.js';
 
 export default (context) => {
+  clearContextForCsat(context);
   const makeCsatTable = () => {
     context.counter = 1;
     context.marker = true;
@@ -66,9 +69,15 @@ export default (context) => {
             context,
           );
 
-          numberValue.value = context.counter;
+          styleStaticInputs(numberValue, context.counter);
 
-          const dateKkData = createInput(
+          if (numberValue.value == 0) {
+            numberValue.value = '';
+          } else {
+            numberValue.classList.add('valid');
+          }
+
+          const dateCsatData = createInput(
             {
               col: 'col-3',
               optionalClass: 'input-date',
@@ -81,8 +90,7 @@ export default (context) => {
             },
             context,
           );
-
-          dateKkData.value = context.resultArr[i].date;
+          styleStaticInputs(dateCsatData, context.resultArr[i].date);
 
           createInput(
             {
@@ -123,18 +131,20 @@ export default (context) => {
           getMiddleCsat(context);
           premium(context);
           badBoys(context);
-          modalWindowCsat(
-            {
-              loginStatus: 'Внимание!',
-              loginText: 'Следующий показатель необязателен.',
-              loginText2: 'Была ли у сотрудника доп.активность?',
-            },
-            context,
-          );
-          launchModalCsat(context);
-        });
 
-        context.eventPretender = false;
+          if (context.eventPretender) {
+            modalWindowCsat(
+              {
+                loginStatus: 'Внимание!',
+                loginText: 'Следующий показатель необязателен.',
+                loginText2: 'Была ли у сотрудника доп.активность?',
+              },
+              context,
+            );
+            context.eventPretender = false;
+          }
+          launchModalCsat();
+        });
       }
 
       csatMoreThan100('main-content-div3'),

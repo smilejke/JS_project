@@ -19,6 +19,8 @@ import {
   countTaxesOrTuryacka,
 } from '../../../JS_project/modules/mathFunctions.js';
 
+import { person } from '../../../JS_project/modules/localStorage.js';
+
 export default (context) => {
   const makeSalaryPage = () => {
     context.counter = 0;
@@ -157,8 +159,8 @@ export default (context) => {
             classname: 'add-grid-3',
             idHtmlToAppend: 'main-content-div5',
           },
-          'Вернуться в начало',
-          'Завершить работу',
+          'Назад к доп.активности',
+          'Новый сотрудник',
           context,
         );
         part2(context);
@@ -171,14 +173,13 @@ export default (context) => {
 
       const finalButton = document.getElementById('forwardButton');
       finalButton.addEventListener('click', () => {
-        context.router.navigate('/');
         clearContainer('main-content-div5');
-        console.log(context);
+        context.router.navigate('/page2');
       });
       const getBackButton = document.getElementById('backButton');
       getBackButton.addEventListener('click', () => {
-        context.router.navigate('/page2');
         clearContainer('main-content-div5');
+        context.router.navigate('/page6');
       });
       context.marker = false;
     });
@@ -343,7 +344,6 @@ export default (context) => {
   };
 
   let part3 = (context) => {
-    console.log(context);
     const buttonDiv3 = createButtonDiv({
       placeToAppend: document.getElementById('main-content-div5'),
       classname: 'add-grid-button-3',
@@ -431,6 +431,8 @@ export default (context) => {
         buttonDiv3.remove(taxButton);
       }, 1000);
     });
+    console.log(person);
+    console.log(context);
   };
 
   const fillDataTax = (context) => {
@@ -454,5 +456,6 @@ export default (context) => {
       }
     }
   };
+
   return makeSalaryPage();
 };

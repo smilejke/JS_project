@@ -1,5 +1,6 @@
 const resultParams = [];
 const resultExtra = [];
+const employeeData = [];
 
 const information = {
   lastname: '',
@@ -101,6 +102,7 @@ localStorage.setItem('controlData', JSON.stringify(finalData));
 localStorage.setItem('exxxtra', JSON.stringify(resultExtra));
 localStorage.setItem('info', JSON.stringify(information));
 localStorage.setItem('money', JSON.stringify(salaryDataIds));
+localStorage.setItem('person', JSON.stringify(employeeData));
 
 export const storage = localStorage;
 export let controlData = JSON.parse(storage.getItem('controlData'));
@@ -109,6 +111,7 @@ export let result = JSON.parse(storage.getItem('result'));
 export let exxxtra = JSON.parse(storage.getItem('exxxtra'));
 export let info = JSON.parse(storage.getItem('info'));
 export let money = JSON.parse(storage.getItem('money'));
+export let person = JSON.parse(storage.getItem('person'));
 
 export const updateStorage = () => {
   storage.setItem('result', JSON.stringify(result));

@@ -2,7 +2,6 @@ import {
   createForwardButtonDiv,
   clearContainer,
 } from '../../../JS_project/modules/createElementsUtil.js';
-// import { context, clearStorage } from '../../../JS_project/modules/localStorage.js';
 
 export const modalWindow = (hash) => {
   let modalContainer = document.createElement('div');
@@ -103,6 +102,19 @@ export const modalWindowCsat = (hash, context) => {
     'ДА',
     context,
   );
+  let nope = document.getElementById('modalFooter').querySelector('#backButton');
+  nope.disabled = false;
+  nope.addEventListener('click', () => {
+    let modal = document.getElementById('myModal');
+    modal.remove();
+    clearContainer('main-content-div3');
+    context.router.navigate('/page7');
+  });
+  let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
+  yeah.addEventListener('click', () => {
+    context.router.navigate('/page6');
+    clearContainer('main-content-div3');
+  });
 };
 
 export const launchModal = () => {
@@ -121,7 +133,7 @@ export const launchModal = () => {
   };
 };
 
-export const launchModalCsat = (context) => {
+export const launchModalCsat = () => {
   let modal = document.getElementById('myModal');
   let span = document.getElementsByClassName('close')[0];
 
@@ -135,19 +147,6 @@ export const launchModalCsat = (context) => {
       modal.classList.add('hide');
     }
   };
-
-  let nope = document.getElementById('modalFooter').querySelector('#backButton');
-  nope.disabled = false;
-  nope.addEventListener('click', () => {
-    context.router.navigate('/page7');
-    document.body.removeChild(modal);
-    clearContainer('main-content-div3');
-  });
-  let yeah = document.getElementById('modalFooter').querySelector('#forwardButton');
-  yeah.addEventListener('click', () => {
-    context.router.navigate('/page6');
-    clearContainer('main-content-div3');
-  });
 };
 
 export const failed = () => {

@@ -12,11 +12,15 @@ import {
   createButtonDiv,
   createWorkButton,
   clearContainer,
+  styleStaticInputs,
 } from '../../../JS_project/modules/createElementsUtil.js';
 
 import { getMiddleKK, getDataKK } from '../../../JS_project/modules/mathFunctions.js';
 
+import { clearContextForKK } from '../../../JS_project/modules/contextCleaner.js';
+
 export default (context) => {
+  clearContextForKK(context);
   context.counter = 1;
   context.marker = true;
   context.eventPretender = true;
@@ -60,8 +64,7 @@ export default (context) => {
           },
           context,
         );
-
-        numberValue.value = context.counter;
+        styleStaticInputs(numberValue, context.counter);
 
         const dateKkData = createInput(
           {
@@ -76,14 +79,8 @@ export default (context) => {
           },
           context,
         );
+        styleStaticInputs(dateKkData, context.resultArr[i].date);
 
-        dateKkData.value = context.resultArr[i].date;
-
-        if (dateKkData.value == 0) {
-          dateKkData.value = '';
-        } else {
-          dateKkData.classList.add('valid');
-        }
         createInput(
           {
             col: 'col-3',

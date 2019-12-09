@@ -1,7 +1,6 @@
 let attempt = 3;
 import { modalWindow, launchModal, failed } from '../../../JS_project/modules/views/modal.js';
 import { clearContainer } from '../../../JS_project/modules/createElementsUtil.js';
-// import { clearStorage, storage } from '../localStorage.js';
 
 export default (context) => {
   const login = () => {

@@ -175,3 +175,11 @@ export const clearContainer = (divId) => {
   const main = document.getElementById(divId);
   container.removeChild(main);
 };
+export const styleStaticInputs = (input, startingValue) => {
+  input.value = startingValue;
+  if (input.value == 0) {
+    input.value = '';
+  } else {
+    input.classList.add('valid');
+  }
+};

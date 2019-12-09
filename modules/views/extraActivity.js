@@ -24,6 +24,8 @@ import {
   validateHourAndDate,
 } from '../../../JS_project/modules/validation.js';
 
+import { clearContextForExtra } from '../../../JS_project/modules/contextCleaner.js';
+
 export default (context) => {
   const makeExtraActivity = () => {
     context.counter = 1;
@@ -38,8 +40,10 @@ export default (context) => {
       type: 'div',
       id: 'main-content-div4',
     });
+
     const buttonDiv = createButtonDiv({ placeToAppend: makeExtraActDiv, classname: 'extra-div-1' });
     buttonDiv.id = 'buttonDiv1';
+
     const buttonDiv2 = createButtonDiv(
       {
         placeToAppend: makeExtraActDiv,
@@ -75,6 +79,7 @@ export default (context) => {
           makeExtraRow(buttonDiv2);
         }
       }
+
       removeNodeCallBackExtra(context);
       getInput.value = 1;
     });
@@ -157,6 +162,6 @@ export default (context) => {
     validateHourAndDate('.form-div-center');
     context.counter += 1;
   };
-
+  clearContextForExtra(context);
   return makeExtraActivity();
 };
