@@ -305,6 +305,7 @@ export const countTaxesOrTuryacka = (context) => {
 };
 
 export const countTotalSalary = (context) => {
-  context.totalSalary = context.salaryWithoutTax - (context.incomeTax + context.fundTax);
+  context.totalSalary =
+    Math.floor((context.salaryWithoutTax - (context.incomeTax + context.fundTax)) * 100) / 100;
   return context.totalSalary;
 };
