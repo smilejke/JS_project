@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "dev:watch": "webpack --mode development --watch",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "7",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^3.3.0",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.0",
+    "raw-loader": "^4.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "angular": "^1.7.9"
+  }
+}

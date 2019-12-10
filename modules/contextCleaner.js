@@ -123,5 +123,3 @@ export const clearContextForExtra = (context) => {
   context.extraMoney = 0;
   context.extraDays = 0;
 };
-
-export const saveEmployee = (context) => {};

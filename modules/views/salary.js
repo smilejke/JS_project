@@ -17,9 +17,10 @@ import {
 import {
   countSalaryWithoutTaxes,
   countTaxesOrTuryacka,
+  saveEmployeeData,
 } from '../../../JS_project/modules/mathFunctions.js';
 
-import { person } from '../../../JS_project/modules/localStorage.js';
+import { updateStorageFinal } from '../../../JS_project/modules/localStorage.js';
 
 export default (context) => {
   const makeSalaryPage = () => {
@@ -159,8 +160,8 @@ export default (context) => {
             classname: 'add-grid-3',
             idHtmlToAppend: 'main-content-div5',
           },
-          'Назад к доп.активности',
-          'Новый сотрудник',
+          'Следующий сотрудник',
+          'Сводная таблица',
           context,
         );
         part2(context);
@@ -170,16 +171,18 @@ export default (context) => {
         fillDataInfo(context);
         howGoodIndicators();
       }
-
-      const finalButton = document.getElementById('forwardButton');
-      finalButton.addEventListener('click', () => {
+      const getBackButton = document.getElementById('backButton');
+      getBackButton.addEventListener('click', () => {
+        saveEmployeeData(context);
         clearContainer('main-content-div5');
         context.router.navigate('/page2');
       });
-      const getBackButton = document.getElementById('backButton');
-      getBackButton.addEventListener('click', () => {
+      const finalButton = document.getElementById('forwardButton');
+      finalButton.addEventListener('click', () => {
+        saveEmployeeData(context);
+        updateStorageFinal();
         clearContainer('main-content-div5');
-        context.router.navigate('/page6');
+        context.router.navigate('/page8');
       });
       context.marker = false;
     });
@@ -431,8 +434,6 @@ export default (context) => {
         buttonDiv3.remove(taxButton);
       }, 1000);
     });
-    console.log(person);
-    console.log(context);
   };
 
   const fillDataTax = (context) => {
@@ -442,6 +443,7 @@ export default (context) => {
     fllSalaryInput({ id: 'totalSalary2', value: context.totalSalary });
 
     draw('.add-grid-column-3');
+
     salaryExist();
   };
 

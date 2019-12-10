@@ -1,3 +1,5 @@
+import { person } from '../modules/localStorage.js';
+
 export const getMiddleKK = (context) => {
   let middle = 0;
   for (let i in context.resultArr) {
@@ -59,6 +61,17 @@ export const getExtraData = (context) => {
     };
     context.exxxtra.push(extraDay);
   }
+};
+
+export const saveEmployeeData = (context) => {
+  const employee = {
+    name: context.lastname + ' ' + context.name[0] + '.' + context.secondName[0],
+    ivr: context.ivrToShift,
+    kk: context.middleKk,
+    csat: context.middleCsat,
+    salary: context.totalSalary,
+  };
+  person.push(employee);
 };
 
 export const getDataInfo = (context) => {

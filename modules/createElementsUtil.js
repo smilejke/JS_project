@@ -183,3 +183,41 @@ export const styleStaticInputs = (input, startingValue) => {
     input.classList.add('valid');
   }
 };
+
+export const createInputDivStat = (hash, context) => {
+  const inputDiv = document.createElement(hash.type);
+  inputDiv.className = hash.classname;
+  inputDiv.id = hash.id + context.counter;
+  hash.placeToPushId.push(inputDiv.id);
+  hash.placeToAppend.appendChild(inputDiv);
+  return inputDiv;
+};
+
+export const createList = (inputDiv, hash) => {
+  let ol = document.createElement('ol');
+  let text = document.createElement('span');
+  text.innerHTML = hash.name;
+  ol.appendChild(text);
+  ol.className = 'rounded';
+  inputDiv.appendChild(ol);
+
+  createListItem('ИВР: ' + hash.ivr, ol);
+  createListItem('Контроль качества: ' + hash.kk, ol);
+  createListItem('CSAT: ' + hash.csat, ol);
+  createListItem('Итого к выплате: ' + hash.salary, ol);
+};
+
+const createListItem = (data, placeToAppend) => {
+  let li = document.createElement('li');
+  let a = document.createElement('a');
+  a.href = '#';
+  a.innerHTML = data;
+  li.appendChild(a);
+  placeToAppend.appendChild(li);
+};
+
+export const createHeader = (main, context) => {
+  let header = document.createElement('h3');
+  header.innerHTML = 'Данные о зарплате сотрудников за ' + context.month;
+  main.appendChild(header);
+};
